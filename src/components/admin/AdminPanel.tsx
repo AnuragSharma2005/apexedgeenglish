@@ -25,7 +25,7 @@ const CONTACT_URL = "https://script.google.com/macros/s/AKfycbw44Z6wh2WRujRvh36W
 
 // Login Credentials
 const ADMIN_EMAIL = "admin@apexedge.com";
-const ADMIN_PASSWORD = "apexedgeadmin123";
+const ADMIN_PASSWORD = "apexedge@123";
 
 export function AdminPanel() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

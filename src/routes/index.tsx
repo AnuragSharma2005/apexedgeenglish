@@ -26,12 +26,12 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="min-h-screen flex flex-col overflow-x-hidden bg-[#fdf2e8] text-xs sm:text-sm">
+    <main className="min-h-screen flex flex-col overflow-x-hidden bg-[#fdf2e8] text-xs sm:text-sm ">
       <Navbar />
 
-      <div className="flex-grow">
+      <div className="flex-grow space-y-8 sm:space-y-10">
         {/* Hero */}
-        <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-12 sm:pt-20 lg:pt-32 relative overflow-hidden">
+        <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-22 sm:pt-20 lg:pt-32 relative overflow-hidden">
           <div className="sm:hidden rounded-4xl px-4 pt-4 pb-4">
             <h1 className="text-center text-[1.75rem] leading-[1.14] font-extrabold tracking-tight text-[oklch(0.14_0.02_250)]">
               Best English Learning
