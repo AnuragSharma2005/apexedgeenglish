@@ -7,8 +7,8 @@ import { Navbar } from "../Navbar";
 import { Mail, Phone, MessageCircle, MapPin, Clock, CheckCircle2, Sparkles } from "lucide-react";
 
 const adminEmail = "apexedge@gmail.com";
-const phoneNumber = "+91 79869 01874";
-const whatsappNumber = "+91 88377 35452";
+const phoneNumber = "+91  83600 79077";
+const whatsappNumber = "+91  83600 79077";
 
 export function ContactUsPage() {
   const [name, setName] = useState("");

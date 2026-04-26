@@ -2,6 +2,7 @@ import { RouterProvider } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { getRouter } from "./router";
+import { FloatingContactButtons } from "./components/FloatingContactButtons";
 import "./styles.css";
 
 const rootElement = document.getElementById("root");
@@ -14,6 +15,9 @@ const router = getRouter();
 
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <>
+      <RouterProvider router={router} />
+      <FloatingContactButtons />
+    </>
   </StrictMode>,
 );

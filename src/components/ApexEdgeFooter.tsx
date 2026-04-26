@@ -132,7 +132,7 @@ export function ApexEdgeFooter() {
                 <li className="flex items-start gap-2.5">
                   <Phone className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#f6cb3f] sm:h-4 sm:w-4" />
                   <div>
-                    <p>+91 98788 70737</p>
+                    <p>+91  83600 79077</p>
                     <p className="text-white/58">Free demo class</p>
                   </div>
                 </li>

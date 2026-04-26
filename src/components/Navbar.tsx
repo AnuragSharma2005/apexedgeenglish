@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/logo.png";
 
@@ -6,6 +6,17 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
+
+  const handleHomeClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (window.location.pathname === "/") {
+      event.preventDefault();
+      window.scrollTo(0, 0);
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.location.reload();
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 28);
@@ -34,8 +45,8 @@ export function Navbar() {
                 Email@gmail.com
               </a>
               <span className="hidden sm:inline-block h-5 w-px bg-white/45" />
-              <a href="tel:+917986901874" className="hover:opacity-85 transition">
-                +91 79869 01874
+              <a href="tel:+918360079077" className="hover:opacity-85 transition">
+                +918360079077
               </a>
             </div>
           </div>
@@ -48,7 +59,7 @@ export function Navbar() {
               : "-mt-1 rounded-b-[1.65rem] bg-white border border-[#f0f0f0] shadow-[0_18px_28px_-22px_rgba(0,0,0,0.35)]"
               } px-4 sm:px-6 lg:px-8 py-3.5`}
           >
-            <Link to="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            <Link to="/" onClick={handleHomeClick} className="flex items-center gap-2.5 sm:gap-3 shrink-0">
               <img
                 src={logo}
                 alt="Apex Edge logo"
@@ -58,7 +69,7 @@ export function Navbar() {
             </Link>
 
             <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-base xl:text-lg font-semibold text-[oklch(0.2_0.02_250)]">
-              <Link to="/" className="hover:text-[#d90f40] transition">Home</Link>
+              <Link to="/" onClick={handleHomeClick} className="hover:text-[#d90f40] transition">Home</Link>
               <div 
                 className="relative group"
                 onMouseLeave={() => setIsCoursesDropdownOpen(false)}
@@ -172,7 +183,7 @@ export function Navbar() {
           </button>
 
           <nav className="mt-7 space-y-5 text-xl font-semibold text-[oklch(0.2_0.02_250)]">
-            <Link to="/" className="flex items-center gap-3">
+            <Link to="/" onClick={handleHomeClick} className="flex items-center gap-3">
               <svg className="w-5 h-5 text-[#d90f40]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
@@ -228,7 +239,7 @@ export function Navbar() {
                 </div>
               )}
             </div>
-            <Link to="/" className="flex items-center gap-3">
+            <Link to="/" onClick={handleHomeClick} className="flex items-center gap-3">
               <svg className="w-5 h-5 text-[#d90f40]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
               </svg>
