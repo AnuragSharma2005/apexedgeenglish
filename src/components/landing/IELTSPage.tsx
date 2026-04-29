@@ -164,7 +164,7 @@ export function IELTSPage() {
 
             {/* Desktop Button - Hidden on Mobile */}
             <div className="hidden lg:flex flex-row items-center gap-8">
-              <Link to="/book-session" className="px-10 py-4 rounded-lg bg-white text-[#d90f40] font-black text-lg shadow-lg hover:bg-gray-100 transition-all">
+              <Link to="/enroll" className="px-8 py-3 rounded-lg bg-white text-[#d90f40] font-black text-base shadow-lg hover:bg-gray-100 transition-all">
                 Get Admission
               </Link>
             </div>
@@ -205,7 +205,7 @@ export function IELTSPage() {
             transition={{ delay: 0.5 }}
             className="flex lg:hidden order-3 mt-10 w-full px-4"
           >
-             <Link to="/book-session" className="w-full px-10 py-5 rounded-xl bg-[#d90f40] text-white font-black text-xl shadow-xl hover:bg-[#b00c34] transition-all text-center animate-pulse-subtle">
+             <Link to="/enroll" className="w-full px-8 py-4 rounded-xl bg-[#d90f40] text-white font-black text-lg shadow-xl hover:bg-[#b00c34] transition-all text-center animate-pulse-subtle">
                 Get Admission
               </Link>
           </motion.div>
@@ -423,13 +423,17 @@ export function IELTSPage() {
             viewport={{ once: true }}
             className="relative overflow-visible rounded-3xl bg-[#d90f40] px-8 py-6 sm:px-16 sm:py-8 min-h-[160px] flex items-center"
           >
-            <div className="relative z-10 grid lg:grid-cols-[1fr,350px] gap-12 items-center w-full">
+            <div className="relative z-10 grid lg:grid-cols-[1fr,350px] gap-12 items-start w-full">
               <div className="text-left">
-                <h2 className="text-2xl sm:text-4xl font-black text-white mb-4 leading-tight tracking-tight">
-                  Need an 8 or Above Band in IELTS? <br />
-                  <span className="text-white/90">Enroll for a Demo Class!</span>
-                </h2>
-                <Link to="/book-session" className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#d90f40] rounded-xl font-black text-sm sm:text-base hover:bg-gray-50 transition-all shadow-xl active:scale-95">
+               <h2 className="text-xl sm:text-4xl font-black text-white mb-4 leading-tight tracking-tight text-left">
+              <span className="block">
+                Need an 8 or Above Band in IELTS?
+              </span>
+              <span className="block text-white/90">
+                Enroll for a Demo Class!
+              </span>
+            </h2>
+                <Link to="/enroll" className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#d90f40] rounded-xl font-black text-sm sm:text-base hover:bg-gray-50 transition-all shadow-xl active:scale-95">
                   Book A Free Session Now
                 </Link>
               </div>

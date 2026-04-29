@@ -1,11 +1,12 @@
 import { useState, useEffect, type MouseEvent } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import logo from "@/assets/logo.png";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleHomeClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (window.location.pathname === "/") {
@@ -178,7 +179,7 @@ export function Navbar() {
             </button>
           </div>
 
-          <button className="mt-6 w-full rounded-xl bg-[#d90f40] py-3.5 text-white text-lg font-semibold">
+          <button onClick={() => navigate({ to: "/enroll" })} className="mt-6 w-full rounded-xl bg-[#d90f40] py-3.5 text-white text-lg font-semibold">
             Book a Free Session
           </button>
 

@@ -19,7 +19,7 @@ const exploreLinks = [
 ];
 
 const supportLinks = [
-  { label: "Book Session", href: "/book-session" },
+  { label: "Book Session", href: "/enroll" },
   { label: "IELTS", href: "/ielts" },
   { label: "PTE", href: "/pte" },
   { label: "CELPIP", href: "/celpip" },
@@ -70,7 +70,7 @@ export function ApexEdgeFooter() {
 
               <div className="mt-4 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
                 <Link
-                  to="/book-session"
+                  to="/enroll"
                   className="inline-flex items-center gap-1.5 rounded-xl bg-white px-3 py-2 text-[0.72rem] font-semibold text-[#c90f3b] transition hover:-translate-y-px hover:bg-white/92 sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
                 >
                   Book a Free Session
@@ -125,7 +125,7 @@ export function ApexEdgeFooter() {
                 <li className="flex items-start gap-2.5">
                   <Phone className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#f6cb3f] sm:h-4 sm:w-4" />
                   <div>
-                    <p>+91 98769 01874</p>
+                    <p>+91 8360079077</p>
                     <p className="text-white/58">Admission helpline</p>
                   </div>
                 </li>

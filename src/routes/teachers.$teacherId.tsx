@@ -1,4 +1,4 @@
-import { createFileRoute, useParams, Link } from "@tanstack/react-router";
+import { createFileRoute, useParams, Link, useNavigate } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { teachers } from "../data/teachers";
 import { Navbar } from "../components/Navbar";
@@ -21,6 +21,7 @@ export const Route = createFileRoute("/teachers/$teacherId")({
 function TeacherDetailPage() {
   const { teacherId } = useParams({ from: "/teachers/$teacherId" });
   const teacher = teachers.find((t) => t.id === teacherId);
+  const navigate = useNavigate();
 
   if (!teacher) {
     return (
@@ -141,7 +142,7 @@ function TeacherDetailPage() {
               </div>
 
               <div className="mt-16 flex flex-wrap gap-6">
-                <button className="px-10 py-5 rounded-2xl bg-[#d90f40] text-white font-bold text-lg shadow-2xl shadow-[#d90f40]/30 hover:scale-105 transition-transform">
+                <button onClick={() => navigate({ to: "/enroll" })} className="px-10 py-5 rounded-2xl bg-[#d90f40] text-white font-bold text-lg shadow-2xl shadow-[#d90f40]/30 hover:scale-105 transition-transform">
                   Book a Session with {teacher.name.split(' ')[0]}
                 </button>
                 <button className="px-10 py-5 rounded-2xl bg-white border-2 border-[#1a1a1a]/10 text-[#1a1a1a] font-bold text-lg hover:bg-white/50 transition-colors">

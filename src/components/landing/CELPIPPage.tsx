@@ -40,10 +40,10 @@ export function CELPIPPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="mt-8 sm:mt-12"
+              className="mt-8 sm:mt-10"
             >
-              <Link to="/book-session" className="px-8 sm:px-12 py-4 sm:py-6 bg-black text-white rounded-full font-black text-lg sm:text-xl hover:bg-[#d90f40] transition-all inline-flex items-center gap-4 group">
-                Begin Your Pathway <CircleArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform" />
+              <Link to="/enroll" className="px-6 sm:px-8 py-3 sm:py-4 bg-black text-white rounded-full font-black text-base sm:text-lg hover:bg-[#d90f40] transition-all inline-flex items-center gap-3 group">
+                Begin Your Pathway <CircleArrowRight className="w-4.5 h-4.5 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform" />
               </Link>
             </motion.div>
           </div>
@@ -128,7 +128,7 @@ export function CELPIPPage() {
                     </motion.div>
                   ))}
                </div>
-               <Link to="/book-session" className="mt-16 inline-block text-2xl font-black text-[#d90f40] border-b-4 border-[#d90f40] pb-2 hover:translate-x-4 transition-transform">
+               <Link to="/enroll" className="mt-16 inline-block text-2xl font-black text-[#d90f40] border-b-4 border-[#d90f40] pb-2 hover:translate-x-4 transition-transform">
                  See Our Results
                </Link>
             </div>
@@ -137,23 +137,22 @@ export function CELPIPPage() {
       </section>
 
       {/* Floating CTA - Redesigned for Mobile Visibility */}
-      <section className="py-20 sm:py-32 bg-[#fdf2e8]">
+      <section className="py-16 sm:py-24 bg-[#fdf2e8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="bg-black text-white rounded-[2.5rem] sm:rounded-[4rem] p-10 sm:p-24 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 text-center lg:text-left">
+          <div className="bg-black text-white rounded-[2.5rem] sm:rounded-[4rem] p-8 sm:p-16 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 text-center lg:text-left">
             <div className="relative z-10 max-w-xl">
-               <h2 className="text-3xl sm:text-5xl font-black mb-4 sm:mb-6 leading-tight">Secure Your <br className="lg:hidden" /> 10+ CLB Score.</h2>
-               <p className="text-base sm:text-xl text-gray-400 font-medium">
-                 The CELPIP test evaluates you on everyday scenarios. We train you to excel 
-                 at those scenarios with confidence.
+               <h2 className="text-2xl sm:text-4xl font-black mb-4 sm:mb-5 leading-tight">Secure Your 10+ CLB Score.</h2>
+               <p className="text-sm sm:text-base text-gray-400 font-medium">
+                 The CELPIP test evaluates you on everyday scenarios. We train you to excel at those scenarios with confidence.
                </p>
             </div>
             <div className="relative z-10 shrink-0 w-full lg:w-auto">
-               <Link to="/book-session" className="inline-block w-full lg:w-auto px-10 sm:px-14 py-6 sm:py-8 bg-[#d90f40] text-white rounded-2xl sm:rounded-[2rem] font-black text-xl sm:text-2xl hover:scale-105 transition-transform shadow-[0_30px_60px_-12px_rgba(217,15,64,0.4)]">
+               <Link to="/enroll" className="inline-block w-full lg:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-[#d90f40] text-white rounded-2xl sm:rounded-[2rem] font-black text-lg sm:text-xl hover:scale-105 transition-transform shadow-[0_24px_50px_-12px_rgba(217,15,64,0.35)]">
                  Enroll Today
                </Link>
             </div>
-            <div className="absolute -bottom-20 -right-20 w-[400px] h-[400px] border-[40px] border-white/5 rounded-full" />
-            <div className="absolute top-10 left-1/2 w-64 h-64 bg-[#d90f40]/20 rounded-full blur-[100px]" />
+            <div className="absolute -bottom-16 -right-16 w-[340px] h-[340px] border-[36px] border-white/5 rounded-full" />
+            <div className="absolute top-10 left-1/2 w-56 h-56 bg-[#d90f40]/20 rounded-full blur-[90px]" />
           </div>
         </div>
       </section>

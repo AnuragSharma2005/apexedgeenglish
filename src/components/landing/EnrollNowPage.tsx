@@ -205,7 +205,7 @@ export function EnrollNowPage() {
                           <course.icon className="w-8 h-8" />
                         </div>
                         <div>
-                          <h3 className="text-2xl font-black text-[#1a1a1a]">{course.name}</h3>
+                          <h3 className="text-[1.25rem] sm:text-[1.35rem]  font-black text-[#1a1a1a]">{course.name}</h3>
                           <p className="text-[#666] font-bold uppercase text-xs tracking-widest mt-1">{course.tag}</p>
                         </div>
                       </div>

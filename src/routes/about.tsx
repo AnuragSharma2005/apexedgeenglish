@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Navbar } from "../components/Navbar";
 import { ApexEdgeFooter } from "../components/ApexEdgeFooter";
@@ -17,6 +17,7 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen flex flex-col bg-[#fdf2e8] overflow-x-hidden pt-36">
       <Navbar />
@@ -59,12 +60,19 @@ function AboutPage() {
               achievers, and educators dedicated to breaking the boundaries of traditional learning.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <button className="px-10 py-5 rounded-2xl bg-[#d90f40] text-white font-bold text-lg shadow-2xl shadow-[#d90f40]/30 hover:scale-105 transition-transform">
+              <a
+                href="tel:+918360079077"  
+                className="px-10 py-3 rounded-2xl bg-white border-2 border-[#1a1a1a]/10 text-[#1a1a1a] font-bold text-lg hover:bg-white/50 transition-colors inline-block"
+              >
+                Call Us
+              </a>
+              <Link
+                to="/enroll"
+                className="px-10 py-3 rounded-2xl bg-[#d90f40] text-white font-bold text-lg shadow-2xl shadow-[#d90f40]/30 hover:scale-105 transition-transform text-center"
+              >
                 Join Our Journey
-              </button>
-              <button className="px-10 py-5 rounded-2xl bg-white border-2 border-[#1a1a1a]/10 text-[#1a1a1a] font-bold text-lg hover:bg-white/50 transition-colors">
-                Our Story
-              </button>
+              </Link>
+             
             </div>
           </motion.div>
         </div>
@@ -163,15 +171,24 @@ function AboutPage() {
       </section>
 
       {/* Teachers Section */}
-      <section className="py-32 bg-[#1a1a1a] text-white overflow-hidden">
+      <section   id="teachers" className="relative py-32 bg-[linear-gradient(135deg,#c90f3b_0%,#d90f40_45%,#a70e35_100%)] text-white overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <span className="absolute top-12 left-10 h-2 w-2 rounded-full bg-white/90 shadow-[0_0_12px_rgba(255,255,255,0.8)]" />
+          <span className="absolute top-24 right-16 h-2 w-2 rounded-full bg-white/80 shadow-[0_0_10px_rgba(255,255,255,0.7)]" />
+          <span className="absolute top-40 left-1/2 h-2 w-2 rounded-full bg-white/70 shadow-[0_0_10px_rgba(255,255,255,0.6)]" />
+          <span className="absolute bottom-24 left-24 h-2 w-2 rounded-full bg-white/80 shadow-[0_0_10px_rgba(255,255,255,0.7)]" />
+          <span className="absolute bottom-16 right-24 h-2 w-2 rounded-full bg-white/90 shadow-[0_0_12px_rgba(255,255,255,0.8)]" />
+          <span className="absolute top-32 right-1/3 inline-flex text-white/70 text-xs">✦</span>
+          <span className="absolute left-1/3 bottom-28 inline-flex text-white/70 text-xs">✦</span>
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
+          <div className="flex flex-col md:flex-row items-start justify-between mb-20 gap-8">
             <div className="max-w-2xl">
               <motion.span
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="text-[#d90f40] font-bold tracking-widest uppercase text-sm mb-4 block"
+                className="text-white/80 font-bold tracking-widest uppercase text-sm mb-4 block"
               >
                 Meet Our Experts
               </motion.span>
@@ -179,16 +196,17 @@ function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-5xl sm:text-7xl font-black leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-black leading-tight text-left"
               >
-                The Minds Behind <br /> <span className="text-[#d90f40]">Apex Edge</span>
+                <span className="block">The Minds Behind</span>
+                <span className="block text-[#1a1a1a]">Apex Edge</span>
               </motion.h2>
             </div>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-gray-400 text-lg max-w-sm mb-4"
+              className="text-white/85 text-base sm:text-lg max-w-sm mb-4"
             >
               Our teachers are not just instructors; they are mentors who are committed to your growth and success.
             </motion.p>
@@ -238,28 +256,32 @@ function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 px-4">
+      <section className="py-24 px-4">
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
+          initial={{ scale: 0.95, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
-          className="max-w-7xl mx-auto bg-[#d90f40] rounded-[4rem] p-12 sm:p-20 text-center text-white relative overflow-hidden shadow-2xl shadow-[#d90f40]/40"
+          className="max-w-7xl mx-auto bg-[#d90f40] rounded-[3rem] p-10 sm:p-16 text-center text-white relative overflow-hidden shadow-2xl shadow-[#d90f40]/40"
         >
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-black/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
+          <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-black/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
 
-          <h2 className="text-4xl sm:text-6xl font-black mb-8 relative z-10">Ready to Elevate Your Future?</h2>
-          <p className="text-xl text-white/80 max-w-2xl mx-auto mb-12 relative z-10">
+          <h2 className="text-4xl sm:text-5xl font-black mb-6 relative z-10 leading-tight">
+            Ready to Elevate
+            <br className="sm:hidden" />
+            Your Future?
+          </h2>
+          <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-8 relative z-10">
             Join Apex Edge today and experience education like never before.
             Book your free demo session now!
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
-            <button className="px-12 py-6 rounded-3xl bg-white text-[#d90f40] font-black text-xl hover:scale-105 transition-transform">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
+            <button onClick={() => navigate({ to: "/enroll" })} className="px-8 py-3 sm:px-10 sm:py-4 rounded-3xl bg-white text-[#d90f40] font-black text-base sm:text-lg hover:scale-105 transition-transform">
               Book Free Session
             </button>
-            <button className="px-12 py-6 rounded-3xl bg-transparent border-2 border-white/30 text-white font-black text-xl hover:bg-white/10 transition-colors">
+            <Link to="/contact-us" className="px-8 py-3 sm:px-10 sm:py-4 rounded-3xl bg-transparent border-2 border-white/30 text-white font-black text-base sm:text-lg hover:bg-white/10 transition-colors">
               Contact Support
-            </button>
+            </Link>
           </div>
         </motion.div>
       </section>

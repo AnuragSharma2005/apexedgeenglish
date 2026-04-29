@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { CoursesRealitySection } from "../components/CoursesRealitySection";
 import { OnlineLearningBenefitsSection } from "../components/OnlineLearningBenefitsSection";
 import { ResourceShowcaseSection } from "../components/ResourceShowcaseSection";
@@ -9,6 +9,7 @@ import { ApexEdgeSection } from "../components/ApexEdgeSection";
 import { ApexEdgeFooter } from "../components/ApexEdgeFooter";
 import { Navbar } from "../components/Navbar";
 import studentGirl from "@/assets/student-girl.png";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -25,6 +26,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const navigate = useNavigate();
   return (
     <main className="min-h-screen flex flex-col overflow-x-hidden bg-[#fdf2e8] text-xs sm:text-sm ">
       <Navbar />
@@ -95,9 +97,12 @@ function Index() {
                   through this platform.
                 </p>
 
-                <button className="mt-6 sm:mt-8 bg-[#d90f40] hover:bg-[#c50e3a] text-white px-7 sm:px-8 py-3 rounded-md text-sm sm:text-base transition shadow-[0_12px_24px_-18px_rgba(217,15,64,0.9)]">
-                  Get Started
-                </button>
+              <Link
+                to="/enroll"
+                className="mt-6 sm:mt-8 bg-[#d90f40] hover:bg-[#c50e3a] text-white px-7 sm:px-8 py-3 rounded-md text-sm sm:text-base transition shadow-[0_12px_24px_-18px_rgba(217,15,64,0.9)] inline-block"
+              >
+                Get Started
+              </Link>
               </div>
 
               {/* Right image */}
@@ -143,10 +148,11 @@ function Index() {
                   <span aria-hidden="true">📞</span>
                   +91  83600 79077
                 </p>
-
-                <button className="mt-5 w-full rounded-xl bg-[#d70c3f] py-3 text-white text-lg sm:text-xl font-semibold hover:opacity-90 transition">
-                  Call Us Now
-                </button>
+                  <a href="tel:+919876543210">
+                  <button className="mt-5 w-full rounded-xl bg-[#d70c3f] py-3 text-white text-lg sm:text-xl font-semibold hover:opacity-90 transition">
+                    Call Us Now
+                  </button>
+                </a>
               </div>
 
               <div className="text-white lg:pl-2 xl:pl-3">
@@ -162,9 +168,9 @@ function Index() {
                   IELTS / CELPIP / PTE
                 </p>
 
-                <button className="mt-6 rounded-xl bg-white px-6 sm:px-8 py-3 text-[#d70c3f] text-lg sm:text-xl font-semibold hover:bg-white/90 transition">
+                <Link to="/enroll" className="mt-6 inline-flex rounded-xl bg-white px-6 sm:px-8 py-3 text-[#d70c3f] text-lg sm:text-xl font-semibold hover:bg-white/90 transition text-center">
                   Book Now
-                </button>
+                </Link>
               </div>
 
               <div className="relative h-56 sm:h-72 lg:h-80 hidden sm:block">
@@ -275,7 +281,7 @@ function Index() {
                   </li>
                 </ul>
 
-                <button className="mt-9 inline-flex items-center gap-2 rounded-2xl bg-[#d81343] text-white text-lg sm:text-xl font-semibold px-8 py-4 hover:opacity-90 transition shadow-[0_20px_40px_-28px_rgba(216,19,67,0.75)]">
+                <button onClick={() => navigate({ to: "/enroll" })} className="mt-9 inline-flex items-center gap-2 rounded-2xl bg-[#d81343] text-white text-lg sm:text-xl font-semibold px-8 py-4 hover:opacity-90 transition shadow-[0_20px_40px_-28px_rgba(216,19,67,0.75)]">
                   Book a Free Session
                   <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/80">
                     <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

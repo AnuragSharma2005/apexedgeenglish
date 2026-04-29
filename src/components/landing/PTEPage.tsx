@@ -258,19 +258,30 @@ export function PTEPage() {
          </section>
 
          {/* Final CTA */}
-         <section className="py-24 px-4 sm:px-6 lg:px-12 bg-white">
+        <section className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
             <div className="max-w-7xl mx-auto">
-               <div className="bg-[#d90f40] text-white rounded-[3rem] sm:rounded-[4rem] p-12 sm:p-24 text-center relative overflow-hidden">
+               <div className="bg-[#d90f40] text-white rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-16 text-center relative overflow-hidden">
+                  
                   <div className="relative z-10">
-                     <h2 className="text-4xl sm:text-7xl font-black mb-8 leading-tight">Your Success is Our <br /> <span className="opacity-60 italic">Next Project.</span></h2>
-                     <p className="text-xl sm:text-2xl font-medium mb-12 max-w-2xl mx-auto opacity-90">
-                        Join the most innovative PTE coaching program in India. 
-                        Limited slots available for the next batch.
-                     </p>
-                     <Link to="/book-session" className="px-12 py-6 bg-white text-[#d90f40] rounded-2xl font-black text-xl hover:scale-110 transition-transform inline-flex items-center gap-4">
-                        Join the Elite Batch <CircleArrowRight className="w-6 h-6" />
-                     </Link>
+                  <h2 className="text-2xl sm:text-5xl font-black mb-6 leading-tight">
+                     Your Success is Our <br />
+                     <span className="opacity-60 italic">Next Project.</span>
+                  </h2>
+
+                  <p className="text-base sm:text-xl font-medium mb-8 max-w-xl mx-auto opacity-90">
+                     Join the most innovative PTE coaching program in India. 
+                     Limited slots available for the next batch.
+                  </p>
+
+                  <Link
+                     to="/enroll"
+                     className="px-8 py-3 sm:px-10 sm:py-4 bg-white text-[#d90f40] rounded-2xl font-black text-base sm:text-lg hover:scale-105 transition-transform inline-flex items-center gap-3"
+                  >
+                     Join the Elite Batch 
+                     <CircleArrowRight className="w-5 h-5" />
+                  </Link>
                   </div>
+
                   {/* Decorative Elements */}
                   <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-[0.05] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
                   <div className="absolute bottom-0 left-0 w-96 h-96 bg-black opacity-[0.05] rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
