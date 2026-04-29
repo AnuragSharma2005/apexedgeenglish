@@ -155,7 +155,7 @@ export function EnrollNowPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-6xl sm:text-8xl font-black text-[#1a1a1a] leading-none tracking-tighter mb-8"
+                className="text-4xl sm:text-8xl font-black text-[#1a1a1a] leading-none tracking-tighter mb-8"
               >
                 CHOOSE YOUR <br />
                 <span className="text-[#d90f40]">FUTURE PATH.</span>
@@ -389,7 +389,7 @@ export function EnrollNowPage() {
                       <div className="pt-4">
                         <button
                           type="submit"
-                          className="w-full h-16 bg-[#1a1a1a] text-white rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-[#d90f40] transition-all shadow-xl shadow-gray-200 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="w-full h-12 bg-[#1a1a1a] text-white rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-[#d90f40] transition-all shadow-xl shadow-gray-200 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                           disabled={isSubmitting}
                         >
                           {isSubmitting ? (
