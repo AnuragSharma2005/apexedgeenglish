@@ -19,8 +19,8 @@ export function BusinessCommPage() {
               className="lg:w-2/3"
             >
               <span className="text-[#d90f40] font-black text-xs sm:text-sm uppercase tracking-[0.3em] mb-4 sm:mb-6 block">Elite Professional Training</span>
-              <h1 className="text-5xl sm:text-7xl lg:text-9xl font-black text-[#1a1a1a] leading-[0.9] sm:leading-[0.85] tracking-tighter">
-                LEAD THE <br className="hidden sm:block" /> <span className="text-[#d90f40]">ROOM.</span>
+             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-[#1a1a1a] leading-[0.9] sm:leading-[0.85] tracking-tighter">
+                LEAD THE <span className="text-[#d90f40]">ROOM.</span>
               </h1>
             </motion.div>
             <motion.div 
@@ -49,7 +49,7 @@ export function BusinessCommPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-8 sm:p-16">
               <div className="flex flex-col sm:flex-row flex-wrap gap-8 items-center w-full justify-between">
-                 <Link to="/book-session" className="w-full sm:w-auto px-10 py-5 sm:px-12 sm:py-6 bg-[#d90f40] text-white font-black text-lg sm:text-xl rounded-2xl hover:scale-105 transition-transform text-center">
+                 <Link to="/enroll" className="w-full sm:w-auto px-10 py-5 sm:px-12 sm:py-6 bg-[#d90f40] text-white font-black text-lg sm:text-xl rounded-2xl hover:scale-105 transition-transform text-center">
                     Corporate Brochure
                  </Link>
                  <div className="flex gap-8 sm:gap-12 text-white/80 w-full sm:w-auto justify-center sm:justify-start">
@@ -147,16 +147,73 @@ export function BusinessCommPage() {
       </section>
 
       {/* Horizontal Scroll / Marquee - Totally different design */}
-      <section className="py-24 bg-[#1a1a1a] overflow-hidden whitespace-nowrap">
-        <div className="flex animate-marquee gap-20">
-          {[
-            "PRESENTATION SKILLS", "PUBLIC SPEAKING", "EMAIL ETIQUETTE", 
-            "CONFLICT RESOLUTION", "LEADERSHIP COUPLING", "ACCENT NEUTRALIZATION"
-          ].map((text, i) => (
-            <span key={i} className="text-6xl sm:text-8xl font-black text-white/5 outline-text tracking-tighter">
-              {text}
-            </span>
-          ))}
+     <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+
+          {/* Heading */}
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-800">
+            Core Communication Skills
+          </h2>
+
+          {/* Grid */}
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10">
+
+            {[
+              "PRESENTATION SKILLS",
+              "PUBLIC SPEAKING",
+              "EMAIL ETIQUETTE",
+              "CONFLICT RESOLUTION",
+              "LEADERSHIP COUPLING",
+              "ACCENT NEUTRALIZATION"
+            ].map((text, i) => {
+
+              const styles = [
+                "bg-pink-500 border-l-pink-500",
+                "bg-orange-500 border-l-orange-500",
+                "bg-green-500 border-l-green-500",
+                "bg-blue-500 border-l-blue-500",
+                "bg-purple-500 border-l-purple-500",
+                "bg-red-500 border-l-red-500"
+              ];
+
+              return (
+                <div key={i} className="flex flex-col items-center">
+
+                  {/* Ribbon */}
+                  <div className="relative inline-block">
+                    
+                    {/* Rectangle */}
+                    <div className={`${styles[i].split(" ")[0]} text-white px-8 py-3 font-bold text-base`}>
+                      {`0${i + 1}`}
+                    </div>
+
+                    {/* Triangle */}
+                    <div
+                      className={`absolute top-0 right-[-16px] w-0 h-0 
+                      border-t-[24px] border-b-[24px] border-l-[16px] 
+                      border-t-transparent border-b-transparent ${styles[i].split(" ")[1]}`}
+                    />
+                  </div>
+
+                  {/* Dotted Line */}
+                  <div className="h-12 border-l-2 border-dashed border-gray-400 mt-4"></div>
+
+                  {/* Circle */}
+                  <div className="w-16 h-16 rounded-full border-2 border-gray-400 flex items-center justify-center text-lg font-bold text-gray-600">
+                    •
+                  </div>
+
+                  {/* Text */}
+                  <p className="mt-4 text-base font-semibold text-gray-800 text-center max-w-[160px] leading-snug">
+                    {text}
+                  </p>
+
+                </div>
+              );
+            })}
+
+          </div>
+
         </div>
       </section>
 
@@ -169,7 +226,7 @@ export function BusinessCommPage() {
               <img src="/students/ielts.png" className="relative z-10 rounded-[4rem] grayscale shadow-2xl" alt="Results" />
             </div>
             <div>
-              <h2 className="text-6xl font-black text-[#1a1a1a] mb-12 leading-[0.9]">THE <span className="text-[#d90f40]">IMPACT.</span></h2>
+              <h2 className="text-5xl font-black text-[#1a1a1a] mb-12 leading-[0.9]">THE <span className="text-[#d90f40]">IMPACT.</span></h2>
               <div className="space-y-12 text-[#1a1a1a]">
                 {[
                   { title: "90% Career Growth", desc: "Our alumni report immediate promotions and better job offers within 6 months." },
@@ -189,7 +246,7 @@ export function BusinessCommPage() {
                   </motion.div>
                 ))}
               </div>
-              <Link to="/book-session" className="mt-16 inline-block px-14 py-6 bg-black text-white font-black text-xl rounded-full hover:bg-[#d90f40] transition-colors">
+              <Link to="/book-session" className="mt-16 inline-block px-14 py-5 lg:py-4 bg-black text-white font-black text-xl rounded-full hover:bg-[#d90f40] transition-colors">
                 Apply for Cohort
               </Link>
             </div>

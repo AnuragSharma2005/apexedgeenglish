@@ -50,9 +50,12 @@ function Index() {
               />
             </div>
 
-            <button className="mt-4 w-full rounded-[0.9rem] bg-[#d90f40] py-3.5 text-white text-xl font-semibold shadow-[0_18px_24px_-20px_rgba(217,15,64,0.8)]">
+            <Link
+              to="/enroll"
+              className="mt-4 w-full inline-block text-center rounded-[0.9rem] bg-[#d90f40] py-3.5 text-white text-xl font-semibold shadow-[0_18px_24px_-20px_rgba(217,15,64,0.8)]"
+            >
               Start Your Journey
-            </button>
+            </Link>
           </div>
 
           <div className="hidden sm:block">

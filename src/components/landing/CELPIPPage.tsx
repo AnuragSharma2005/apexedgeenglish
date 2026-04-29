@@ -105,7 +105,10 @@ export function CELPIPPage() {
                </div>
             </div>
             <div className="order-1 lg:order-2">
-               <h2 className="text-5xl font-black text-[#1a1a1a] mb-10 leading-tight">Why Choose <br /> <span className="text-[#d90f40]">Apex Edge</span> for CELPIP?</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1a1a1a] mb-10 leading-tight">
+                Why Choose Apex Edge <br className="block md:hidden" />
+                <span className="text-[#d90f40]">for CELPIP</span>
+              </h2>
                <div className="space-y-8">
                   {[
                     "Pearson-aligned practice modules",
@@ -141,13 +144,13 @@ export function CELPIPPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="bg-black text-white rounded-[2.5rem] sm:rounded-[4rem] p-8 sm:p-16 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 text-center lg:text-left">
             <div className="relative z-10 max-w-xl">
-               <h2 className="text-2xl sm:text-4xl font-black mb-4 sm:mb-5 leading-tight">Secure Your 10+ CLB Score.</h2>
+               <h2 className="text-[1.3rem] sm:text-4xl font-black mb-4 sm:mb-5 leading-tight">Secure Your 10+ CLB Score.</h2>
                <p className="text-sm sm:text-base text-gray-400 font-medium">
                  The CELPIP test evaluates you on everyday scenarios. We train you to excel at those scenarios with confidence.
                </p>
             </div>
             <div className="relative z-10 shrink-0 w-full lg:w-auto">
-               <Link to="/enroll" className="inline-block w-full lg:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-[#d90f40] text-white rounded-2xl sm:rounded-[2rem] font-black text-lg sm:text-xl hover:scale-105 transition-transform shadow-[0_24px_50px_-12px_rgba(217,15,64,0.35)]">
+               <Link to="/enroll" className="inline-block w-full lg:w-auto px-8 sm:px-10 py-3 sm:py-4 bg-[#d90f40] text-white rounded-2xl sm:rounded-[2rem] font-black text-lg sm:text-xl hover:scale-105 transition-transform shadow-[0_24px_50px_-12px_rgba(217,15,64,0.35)]">
                  Enroll Today
                </Link>
             </div>

@@ -279,7 +279,7 @@ export function IELTSPage() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-24">
             <p className="text-[#d90f40] font-bold text-sm uppercase tracking-[0.2em] mb-4">Why Choose Us</p>
-            <h2 className="text-3xl sm:text-5xl font-black text-[#1a1a1a] mb-6 leading-tight">
+            <h2 className="text-2xl sm:text-5xl font-black text-[#1a1a1a] mb-6 leading-tight">
               6 Reasons to Enrol in IELTS Online Training at <br />
               <span className="text-[#d90f40]">Apex Edge</span>
             </h2>
