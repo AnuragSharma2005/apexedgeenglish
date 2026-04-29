@@ -146,9 +146,9 @@ function Index() {
 
                 <p className="mt-4 flex items-center justify-center gap-2 text-[#d70c3f] text-xl sm:text-2xl font-bold tracking-tight">
                   <span aria-hidden="true">📞</span>
-                  +91  83600 79077
+                  +91  83600 79077 
                 </p>
-                  <a href="tel:+919876543210">
+                  <a href="tel:+918360079077">
                   <button className="mt-5 w-full rounded-xl bg-[#d70c3f] py-3 text-white text-lg sm:text-xl font-semibold hover:opacity-90 transition">
                     Call Us Now
                   </button>
