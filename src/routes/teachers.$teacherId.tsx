@@ -98,7 +98,7 @@ function TeacherDetailPage() {
               <span className="inline-block px-4 py-2 rounded-full bg-[#d90f40]/10 text-[#d90f40] font-bold text-sm mb-6 uppercase tracking-widest">
                 {teacher.specialization}
               </span>
-              <h1 className="text-5xl sm:text-7xl font-black text-[#1a1a1a] mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-7xl font-black text-[#1a1a1a] mb-6 leading-tight">
                 {teacher.name}
               </h1>
               <h3 className="text-2xl font-bold text-[#d90f40] mb-8">{teacher.qualification}</h3>
@@ -142,12 +142,12 @@ function TeacherDetailPage() {
               </div>
 
               <div className="mt-16 flex flex-wrap gap-6">
-                <button onClick={() => navigate({ to: "/enroll" })} className="px-10 py-5 rounded-2xl bg-[#d90f40] text-white font-bold text-lg shadow-2xl shadow-[#d90f40]/30 hover:scale-105 transition-transform">
-                  Book a Session with {teacher.name.split(' ')[0]}
-                </button>
-                <button className="px-10 py-5 rounded-2xl bg-white border-2 border-[#1a1a1a]/10 text-[#1a1a1a] font-bold text-lg hover:bg-white/50 transition-colors">
-                  Check Schedule
-                </button>
+               <button
+                onClick={() => navigate({ to: "/enroll" })}
+                className="w-full px-10 py-5 rounded-2xl bg-[#d90f40] text-white font-bold text-lg shadow-2xl shadow-[#d90f40]/30 hover:scale-105 transition-transform"
+              >
+                Book a Session
+              </button>
               </div>
             </motion.div>
           </div>
