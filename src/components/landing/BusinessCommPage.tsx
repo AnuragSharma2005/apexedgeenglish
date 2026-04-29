@@ -246,7 +246,7 @@ export function BusinessCommPage() {
                   </motion.div>
                 ))}
               </div>
-              <Link to="/book-session" className="mt-16 inline-block px-14 py-5 lg:py-4 bg-black text-white font-black text-xl rounded-full hover:bg-[#d90f40] transition-colors">
+              <Link to="/enroll" className="mt-16 inline-block px-14 py-5 lg:py-4 bg-black text-white font-black text-xl rounded-full hover:bg-[#d90f40] transition-colors">
                 Apply for Cohort
               </Link>
             </div>
