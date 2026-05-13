@@ -117,8 +117,8 @@ function AboutPage() {
             >
               <div className="relative rounded-[3rem] overflow-hidden shadow-2xl">
                 <img
-                  src="/teachers/anurag.png"
-                  alt="Mission"
+                  src="/images/mission.png"
+                  alt="Mission and Vision"
                   className="w-full h-[600px] object-cover hover:scale-110 transition-transform duration-1000"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#d90f40]/80 to-transparent" />
@@ -130,7 +130,7 @@ function AboutPage() {
                 </div>
               </div>
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#2d7f72] rounded-full flex items-center justify-center text-white text-xl font-bold p-8 text-center animate-bounce">
-                Established 2014
+                Established 2026
               </div>
             </motion.div>
 
@@ -182,8 +182,8 @@ function AboutPage() {
           <span className="absolute left-1/3 bottom-28 inline-flex text-white/70 text-xs">✦</span>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="flex flex-col md:flex-row items-start justify-between mb-20 gap-8">
-            <div className="max-w-2xl">
+          <div className="flex flex-col items-center text-center mb-20 gap-8">
+            <div className="max-w-3xl">
               <motion.span
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -196,24 +196,23 @@ function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-black leading-tight text-left"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-black leading-tight text-center"
               >
-                <span className="block">The Minds Behind</span>
-                <span className="block text-[#1a1a1a]">Apex Edge</span>
+                The Minds Behind <span className="text-[#1a1a1a]">Apex Edge</span>
               </motion.h2>
             </div>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-white/85 text-base sm:text-lg max-w-sm mb-4"
+              className="text-white/85 text-base sm:text-lg max-w-2xl mb-4"
             >
               Our teachers are not just instructors; they are mentors who are committed to your growth and success.
             </motion.p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teachers.map((teacher, index) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center max-w-6xl mx-auto">
+            {teachers.slice(0, 3).map((teacher, index) => (
               <motion.div
                 key={teacher.id}
                 initial={{ opacity: 0, y: 50 }}
@@ -233,7 +232,7 @@ function AboutPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000] via-transparent to-transparent opacity-90" />
 
                 <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h4 className="text-2xl font-black mb-1 group-hover:text-[#d90f40] transition-colors">{teacher.name}</h4>
+                  <h4 className="text-2xl font-black mb-1 group-hover:text-[#d90f40] transition-colors whitespace-nowrap">{teacher.name}</h4>
                   <p className="text-gray-400 text-sm mb-6">{teacher.qualification}</p>
 
                   <Link

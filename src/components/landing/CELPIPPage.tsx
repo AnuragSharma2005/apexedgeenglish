@@ -63,13 +63,15 @@ export function CELPIPPage() {
                     whileHover={{ y: -10 }}
                     className="bg-white p-10 rounded-[3rem] shadow-xl shadow-black/5 border border-[#d90f40]/5"
                   >
-                    <div className="w-16 h-16 bg-[#fdf2e8] rounded-2xl flex items-center justify-center text-[#d90f40] font-black text-2xl mb-8">
-                       <item.icon className="w-8 h-8" />
+                    <div className="flex items-center gap-6 mb-8">
+                      <div className="w-16 h-16 bg-[#fdf2e8] rounded-2xl flex items-center justify-center text-[#d90f40] font-black text-2xl shrink-0">
+                        <item.icon className="w-8 h-8" />
+                      </div>
+                      <h3 className="text-2xl sm:text-3xl font-black text-[#1a1a1a]">
+                        <span className="text-[#d90f40] opacity-30 mr-2">{item.step}.</span>
+                        {item.title}
+                      </h3>
                     </div>
-                    <h3 className="text-3xl font-black text-[#1a1a1a] mb-4">
-                       <span className="text-[#d90f40] opacity-30 mr-2">{item.step}.</span>
-                       {item.title}
-                    </h3>
                     <p className="text-lg text-gray-500 font-medium leading-relaxed">{item.desc}</p>
                   </motion.div>
                 ))}

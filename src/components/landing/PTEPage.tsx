@@ -69,7 +69,7 @@ export function PTEPage() {
                      </p>
 
                      <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-6">
-                        <Link to="/book-session" className="px-10 py-5 rounded-2xl bg-[#d90f40] text-white font-black text-lg shadow-[0_20px_40px_-10px_rgba(217,15,64,0.3)] hover:bg-black transition-all flex items-center justify-center gap-4 group">
+                        <Link to="/enroll" className="px-10 py-5 rounded-2xl bg-[#d90f40] text-white font-black text-lg shadow-[0_20px_40px_-10px_rgba(217,15,64,0.3)] hover:bg-black transition-all flex items-center justify-center gap-4 group">
                            Launch Mock Test <MousePointer2 className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                         </Link>
                         <div className="flex items-center justify-center gap-4 group cursor-pointer">
@@ -228,7 +228,7 @@ export function PTEPage() {
                      >
                         <div className="flex items-center gap-4 mb-8">
                            <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden border-2 border-[#d90f40]">
-                              <img src={`/teachers/${i === 1 ? 'priya' : i === 2 ? 'anurag' : 'sneha'}.png`} className="w-full h-full object-cover" alt="Student" />
+                              <img src={`/teachers/${i === 1 ? 'deepika' : i === 2 ? 'shikha' : 'sneha'}.png`} className="w-full h-full object-cover" alt="Student" />
                            </div>
                            <div>
                               <h5 className="text-xl font-black text-black">Candidate Name</h5>

@@ -43,7 +43,7 @@ export function Navbar() {
                 href="mailto:apexedgeenglish@gmail.com "
                 className="hover:opacity-85 transition"
               >
-               apexedgeenglish@gmail.com
+                apexedgeenglish@gmail.com
               </a>
               <span className="hidden sm:inline-block h-5 w-px bg-white/45" />
               <a href="tel:+918360079077" className="hover:opacity-85 transition">
@@ -71,7 +71,7 @@ export function Navbar() {
 
             <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-base xl:text-lg font-semibold text-[oklch(0.2_0.02_250)]">
               <Link to="/" onClick={handleHomeClick} className="hover:text-[#d90f40] transition">Home</Link>
-              <div 
+              <div
                 className="relative group"
                 onMouseLeave={() => setIsCoursesDropdownOpen(false)}
               >
@@ -86,7 +86,7 @@ export function Navbar() {
                   </svg>
                 </button>
                 {isCoursesDropdownOpen && (
-                  <div 
+                  <div
                     className="absolute top-full left-0 mt-1 w-72 bg-[#f5e8ec] rounded-2xl shadow-xl border border-[#e5d5e0] p-4 z-50 space-y-2"
                     onMouseEnter={() => setIsCoursesDropdownOpen(true)}
                   >
@@ -97,13 +97,13 @@ export function Navbar() {
                       { to: "/business-communications", label: "Business Communications", color: "#10b981", short: "BUS." },
                       { to: "/spoken-english", label: "Spoken English", color: "#f59e0b", short: "SE" },
                     ].map((item) => (
-                      <Link 
+                      <Link
                         key={item.to}
-                        to={item.to} 
+                        to={item.to}
                         onClick={() => setIsCoursesDropdownOpen(false)}
                         className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-white transition cursor-pointer group/item"
                       >
-                        <div 
+                        <div
                           className="w-11 h-11 rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0 transition-transform group-hover/item:scale-110"
                           style={{ backgroundColor: item.color }}
                         >
@@ -120,7 +120,7 @@ export function Navbar() {
               <Link to="/contact-us" className="hover:text-[#d90f40] transition">Contact Us</Link>
             </nav>
 
-            <Link 
+            <Link
               to="/enroll"
               className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-[#d90f40] text-white px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-semibold shadow-[0_10px_20px_-16px_rgba(217,15,64,0.9)] hover:opacity-90 transition whitespace-nowrap"
             >

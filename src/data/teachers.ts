@@ -12,21 +12,21 @@ export interface Teacher {
 
 export const teachers: Teacher[] = [
   {
-    id: "anurag",
+    id: "shikha",
     name: "SHIKHA CHAWLA",
     qualification: "Senior IELTS Expert",
-    image: "/teachers/anurag.png",
+    image: "/teachers/shikha.png",
     experience: "8+ Years",
     specialization: "IELTS & Business English",
-    bio: "Anurag is a veteran in the field of English language training. With over a decade of experience, he has helped thousands of students achieve their dream band scores in IELTS. His methodology focuses on practical usage rather than just rote learning.",
+    bio: "Shikha Chawla is a veteran in the field of English language training. With over a decade of experience, he has helped thousands of students achieve their dream band scores in IELTS. His methodology focuses on practical usage rather than just rote learning.",
     skills: ["IELTS Academic", "IELTS General", "Public Speaking", "Curriculum Design"],
     achievements: ["Best Educator Award 2022", "Trained 5000+ Students", "British Council Certified"]
   },
   {
-    id: "priya",
-    name: "Priya Verma",
+    id: "deepika",
+    name: "DEEPIKA ARYA",
     qualification: "PTE Specialist",
-    image: "/teachers/priya.png",
+    image: "/teachers/deepika.jpeg",
     experience: "8+ Years",
     specialization: "PTE & CELPIP",
     bio: "Priya holds a PhD in English Literature and is a certified PTE trainer. Her analytical approach to language testing makes her one of the most sought-after trainers. She specializes in identifying student weaknesses and providing targeted solutions.",

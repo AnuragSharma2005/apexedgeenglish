@@ -355,12 +355,14 @@ export function IELTSPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white p-8 sm:p-12 rounded-[2.5rem] sm:rounded-[4rem] shadow-xl hover:shadow-2xl transition-shadow flex flex-col items-center text-center border-2 border-transparent hover:border-[#d90f40]/5"
+                className="bg-white p-8 sm:p-10 rounded-[2.5rem] sm:rounded-[4rem] shadow-xl hover:shadow-2xl transition-shadow flex flex-col border-2 border-transparent hover:border-[#d90f40]/5"
               >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-[#d90f40]/5 flex items-center justify-center mb-6 sm:mb-8">
-                  {item.icon}
+                <div className="flex items-center gap-6 mb-6 sm:mb-8">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-[#d90f40]/5 flex items-center justify-center shrink-0">
+                    {item.icon}
+                  </div>
+                  <h4 className="text-xl sm:text-2xl font-black text-[#1a1a1a]">{item.title}</h4>
                 </div>
-                <h4 className="text-xl sm:text-2xl font-black text-[#1a1a1a] mb-4">{item.title}</h4>
                 <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-medium">
                   {item.description}
                 </p>

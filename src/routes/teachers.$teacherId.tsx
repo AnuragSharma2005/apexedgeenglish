@@ -98,7 +98,7 @@ function TeacherDetailPage() {
               <span className="inline-block px-4 py-2 rounded-full bg-[#d90f40]/10 text-[#d90f40] font-bold text-sm mb-6 uppercase tracking-widest">
                 {teacher.specialization}
               </span>
-              <h1 className="text-4xl sm:text-7xl font-black text-[#1a1a1a] mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#1a1a1a] mb-6 leading-tight whitespace-nowrap">
                 {teacher.name}
               </h1>
               <h3 className="text-2xl font-bold text-[#d90f40] mb-8">{teacher.qualification}</h3>

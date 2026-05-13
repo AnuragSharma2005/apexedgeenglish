@@ -28,10 +28,11 @@ const supportLinks = [
 ];
 
 const socialLinks = [
-  { label: "Instagram", icon: Instagram, href: "#" },
-  { label: "Facebook", icon: Facebook, href: "#" },
-  { label: "YouTube", icon: Youtube, href: "#" },
-  { label: "LinkedIn", icon: Linkedin, href: "#" },
+  { label: "Instagram", icon: Instagram, href: "https://www.instagram.com/apex_.edge?igsh=MXN5MXd5NzgwdDd0eA==" },
+  // { label: "Facebook", icon: Facebook, href: "#" },
+  // { label: "YouTube", icon: Youtube, href: "#" },
+  { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/apexedge-english-a85a4840a/" },
+  { label: "Gmail", icon: Mail, href: "mailto:apexedgeenglish@gmail.com" },
 ];
 
 export function ApexEdgeFooter() {
