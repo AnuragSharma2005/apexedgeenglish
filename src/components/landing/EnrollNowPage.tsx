@@ -83,7 +83,7 @@ export function EnrollNowPage() {
 
     try {
       // 1. Submit to FormSubmit (Email)
-      const formSubmitPromise = fetch("https://formsubmit.co/ajax/adityasharma08093@gmail.com", {
+      const formSubmitPromise = fetch("https://formsubmit.co/ajax/apexedgeenglish@gmail.com ", {
         method: "POST",
         body: formData
       });

@@ -28,7 +28,7 @@ const contactActions = [
   },
   {
     label: "Email",
-    href: "mailto:email@gmail.com",
+    href: "mailto:apexedgeenglish@gmail.com",
     icon: Mail,
     bg: "bg-[#2563eb] hover:bg-[#1d4ed8]",
     aria: "Email",

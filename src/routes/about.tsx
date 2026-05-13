@@ -82,10 +82,10 @@ function AboutPage() {
       <section className="py-20 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 grid grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
           {[
-            { label: "Students Success", value: "15K+", icon: <LucideUsers className="w-8 h-8 text-[#d90f40]" /> },
-            { label: "Expert Faculty", value: "50+", icon: <LucideGraduationCap className="w-8 h-8 text-[#d90f40]" /> },
+            { label: "Students Success", value: "10k+", icon: <LucideUsers className="w-8 h-8 text-[#d90f40]" /> },
+            { label: "Expert Faculty", value: "30+", icon: <LucideGraduationCap className="w-8 h-8 text-[#d90f40]" /> },
             { label: "Years Experience", value: "10+", icon: <LucideAward className="w-8 h-8 text-[#d90f40]" /> },
-            { label: "Global Presence", value: "12+", icon: <LucideArrowRight className="w-8 h-8 text-[#d90f40]" /> },
+            { label: "Global Presence", value: "10+", icon: <LucideArrowRight className="w-8 h-8 text-[#d90f40]" /> },
           ].map((stat, i) => (
             <motion.div
               key={i}

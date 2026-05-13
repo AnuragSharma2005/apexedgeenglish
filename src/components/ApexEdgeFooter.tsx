@@ -77,7 +77,7 @@ export function ApexEdgeFooter() {
                   <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </Link>
                 <a
-                  href="mailto:info@apexedge.in"
+                  href="mailto:apexedgeenglish@gmail.com "
                   className="inline-flex items-center gap-1.5 rounded-xl border border-white/18 bg-white/8 px-3 py-2 text-[0.72rem] font-semibold text-white transition hover:bg-white/14 sm:gap-2 sm:px-5 sm:py-3 sm:text-sm"
                 >
                   <Mail className="h-3.5 w-3.5 sm:h-4 sm:w-4" />

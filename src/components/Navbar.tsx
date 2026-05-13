@@ -40,10 +40,10 @@ export function Navbar() {
             </div>
             <div className="flex items-center gap-2.5 sm:gap-4 ml-auto whitespace-nowrap">
               <a
-                href="mailto:Email@gmail.com"
+                href="mailto:apexedgeenglish@gmail.com "
                 className="hover:opacity-85 transition"
               >
-                Email@gmail.com
+               apexedgeenglish@gmail.com
               </a>
               <span className="hidden sm:inline-block h-5 w-px bg-white/45" />
               <a href="tel:+918360079077" className="hover:opacity-85 transition">

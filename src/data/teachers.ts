@@ -13,10 +13,10 @@ export interface Teacher {
 export const teachers: Teacher[] = [
   {
     id: "anurag",
-    name: "Anurag Sharma",
+    name: "SHIKHA CHAWLA",
     qualification: "Senior IELTS Expert",
     image: "/teachers/anurag.png",
-    experience: "12+ Years",
+    experience: "8+ Years",
     specialization: "IELTS & Business English",
     bio: "Anurag is a veteran in the field of English language training. With over a decade of experience, he has helped thousands of students achieve their dream band scores in IELTS. His methodology focuses on practical usage rather than just rote learning.",
     skills: ["IELTS Academic", "IELTS General", "Public Speaking", "Curriculum Design"],
@@ -44,15 +44,15 @@ export const teachers: Teacher[] = [
     skills: ["Conversational English", "Accent Neutralization", "Personality Development", "Corporate Training"],
     achievements: ["Top Voice on LinkedIn 2021", "Keynote Speaker", "Corporate Communication Expert"]
   },
-  {
-    id: "sneha",
-    name: "Sneha Kapoor",
-    qualification: "CELPIP Specialist",
-    image: "/teachers/sneha.png",
-    experience: "7+ Years",
-    specialization: "CELPIP & Soft Skills",
-    bio: "Sneha specializes in CELPIP training. Her attention to detail and personalized feedback have consistently led to high success rates for her students. She focuses on the nuances of the CELPIP exam to ensure students are fully prepared.",
-    skills: ["CELPIP-LS", "Soft Skills Training", "Interview Preparation", "Academic Writing"],
-    achievements: ["Community Leader Award", "Student Choice Award 2024", "Certified Career Counselor"]
-  }
+  // {
+  //   id: "sneha",
+  //   name: "Sneha Kapoor",
+  //   qualification: "CELPIP Specialist",
+  //   image: "/teachers/sneha.png",
+  //   experience: "7+ Years",
+  //   specialization: "CELPIP & Soft Skills",
+  //   bio: "Sneha specializes in CELPIP training. Her attention to detail and personalized feedback have consistently led to high success rates for her students. She focuses on the nuances of the CELPIP exam to ensure students are fully prepared.",
+  //   skills: ["CELPIP-LS", "Soft Skills Training", "Interview Preparation", "Academic Writing"],
+  //   achievements: ["Community Leader Award", "Student Choice Award 2024", "Certified Career Counselor"]
+  // }
 ];

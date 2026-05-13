@@ -48,7 +48,7 @@ export function ContactUsPage() {
 
     try {
       // Submit to both services in parallel
-      const formSubmitPromise = fetch("https://formsubmit.co/ajax/adityasharma08093@gmail.com", {
+      const formSubmitPromise = fetch("https://formsubmit.co/ajax/apexedgeenglish@gmail.com", {
         method: "POST",
         body: formData
       });
@@ -287,7 +287,7 @@ export function ContactUsPage() {
                             type="tel"
                             value={phone}
                             onChange={(event) => setPhone(event.target.value)}
-                            placeholder="+91 98776 53180"
+                            placeholder="+91 98756 5XXXX"
                             className="h-12 w-full rounded-md border border-[#eceef2] bg-[#f8f9fc] px-4 text-sm text-[#1f2230] outline-none transition focus:border-[#f1284b]"
                             required
                           />
