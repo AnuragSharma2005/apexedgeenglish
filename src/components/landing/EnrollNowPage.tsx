@@ -80,7 +80,7 @@ export function EnrollNowPage() {
     const formData = new FormData(e.currentTarget);
     formData.append('form_type', 'enroll');
 
-    const ENROLL_SHEET_URL = "https://script.google.com/macros/s/AKfycbzaB_sYHzuT7DyGHBFDU7C1Or7N7XSSUlT_Z3dJy1wjS241xSzXx3AQhwuesPJJiARs/exec";
+    const ENROLL_SHEET_URL = "https://script.google.com/macros/s/AKfycbxcsiMXQeKUVUP8RykV0QVcrvbSlhSdNFaUlNBGFDhwdMnltNLhhHwaXffdIePPmNj9/exec";
 
     try {
       const formSubmitPromise = fetch("https://formsubmit.co/ajax/apexedgeenglish@gmail.com", {
@@ -375,6 +375,7 @@ export function EnrollNowPage() {
                             <option value="Australia">Australia</option>
                             <option value="United States">United States</option>
                             <option value="New Zealand">New Zealand</option>
+                            <option value="India">India</option>
                             <option value="Other">Other</option>
                           </select>
                           <div className="absolute right-5 bottom-3.5 pointer-events-none text-gray-900">

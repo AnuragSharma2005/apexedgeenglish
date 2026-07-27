@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 // CONFIG: URLs for your sheets
-const ENROLL_URL = "https://script.google.com/macros/s/AKfycbzaB_sYHzuT7DyGHBFDU7C1Or7N7XSSUlT_Z3dJy1wjS241xSzXx3AQhwuesPJJiARs/exec";
+const ENROLL_URL = "https://script.google.com/macros/s/AKfycbxcsiMXQeKUVUP8RykV0QVcrvbSlhSdNFaUlNBGFDhwdMnltNLhhHwaXffdIePPmNj9/exec";
 const CONTACT_URL = "https://script.google.com/macros/s/AKfycbw44Z6wh2WRujRvh36WnoYhXUrDN1AvcZxByIGb4gSOL6IIGznhqw06Qj8wkdda7CacNQ/exec";
 
 // Login Credentials
