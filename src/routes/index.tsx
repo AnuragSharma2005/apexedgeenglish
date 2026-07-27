@@ -100,12 +100,12 @@ function Index() {
                   through this platform.
                 </p>
 
-              <Link
-                to="/enroll"
-                className="mt-6 sm:mt-8 bg-[#d90f40] hover:bg-[#c50e3a] text-white px-7 sm:px-8 py-3 rounded-md text-sm sm:text-base transition shadow-[0_12px_24px_-18px_rgba(217,15,64,0.9)] inline-block"
-              >
-                Get Started
-              </Link>
+                <Link
+                  to="/enroll"
+                  className="mt-6 sm:mt-8 bg-[#d90f40] hover:bg-[#c50e3a] text-white px-7 sm:px-8 py-3 rounded-md text-sm sm:text-base transition shadow-[0_12px_24px_-18px_rgba(217,15,64,0.9)] inline-block"
+                >
+                  Get Started
+                </Link>
               </div>
 
               {/* Right image */}
@@ -149,9 +149,9 @@ function Index() {
 
                 <p className="mt-4 flex items-center justify-center gap-2 text-[#d70c3f] text-xl sm:text-2xl font-bold tracking-tight">
                   <span aria-hidden="true">📞</span>
-                  +91  83600 79077 
+                  +91  83600 79077
                 </p>
-                  <a href="tel:+918360079077">
+                <a href="tel:+918360079077">
                   <button className="mt-5 w-full rounded-xl bg-[#d70c3f] py-3 text-white text-lg sm:text-xl font-semibold hover:opacity-90 transition">
                     Call Us Now
                   </button>
@@ -306,7 +306,7 @@ function Index() {
         <ApexEdgeSection />
         <FrequentlyAskedQuestionsSection />
       </div>
-      
+
       <ApexEdgeFooter />
     </main>
   );

@@ -7,39 +7,44 @@ type FaqItem = {
 
 const faqs: FaqItem[] = [
   {
-    question: "What is Apex Edge?",
+    question: "What courses does Apex Edge English offer?",
     answer:
-      "Apex Edge is an English learning platform focused on helping students improve IELTS, PTE, and spoken English through structured lessons, practice, and trainer support.",
+      "Apex Edge English offers comprehensive training for IELTS, CELPIP, PTE, Spoken English, Business Communication, Interview Preparation, Soft Skills, Corporate Training, and Personality Development. Our programs are designed to help learners achieve academic, professional, and career success.",
   },
   {
-    question: "What services does Apex Edge offer?",
+    question: "Are the classes conducted online or offline?",
     answer:
-      "We offer IELTS preparation, PTE coaching, spoken English classes, study materials, mock tests, and personalised guidance for learners at different levels.",
+      "Currently, Apex Edge English offers live online classes, allowing students from across India and abroad to learn from experienced trainers. Offline classroom programs may be introduced in the future.",
   },
   {
-    question: "Does Apex Edge provide study materials for test preparation?",
+    question: "Who can join Apex Edge English courses?",
     answer:
-      "Yes. Students get curated study material, practice exercises, mock tests, and session-based guidance to support consistent exam preparation.",
+      "The courses at Apex Edge English are suitable for students, working professionals, job seekers, individuals planning to study or work abroad, and anyone looking to improve their English communication skills and confidence.",
   },
   {
-    question: "How long does it take to see results with Apex Edge?",
+    question: "How are the classes conducted at Apex Edge English?",
     answer:
-      "Results depend on your starting level and consistency. Most students notice improvement in confidence, speaking fluency, and practice scores within a few weeks.",
+      "Classes are conducted in a live, interactive format with concept-based teaching, regular practice sessions, mock tests, doubt-clearing sessions, personalised feedback, and structured study materials to ensure effective learning.",
   },
   {
-    question: "Are group classes available, or is it only one-on-one coaching?",
+    question: "Does Apex Edge English provide study materials and mock tests?",
     answer:
-      "Both options are available. Depending on the course and batch, students can choose one-on-one support or group learning experiences.",
+      "Yes. Every enrolled student at Apex Edge English receives comprehensive study materials, practice exercises, mock tests, and personalised performance feedback to help them prepare confidently for examinations or interviews.",
   },
   {
-    question: "How can I contact Apex Edge for more information?",
+    question: "What makes Apex Edge English different from other institutes?",
     answer:
-      "You can reach out through the booking flow, contact details on the site, or by requesting a free counselling session for direct guidance.",
+      "Apex Edge English focuses on personalised mentoring, practical learning, small batch sizes, experienced trainers, proven exam strategies, and continuous performance tracking. We believe in building confidence, communication skills, and language proficiency that lead to real-world success.",
   },
   {
-    question: "Do I need prior knowledge of English to join?",
+    question: "How can I enrol in a course at Apex Edge English?",
     answer:
-      "No. Apex Edge is designed for learners at different levels, so you can start with basic support and move toward advanced practice at your own pace.",
+      "You can enrol by filling out the enquiry form on our website or by contacting Apex Edge English via phone, WhatsApp, or email. Our team will guide you through course selection, batch timings, and the admission process.",
+  },
+   {
+    question: "Can I attend a demo session before enrolling?",
+    answer:
+      "Yes. Apex Edge English offers a demo session so that you can experience our teaching methodology, interact with the trainer, and choose the course that best aligns with your learning goals before enrolling.",
   },
 ];
 

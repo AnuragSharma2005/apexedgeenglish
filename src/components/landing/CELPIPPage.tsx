@@ -25,7 +25,7 @@ export function CELPIPPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl sm:text-6xl lg:text-8xl font-black text-[#1a1a1a] leading-tight"
             >
-              Your Path to <br className="hidden sm:block" /> <span className="text-[#d90f40]">Canada</span> Starts Here.
+              Your Path to <br className="hidden sm:block" /> <span className="text-[#d90f40]">Success</span> Starts Here.
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
