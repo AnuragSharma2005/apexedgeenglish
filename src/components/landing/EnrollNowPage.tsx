@@ -369,7 +369,7 @@ export function EnrollNowPage() {
                             required
                             className="w-full h-12 px-5 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 text-sm text-[#1a1a1a] font-bold transition-all appearance-none cursor-pointer pr-10"
                           >
-                            <option value="" disabled>Select destination</option>
+                            <option value="" disabled>Select Country</option>
                             <option value="Canada">Canada</option>
                             <option value="United Kingdom">United Kingdom</option>
                             <option value="Australia">Australia</option>
