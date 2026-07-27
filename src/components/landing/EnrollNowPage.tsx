@@ -342,18 +342,7 @@ export function EnrollNowPage() {
                           <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] uppercase tracking-tight mt-1">Enrollment Details</h2>
                           <p className="text-xs text-gray-400 font-bold mt-1">Please enter your details to enroll and secure your customized batch timing.</p>
                         </div>
-                        {/* Passport Photo Slot */}
-                        <div className="relative w-16 h-16 border-2 border-dashed border-[#d90f40]/30 rounded-xl p-0.5 flex items-center justify-center bg-gray-50 overflow-hidden shrink-0">
-                          <img
-                            src="/students/ielts.png"
-                            alt="Passenger Photo"
-                            className="w-full h-full object-cover rounded-lg filter grayscale"
-                          />
-                          {/* Admitted Stamp */}
-                          <div className="absolute -bottom-1 -right-1 bg-green-500 text-white font-black text-[6px] uppercase px-1.5 py-0.5 rounded rotate-12 shadow-sm select-none">
-                            Admitted
-                          </div>
-                        </div>
+
                       </div>
 
                       <div className="grid gap-6 sm:grid-cols-2">
