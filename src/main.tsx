@@ -1,23 +1,23 @@
-// import { RouterProvider } from "@tanstack/react-router";
-// import { StrictMode } from "react";
-// import { createRoot } from "react-dom/client";
-// import { getRouter } from "./router";
-// import { FloatingContactButtons } from "./components/FloatingContactButtons";
-// import "./styles.css";
+import { RouterProvider } from "@tanstack/react-router";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { getRouter } from "./router";
+import { FloatingContactButtons } from "./components/FloatingContactButtons";
+import "./styles.css";
 
-// const rootElement = document.getElementById("root");
+const rootElement = document.getElementById("root");
 
-// if (!rootElement) {
-//   throw new Error("Root element not found");
-// }
+if (!rootElement) {
+  throw new Error("Root element not found");
+}
 
-// const router = getRouter();
+const router = getRouter();
 
-// createRoot(rootElement).render(
-//   <StrictMode>
-//     <>
-//       <RouterProvider router={router} />
-//       <FloatingContactButtons />
-//     </>
-//   </StrictMode>,
-// );
+createRoot(rootElement).render(
+  <StrictMode>
+    <>
+      <RouterProvider router={router} />
+      <FloatingContactButtons />
+    </>
+  </StrictMode>,
+);
