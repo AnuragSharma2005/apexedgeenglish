@@ -9,7 +9,7 @@
  * 5. Click "Deploy" (top right) -> "New deployment".
  * 6. Select Type: "Web app".
  * 7. Configure:
- *    - Description: Apex Edge Integration V2
+ *    - Description: Apex Edge Integration V6
  *    - Execute as: "Me" (your email)
  *    - Who has access: "Anyone" (Crucial for receiving form submissions).
  * 8. Click Deploy. Authorize any required permissions.
@@ -67,7 +67,7 @@ function doPost(e) {
   
   sheet.appendRow(newRow);
 
-  // 3. Auto-email Responder Logic
+  // 3. Auto-email Responder Logic with Inline Logo & Pinkish Professional Theme
   var studentName = data.Name || data.name || "Student";
   var studentEmail = data.Email || data.email;
   var formType = data.form_type || data.form_Type || "enroll";
@@ -75,69 +75,152 @@ function doPost(e) {
   if (studentEmail) {
     var subject = "";
     var htmlBody = "";
+    
+    // Generate a unique transaction Reference ID to prevent Gmail from grouping and folding the email
+    var uniqueRef = "Ref: APEX-" + new Date().getTime().toString(36).toUpperCase() + "-" + Math.floor(1000 + Math.random() * 9000);
+    
+    // Fetch brand logo dynamically from Github public assets
+    var logoUrl = "https://raw.githubusercontent.com/AnuragSharma2005/apexedgeenglish/main/public/logo.png";
+    var logoBlob;
+    try {
+      logoBlob = UrlFetchApp.fetch(logoUrl).getBlob().setName("logo.png");
+    } catch(e) {
+      Logger.log("Could not fetch logo: " + e.toString());
+    }
 
     if (formType === "contact") {
       var inquirySubject = data.Subject || data.subject || "General Inquiry";
       subject = "We have received your message - Apex Edge English";
       htmlBody = 
-        "<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #f3dde2; border-radius: 12px; background-color: #ffffff; color: #1a1a1a;'>" +
-          "<div style='text-align: center; border-bottom: 2px solid #d90f40; padding-bottom: 15px; margin-bottom: 20px;'>" +
-            "<h2 style='color: #d90f40; margin: 0; font-size: 24px; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;'>Apex Edge English</h2>" +
-            "<span style='font-size: 11px; color: #666; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;'>Inquiry Received</span>" +
-          "</div>" +
-          "<p style='font-size: 15px; line-height: 1.6;'>Hi <strong>" + studentName + "</strong>,</p>" +
-          "<p style='font-size: 15px; line-height: 1.6;'>Thank you for reaching out to us. We have successfully received your message regarding: <strong>" + inquirySubject + "</strong>.</p>" +
-          "<div style='background-color: #fcf6f6; border-left: 4px solid #d90f40; padding: 15px; margin: 20px 0; border-radius: 4px;'>" +
-            "<p style='margin: 0; font-size: 13px; line-height: 1.5; color: #555;'>\"" + (data.Message || data.message || "No message content details") + "\"</p>" +
-          "</div>" +
-          "<p style='font-size: 15px; line-height: 1.6;'>Our head counselor will review your inquiry details and connect with you shortly via your preferred contact method (<strong>" + (data.Contact_Method || data.method || "WhatsApp/Phone") + "</strong>).</p>" +
-          "<p style='font-size: 15px; line-height: 1.6; margin-top: 30px;'>Warm regards,<br/>" +
-          "<strong style='color: #d90f40;'>Apex Edge English Team</strong></p>" +
-          "<div style='margin-top: 30px; border-top: 1px solid #eee; padding-top: 15px; font-size: 11px; color: #666;'>" +
-            "<strong>Apex Edge English</strong><br/>" +
-            "Email: hello@apexedgeenglish.com<br/>" +
-            "Web: <a href='https://www.apexedgeenglish.com' style='color: #d90f40; text-decoration: none;'>www.apexedgeenglish.com</a>" +
+        "<div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f6e8eb; padding: 40px 20px; margin: 0; min-height: 100%; text-align: center;\">" +
+          "<div style='max-width: 680px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 15px 40px rgba(217, 15, 64, 0.06); border: 1px solid #eecad1; text-align: left;'>" +
+            
+            "<div style='background-color: #fbe6e9; padding: 30px 20px; text-align: center; border-bottom: 3px double #d90f40;'>" +
+              (logoBlob ? "<img src='cid:logo' alt='Apex Edge English' style='height: 90px; width: auto; display: block; margin: 0 auto;' />" : "<h2 style='color: #d90f40; margin: 0;'>Apex Edge English</h2>") +
+            "</div>" +
+
+            "<div style='padding: 40px 35px; color: #2d3748;'>" +
+              "<p style='font-size: 16px; font-weight: bold; margin-top: 0; color: #1a1a1a;'>Hi " + studentName + ",</p>" +
+              "<p style='font-size: 15px; line-height: 1.6; color: #4a5568;'>Thank you for reaching out to Apex Edge English. We have successfully received your inquiry regarding <strong>" + inquirySubject + "</strong>.</p>" +
+              
+              "<div style='background-color: #fffafb; border-left: 4px solid #d90f40; border-radius: 4px; padding: 15px; margin: 25px 0; font-style: italic; color: #4a5568; font-size: 14px;'>" +
+                "\"" + (data.Message || data.message || "No inquiry text details provided.") + "\"" +
+              "</div>" +
+
+              "<p style='font-size: 15px; line-height: 1.6; color: #4a5568;'>Our head counselor will review your inquiry details and get back to you <strong>within 24 hours</strong> via your preferred contact channel (<strong>" + (data.Contact_Method || data.method || "WhatsApp/Phone") + "</strong>).</p>" +
+              "<p style='font-size: 15px; line-height: 1.6; color: #4a5568; margin-bottom: 0;'>Have a wonderful day!</p>" +
+              
+              "<div style='font-size: 10px; color: #cbd5e0; text-align: center; margin-top: 35px; border-top: 1px solid #f7fafc; padding-top: 15px; font-family: monospace;'>" + uniqueRef + " | Sent: " + new Date().toUTCString() + "</div>" +
+            "</div>" +
+
+            "<div style='background-color: #faf5f6; padding: 30px 20px; border-top: 1px solid #f6e8eb; font-size: 13px; color: #718096; line-height: 1.8; text-align: center;'>" +
+              "<strong style='color: #d90f40; font-size: 14px; display: block; margin-bottom: 4px;'>Apex Edge English</strong>" +
+              "<div style='font-size: 11px; color: #a0aec0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;'>Your Path to Global Success</div>" +
+              
+              "<div style='margin: 15px 0 20px 0; text-align: center;'>" +
+                "<a href='https://www.instagram.com/apex_.edge?igsh=MXN5MXd5NzgwdDd0eA==' target='_blank' style='display: inline-block; margin: 0 12px; text-decoration: none;'>" +
+                  "<img src='https://img.icons8.com/color/48/instagram-new--v1.png' alt='Instagram' style='width: 32px; height: 32px; display: block; border: 0;' />" +
+                "</a>" +
+                "<a href='https://www.linkedin.com/in/apexedge-english-a85a4840a/' target='_blank' style='display: inline-block; margin: 0 12px; text-decoration: none;'>" +
+                  "<img src='https://img.icons8.com/color/48/linkedin.png' alt='LinkedIn' style='width: 32px; height: 32px; display: block; border: 0;' />" +
+                "</a>" +
+                "<a href='https://wa.me/918360079077' target='_blank' style='display: inline-block; margin: 0 12px; text-decoration: none;'>" +
+                  "<img src='https://img.icons8.com/color/48/whatsapp.png' alt='WhatsApp' style='width: 32px; height: 32px; display: block; border: 0;' />" +
+                "</a>" +
+                "<a href='tel:+918360079077' target='_blank' style='display: inline-block; margin: 0 12px; text-decoration: none;'>" +
+                  "<img src='https://img.icons8.com/color/48/phone.png' alt='Call' style='width: 32px; height: 32px; display: block; border: 0;' />" +
+                "</a>" +
+              "</div>" +
+
+              "<div style='font-size: 12px; color: #718096; border-top: 1px dashed #eecad1; padding-top: 15px;'>" +
+                "<a href='https://www.apexedgeenglish.com' style='color: #d90f40; text-decoration: none; font-weight: bold; font-size: 13px;'>www.apexedgeenglish.com</a>" +
+              "</div>" +
+            "</div>" +
+
           "</div>" +
         "</div>";
     } else {
       // Default: Enroll Page
       var selectedCourse = data["Selected Course"] || data["selected course"] || "English Exam Prep";
+      var selectedDate = data.Date || data.date || "Immediate";
+      var preferredContact = data.Contact_Method || data.Contact_method || data.method || "WhatsApp";
+      var isEmailPreferred = preferredContact.toString().toLowerCase().trim() === "email";
+
+      var contactInfoInstruction = "";
+      if (isEmailPreferred) {
+        contactInfoInstruction = "reach out to you via <strong>Email</strong> (at your registered address: <strong>" + studentEmail + "</strong>)";
+      } else {
+        contactInfoInstruction = "connect with you via <strong>" + preferredContact + "</strong> (at your registered contact number: <strong>" + (data["Phone no"] || data.phone || "+91 83600 79077") + "</strong>)";
+      }
+
       subject = "Your Enrollment is Confirmed! Next Steps - Apex Edge English";
       htmlBody = 
-        "<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #f3dde2; border-radius: 12px; background-color: #ffffff; color: #1a1a1a;'>" +
-          "<div style='text-align: center; border-bottom: 2px solid #d90f40; padding-bottom: 15px; margin-bottom: 20px;'>" +
-            "<h2 style='color: #d90f40; margin: 0; font-size: 24px; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;'>Apex Edge English</h2>" +
-            "<span style='font-size: 11px; color: #666; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;'>Registration Pass Confirmed</span>" +
-          "</div>" +
-          "<p style='font-size: 15px; line-height: 1.6;'>Hi <strong>" + studentName + "</strong>,</p>" +
-          "<p style='font-size: 15px; line-height: 1.6;'>Thank you for enrolling in our <strong>" + selectedCourse + "</strong> program! Your registration pass has been successfully generated.</p>" +
-          "<div style='background-color: #fcf6f6; border-left: 4px solid #d90f40; padding: 15px; margin: 20px 0; border-radius: 4px;'>" +
-            "<h4 style='margin: 0 0 10px 0; color: #d90f40; text-transform: uppercase; font-size: 12px;'>Your Booking Details:</h4>" +
-            "<table style='width: 100%; font-size: 13px; line-height: 1.5; border-collapse: collapse;'>" +
-              "<tr><td style='width: 120px; font-weight: bold; color: #666; padding: 4px 0;'>Course:</td><td style='padding: 4px 0;'>" + selectedCourse + "</td></tr>" +
-              "<tr><td style='font-weight: bold; color: #666; padding: 4px 0;'>Start Date:</td><td style='padding: 4px 0;'>" + (data.Date || data.date || "Immediate") + "</td></tr>" +
-              "<tr><td style='font-weight: bold; color: #666; padding: 4px 0;'>Destination:</td><td style='padding: 4px 0;'>" + (data.Country || data.country || "Not Specified") + "</td></tr>" +
-              "<tr><td style='font-weight: bold; color: #666; padding: 4px 0;'>City:</td><td style='padding: 4px 0;'>" + (data.city || data.City || "Not Specified") + "</td></tr>" +
-            "</table>" +
-          "</div>" +
-          "<p style='font-size: 15px; line-height: 1.6;'>I see you're preparing to achieve your target score — well done on taking the first step. A short 15-minute diagnostic strategy call will help us understand your current level and outline a custom study blueprint for you.</p>" +
-          "<p style='font-size: 15px; line-height: 1.6;'>Our counseling team will connect with you on WhatsApp (<strong>" + (data["Phone no"] || data.phone || "your registered number") + "</strong>) within the next 2 hours. If this isn't your preferred contact number, please reply to this email directly.</p>" +
-          "<p style='font-size: 15px; line-height: 1.6; margin-top: 30px;'>Warm regards,<br/>" +
-          "<strong style='color: #d90f40;'>Apex Edge English Team</strong></p>" +
-          "<div style='margin-top: 30px; border-top: 1px solid #eee; padding-top: 15px; font-size: 11px; color: #666;'>" +
-            "<strong>Apex Edge English</strong><br/>" +
-            "Email: hello@apexedgeenglish.com<br/>" +
-            "Web: <a href='https://www.apexedgeenglish.com' style='color: #d90f40; text-decoration: none;'>www.apexedgeenglish.com</a>" +
+        "<div style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f6e8eb; padding: 40px 20px; margin: 0; min-height: 100%; text-align: center;\">" +
+          "<div style='max-width: 680px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 15px 40px rgba(217, 15, 64, 0.06); border: 1px solid #eecad1; text-align: left;'>" +
+            
+            "<div style='background-color: #fbe6e9; padding: 30px 20px; text-align: center; border-bottom: 3px double #d90f40;'>" +
+              (logoBlob ? "<img src='cid:logo' alt='Apex Edge English' style='height: 90px; width: auto; display: block; margin: 0 auto;' />" : "<h2 style='color: #d90f40; margin: 0;'>Apex Edge English</h2>") +
+            "</div>" +
+
+            "<div style='padding: 40px 35px; color: #2d3748;'>" +
+              "<p style='font-size: 16px; font-weight: bold; margin-top: 0; color: #1a1a1a;'>Hi " + studentName + ",</p>" +
+              "<p style='font-size: 15px; line-height: 1.6; color: #4a5568;'>Thank you for enrolling in our <strong>" + selectedCourse + "</strong> program! Your registration pass has been successfully confirmed.</p>" +
+              
+              "<div style='margin: 25px 0; font-size: 15px; line-height: 1.8; color: #2d3748; padding-left: 15px; border-left: 3px solid #d90f40;'>" +
+                "<div style='font-size: 12px; font-weight: 800; color: #d90f40; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;'>Your Enrollment Pass</div>" +
+                "<em>Course:</em> <strong>" + selectedCourse + "</strong><br/>" +
+                "<em>Appointment Date:</em> <strong>" + selectedDate + "</strong><br/>" +
+                "<em>Target Country:</em> <strong>" + (data.Country || data.country || "Not Specified") + "</strong><br/>" +
+                "<em>Registered City:</em> <strong>" + (data.city || data.City || "Not Specified") + "</strong>" +
+              "</div>" +
+
+              "<p style='font-size: 15px; line-height: 1.6; color: #4a5568;'>On your chosen appointment date (<strong>" + selectedDate + "</strong>), our support counselor team will " + contactInfoInstruction + " <strong>within 24 hours</strong> to align your modules and assign your batch timing.</p>" +
+              "<p style='font-size: 15px; line-height: 1.6; color: #4a5568;'>If you would like to reschedule or have questions beforehand, feel free to reply directly to this email.</p>" +
+              "<p style='font-size: 15px; line-height: 1.6; color: #4a5568; margin-bottom: 0;'>We look forward to helping you achieve your global target score!</p>" +
+              
+              "<div style='font-size: 10px; color: #cbd5e0; text-align: center; margin-top: 35px; border-top: 1px solid #f7fafc; padding-top: 15px; font-family: monospace;'>" + uniqueRef + " | Sent: " + new Date().toUTCString() + "</div>" +
+            "</div>" +
+
+            "<div style='background-color: #faf5f6; padding: 30px 20px; border-top: 1px solid #f6e8eb; font-size: 13px; color: #718096; line-height: 1.8; text-align: center;'>" +
+              "<strong style='color: #d90f40; font-size: 14px; display: block; margin-bottom: 4px;'>Apex Edge English</strong>" +
+              "<div style='font-size: 11px; color: #a0aec0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;'>Your Path to Global Success</div>" +
+              
+              "<div style='margin: 15px 0 20px 0; text-align: center;'>" +
+                "<a href='https://www.instagram.com/apex_.edge?igsh=MXN5MXd5NzgwdDd0eA==' target='_blank' style='display: inline-block; margin: 0 12px; text-decoration: none;'>" +
+                  "<img src='https://img.icons8.com/color/48/instagram-new--v1.png' alt='Instagram' style='width: 32px; height: 32px; display: block; border: 0;' />" +
+                "</a>" +
+                "<a href='https://www.linkedin.com/in/apexedge-english-a85a4840a/' target='_blank' style='display: inline-block; margin: 0 12px; text-decoration: none;'>" +
+                  "<img src='https://img.icons8.com/color/48/linkedin.png' alt='LinkedIn' style='width: 32px; height: 32px; display: block; border: 0;' />" +
+                "</a>" +
+                "<a href='https://wa.me/918360079077' target='_blank' style='display: inline-block; margin: 0 12px; text-decoration: none;'>" +
+                  "<img src='https://img.icons8.com/color/48/whatsapp.png' alt='WhatsApp' style='width: 32px; height: 32px; display: block; border: 0;' />" +
+                "</a>" +
+                "<a href='tel:+918360079077' target='_blank' style='display: inline-block; margin: 0 12px; text-decoration: none;'>" +
+                  "<img src='https://img.icons8.com/color/48/phone.png' alt='Call' style='width: 32px; height: 32px; display: block; border: 0;' />" +
+                "</a>" +
+              "</div>" +
+
+              "<div style='font-size: 12px; color: #718096; border-top: 1px dashed #eecad1; padding-top: 15px;'>" +
+                "<a href='https://www.apexedgeenglish.com' style='color: #d90f40; text-decoration: none; font-weight: bold; font-size: 13px;'>www.apexedgeenglish.com</a>" +
+              "</div>" +
+            "</div>" +
+
           "</div>" +
         "</div>";
     }
 
     try {
-      MailApp.sendEmail({
+      var emailOptions = {
         to: studentEmail.toString().trim(),
         subject: subject,
         htmlBody: htmlBody
-      });
+      };
+      if (logoBlob) {
+        emailOptions.inlineImages = {
+          logo: logoBlob
+        };
+      }
+      MailApp.sendEmail(emailOptions);
     } catch(err) {
       Logger.log("Failed to send email: " + err.toString());
     }

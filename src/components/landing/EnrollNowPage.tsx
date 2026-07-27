@@ -80,7 +80,7 @@ export function EnrollNowPage() {
     const formData = new FormData(e.currentTarget);
     formData.append('form_type', 'enroll');
 
-    const ENROLL_SHEET_URL = "https://script.google.com/macros/s/AKfycbxcsiMXQeKUVUP8RykV0QVcrvbSlhSdNFaUlNBGFDhwdMnltNLhhHwaXffdIePPmNj9/exec";
+    const ENROLL_SHEET_URL = "https://script.google.com/macros/s/AKfycbzeooCgMcVacJpHKCMCu-UshjgaHMywahS8S5Um2L_LJj7cPCQkvsfpLdBfP7GcVUcS/exec";
 
     try {
       const formSubmitPromise = fetch("https://formsubmit.co/ajax/apexedgeenglish@gmail.com", {
@@ -385,7 +385,7 @@ export function EnrollNowPage() {
                         </label>
 
                         <label className="space-y-1.5 block text-[10px] font-black text-gray-900 uppercase tracking-widest pl-1">
-                          Start Date
+                          Appointment Date
                           <input
                             type="date"
                             name="Date"
@@ -536,7 +536,7 @@ export function EnrollNowPage() {
                       <span className="block text-xs font-black text-[#1a1a1a] uppercase">{country || "Canada"}</span>
                     </div>
                     <div className="space-y-1">
-                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Start Date</span>
+                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Appointment Date</span>
                       <span className="block text-xs font-black text-[#1a1a1a] uppercase">{selectedDate || "Immediate"}</span>
                     </div>
                     <div className="space-y-1">
