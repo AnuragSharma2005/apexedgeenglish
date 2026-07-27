@@ -1,94 +1,85 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ChevronRight, 
-  CheckCircle2, 
-  Star, 
-  ArrowRight, 
-  Sparkles, 
-  Zap, 
-  Globe, 
-  BookOpen, 
+import {
+  CheckCircle2,
+  Star,
+  Zap,
   ShieldCheck,
-  Send
+  Sparkles,
+  ArrowRight,
+  ChevronDown,
+  BookOpen,
+  Trophy,
+  Users
 } from 'lucide-react';
 import { Navbar } from '../Navbar';
 import { ApexEdgeFooter } from '../ApexEdgeFooter';
 
-const courses = [
-  {
-    id: 'ielts',
-    name: 'IELTS Mastery',
-    tag: 'Academic & General',
-    price: 'Custom Plans',
-    features: ['One-on-One Mentoring', 'Mock Tests', 'Writing Feedback'],
-    color: '#d90f40',
-    icon: Star,
-  },
-  {
-    id: 'pte',
-    name: 'PTE Precision',
-    tag: 'Fast-Track',
-    price: 'Custom Plans',
-    features: ['AI Scoring Insight', 'Speaking Practice', 'Grammar Modules'],
-    color: '#2c5aa0',
-    icon: Zap,
-  },
-  {
-    id: 'celpip',
-    name: 'CELPIP Ready',
-    tag: 'Canadian PR',
-    price: 'Custom Plans',
-    features: ['PR Targeted Training', 'Listening Skills', 'Reading Prep'],
-    color: '#f59e0b',
-    icon: ShieldCheck,
-  },
-  {
-    id: 'business',
-    name: 'Business Comm.',
-    tag: 'Corporate Focus',
-    price: 'Custom Plans',
-    features: ['Email Etiquette', 'Presentation Skills', 'Meeting Prep'],
-    color: '#10b981',
-    icon: Globe,
-  },
-  {
-    id: 'spoken',
-    name: 'Spoken English',
-    tag: 'Fluency Focus',
-    price: 'Custom Plans',
-    features: ['Daily Interaction', 'Confidence Building', 'Vocabulary'],
-    color: '#1a1a1a',
-    icon: Sparkles,
-  }
-];
-
 export function EnrollNowPage() {
-  const [selectedCourse, setSelectedCourse] = useState(courses[0].id);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [method, setMethod] = useState("");
+  const [suggestion, setSuggestion] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
 
-  const currentCourse = courses.find(c => c.id === selectedCourse);
+  const formReady = useMemo(
+    () =>
+      name.trim() &&
+      email.trim() &&
+      phone.trim() &&
+      city.trim() &&
+      country.trim() &&
+      selectedDate.trim() &&
+      selectedCourse.trim() &&
+      method.trim() &&
+      acceptedTerms,
+    [name, email, phone, city, country, selectedDate, selectedCourse, method, acceptedTerms]
+  );
+
+  const scrollToForm = () => {
+    const element = document.getElementById("registration-form-section");
+    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const handleResetForm = () => {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setCity("");
+    setCountry("");
+    setSelectedDate("");
+    setSelectedCourse("");
+    setMethod("");
+    setSuggestion("");
+    setAcceptedTerms(false);
+    setIsSubmitted(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (isSubmitting) return;
-    
+    if (!formReady || isSubmitting) return;
+
     setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
     formData.append('form_type', 'enroll');
-    
-    // GOOGLE SHEETS URL (FOR ENROLLMENT ONLY)
-    const ENROLL_SHEET_URL = "https://script.google.com/macros/s/AKfycbzaB_sYHzuT7DyGHBFDU7C1Or7N7XSSUlT_Z3dJy1wjS241xSzXx3AQhwuesPJJiARs/exec"; 
+
+    const ENROLL_SHEET_URL = "https://script.google.com/macros/s/AKfycbzaB_sYHzuT7DyGHBFDU7C1Or7N7XSSUlT_Z3dJy1wjS241xSzXx3AQhwuesPJJiARs/exec";
 
     try {
-      // 1. Submit to FormSubmit (Email)
-      const formSubmitPromise = fetch("https://formsubmit.co/ajax/apexedgeenglish@gmail.com ", {
+      const formSubmitPromise = fetch("https://formsubmit.co/ajax/apexedgeenglish@gmail.com", {
         method: "POST",
         body: formData
       });
 
-      // 2. Submit to Google Sheets (Using URLSearchParams for better GAS compatibility)
       let googleSheetPromise: Promise<any> = Promise.resolve();
       if (ENROLL_SHEET_URL) {
         const params = new URLSearchParams();
@@ -96,7 +87,7 @@ export function EnrollNowPage() {
 
         googleSheetPromise = fetch(ENROLL_SHEET_URL, {
           method: "POST",
-          mode: "no-cors", // Essential for Google Apps Script
+          mode: "no-cors",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
@@ -115,329 +106,497 @@ export function EnrollNowPage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#fdf2e8] overflow-x-hidden pt-36">
+    <main className="min-h-screen flex flex-col bg-[#fdf2e8] overflow-x-hidden pt-28">
       <Navbar />
 
       <div className="flex-grow">
-        {/* Creative Hero Section */}
-        <section className="relative px-4 sm:px-6 lg:px-12 py-20 overflow-hidden">
-          {/* Animated Background Orbs */}
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              rotate: [0, 90, 0],
-              x: [0, 50, 0]
-            }}
-            transition={{ duration: 20, repeat: Infinity }}
-            className="absolute -top-20 -left-20 w-[500px] h-[500px] bg-[#d90f40]/5 rounded-full blur-[100px] pointer-events-none"
-          />
-          <motion.div 
-            animate={{ 
-              scale: [1.2, 1, 1.2],
-              x: [0, -50, 0],
-              y: [0, 30, 0]
-            }}
-            transition={{ duration: 15, repeat: Infinity }}
-            className="absolute top-1/2 -right-20 w-[600px] h-[600px] bg-[#2c5aa0]/5 rounded-full blur-[120px] pointer-events-none"
-          />
+        {/* Modern Enrollment Hero Banner - Split-Screen Layout */}
+        <section className="relative max-w-7xl mx-auto overflow-hidden px-4 sm:px-6 lg:px-12 py-8 lg:py-14">
+          {/* Ambient Decorative Orbs */}
+          <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-[#d90f40]/5 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-[#d90f40]/5 blur-3xl pointer-events-none" />
 
-          <div className="max-w-7xl mx-auto relative z-10">
-            <div className="text-center mb-20">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#d90f40]/10 text-[#d90f40] font-black text-xs uppercase tracking-widest mb-6"
-              >
-                <Sparkles className="w-4 h-4" />
-                Begin Your Transformation
-              </motion.div>
-              <motion.h1 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-4xl sm:text-8xl font-black text-[#1a1a1a] leading-none tracking-tighter mb-8"
-              >
-                CHOOSE YOUR <br />
-                <span className="text-[#d90f40]">FUTURE PATH.</span>
-              </motion.h1>
-              <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="text-xl text-[#555] max-w-2xl mx-auto font-medium"
-              >
-                Join India's most innovative English learning platform. 
-                Select a course below and take the first step towards your global dreams.
-              </motion.p>
-            </div>
-
-            <div className="grid lg:grid-cols-[1fr_450px] gap-12 items-start">
-              {/* Course Selection Cards */}
-              <div className="space-y-6">
-                <div className="mb-8 text-left">
-                  <h2 className="text-2xl font-black text-[#1a1a1a] uppercase tracking-widest border-l-4 border-[#d90f40] pl-4">
-                    CHOOSE SUBJECT FOR ENROLLING
-                  </h2>
-                </div>
-                {courses.map((course) => (
-                  <motion.div
-                    key={course.id}
-                    layoutId={course.id}
-                    onClick={() => {
-                      setSelectedCourse(course.id);
-                      if (window.innerWidth < 1024) {
-                        const formElement = document.getElementById('enroll-form');
-                        formElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }
-                    }}
-                    className={`relative cursor-pointer rounded-[2.5rem] p-8 transition-all duration-500 border-2 ${
-                      selectedCourse === course.id 
-                      ? 'bg-white border-[#d90f40] shadow-2xl scale-[1.02]' 
-                      : 'bg-white/50 border-transparent hover:bg-white/80'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-6">
-                        <div 
-                          className="w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-lg"
-                          style={{ backgroundColor: course.color }}
-                        >
-                          <course.icon className="w-8 h-8" />
-                        </div>
-                        <div>
-                          <h3 className="text-[1.25rem] sm:text-[1.35rem]  font-black text-[#1a1a1a]">{course.name}</h3>
-                          <p className="text-[#666] font-bold uppercase text-xs tracking-widest mt-1">{course.tag}</p>
-                        </div>
-                      </div>
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
-                        selectedCourse === course.id ? 'bg-[#d90f40] text-white' : 'bg-gray-100 text-gray-400'
-                      }`}>
-                        <ChevronRight className="w-6 h-6" />
-                      </div>
-                    </div>
-
-                    <AnimatePresence>
-                      {selectedCourse === course.id && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="mt-8 pt-8 border-t border-gray-100 overflow-hidden"
-                        >
-                          <div className="grid sm:grid-cols-3 gap-6">
-                            {course.features.map((feature, i) => (
-                              <div key={i} className="flex items-center gap-2 text-sm font-bold text-[#444]">
-                                <CheckCircle2 className="w-5 h-5 text-[#2c5aa0]" />
-                                {feature}
-                              </div>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                ))}
+          <div className="relative z-10 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-8 items-center">
+            {/* Left Column: Creative text content with slanted sticker badge */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 relative z-10"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d90f40]/10 border border-[#d90f40]/20 text-[#d90f40] font-black text-[10px] uppercase tracking-widest shadow-sm">
+                <Sparkles className="w-3.5 h-3.5" />
+                Apex Edge Admissions Open
               </div>
 
-              {/* Enrollment Form */}
+              <h1 className="leading-[1.1] tracking-tight uppercase select-none text-center lg:text-left">
+                <span className="block text-xs sm:text-sm font-black text-gray-400 tracking-[0.25em] mb-2">
+                  GREAT TUTORS.
+                </span>
+                <span className="block text-4xl sm:text-5xl lg:text-7xl font-black text-[#1a1a1a]">
+                  GET DESIRED
+                </span>
+                <span className="relative inline-block my-2">
+                  <span className="absolute inset-0 bg-[#d90f40] rounded-2xl transform -rotate-1 -skew-x-3 shadow-lg shadow-[#d90f40]/20" />
+                  <span className="relative text-white px-6 py-2 block font-extrabold text-2xl sm:text-4xl lg:text-5xl tracking-normal normal-case italic">
+                    Right Results!
+                  </span>
+                </span>
+                <br />
+                <span className="block text-4xl sm:text-5xl lg:text-7xl font-black text-[#1a1a1a] mt-1">
+                  IN ENGLISH EXAMS
+                </span>
+              </h1>
+
+              <p className="text-sm sm:text-base text-gray-500 font-bold border-l-2 border-[#d90f40]/30 pl-4 leading-relaxed max-w-md">
+                Enroll today in India's leading training hub for <span className="text-[#1a1a1a]">IELTS, PTE & CELPIP</span> and experience customized results-driven preparation.
+              </p>
+
+              <div className="pt-2">
+                <button
+                  onClick={scrollToForm}
+                  className="group relative w-full sm:w-auto h-13 px-8 rounded-full bg-[#d90f40] text-white font-black uppercase tracking-widest text-xs hover:bg-[#b80830] transition-all shadow-lg shadow-[#d90f40]/25 flex items-center justify-center gap-3 cursor-pointer overflow-hidden"
+                >
+                  <span>Book Online Session</span>
+                  <ArrowRight className="w-4.5 h-4.5 group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Right Column: Dynamic Stacked Course Highlight Cards Deck */}
+            <div className="relative w-full max-w-[480px] h-[340px] sm:h-[420px] mx-auto flex flex-col justify-center items-center px-4">
+
+              {/* Card 1: IELTS Mastery */}
               <motion.div
-                id="enroll-form"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="bg-white rounded-[3rem] p-10 shadow-2xl shadow-[#d90f40]/10 border border-gray-100 relative overflow-hidden"
+                onMouseEnter={() => setHoveredCardIndex(0)}
+                onMouseLeave={() => setHoveredCardIndex(null)}
+                animate={{
+                  scale: hoveredCardIndex === 0 ? 1.05 : hoveredCardIndex !== null ? 0.95 : 1,
+                  rotate: hoveredCardIndex === 0 ? 0 : 2,
+                  y: hoveredCardIndex === 0 ? -15 : 0,
+                  zIndex: hoveredCardIndex === 0 ? 50 : 30,
+                  opacity: hoveredCardIndex !== null && hoveredCardIndex !== 0 ? 0.6 : 1
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="w-full bg-white rounded-3xl p-5 border border-[#d90f40]/10 shadow-xl cursor-pointer absolute top-0 left-0 right-0 max-w-[400px] mx-auto"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#d90f40]/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-                
-                <h4 className="text-2xl font-black text-[#1a1a1a] mb-2">Quick Enrollment</h4>
-                <p className="text-gray-500 mb-8 font-medium">For <span className="text-[#d90f40] font-bold">{currentCourse?.name}</span></p>
+                <div className="flex justify-between items-start mb-3">
+                  <span className="px-3 py-1 rounded-full bg-[#d90f40]/10 text-[#d90f40] font-black text-[9px] uppercase tracking-wider">
+                    IELTS Mastery
+                  </span>
+                  <div className="w-8 h-8 rounded-lg bg-[#d90f40]/10 flex items-center justify-center text-[#d90f40]">
+                    <Star className="w-4.5 h-4.5 fill-[#d90f40]" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-black text-[#1a1a1a] uppercase tracking-tight">Band 8.5+ Target</h3>
+                <p className="text-xs text-gray-500 font-bold mt-1 leading-relaxed">
+                  1-on-1 custom strategies, full speaking assessments & mock exam checkups daily.
+                </p>
+              </motion.div>
 
-                <AnimatePresence mode="wait">
-                  {!isSubmitted ? (
-                    <motion.form 
-                      key="form"
-                      onSubmit={handleSubmit}
-                      className="space-y-6"
-                      initial={{ opacity: 1 }}
-                      exit={{ opacity: 0, y: -20 }}
-                    >
-                      {/* Hidden field for selected course */}
-                      <input type="hidden" name="Selected Course" value={currentCourse?.name || ''} />
-                      
-                      <div className="space-y-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <label className="space-y-2 text-sm font-black text-[#1a1a1a] uppercase tracking-widest pl-1">
-                            Full Name
-                            <input 
-                              type="text" 
-                              name="Name"
-                              required
-                              placeholder="Aditya Sharma"
-                              className="w-full h-14 bg-gray-50 rounded-2xl border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#d90f40] px-6 outline-none transition-all font-medium text-[#1a1a1a]"
-                            />
-                          </label>
-                          <label className="space-y-2 text-sm font-black text-[#1a1a1a] uppercase tracking-widest pl-1">
-                            City
-                            <input 
-                              type="text" 
-                              name="city"
-                              required
-                              placeholder="Chandigarh"
-                              className="w-full h-14 bg-gray-50 rounded-2xl border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#d90f40] px-6 outline-none transition-all font-medium text-[#1a1a1a]"
-                            />
-                          </label>
-                        </div>
+              {/* Card 2: PTE Precision */}
+              <motion.div
+                onMouseEnter={() => setHoveredCardIndex(1)}
+                onMouseLeave={() => setHoveredCardIndex(null)}
+                animate={{
+                  scale: hoveredCardIndex === 1 ? 1.05 : hoveredCardIndex !== null ? 0.95 : 1,
+                  rotate: hoveredCardIndex === 1 ? 0 : -3,
+                  y: hoveredCardIndex === 1 ? -15 : 70,
+                  zIndex: hoveredCardIndex === 1 ? 50 : 20,
+                  opacity: hoveredCardIndex !== null && hoveredCardIndex !== 1 ? 0.6 : 1
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="w-full bg-white rounded-3xl p-5 border border-blue-500/10 shadow-xl cursor-pointer absolute top-20 left-0 right-0 max-w-[400px] mx-auto"
+              >
+                <div className="flex justify-between items-start mb-3">
+                  <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 font-black text-[9px] uppercase tracking-wider">
+                    PTE Precision
+                  </span>
+                  <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600">
+                    <Zap className="w-4.5 h-4.5 fill-blue-500" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-black text-[#1a1a1a] uppercase tracking-tight">79+ Target Aim</h3>
+                <p className="text-xs text-gray-500 font-bold mt-1 leading-relaxed">
+                  Pearson AI algorithm scoring checkups, repeated test strategies & templates.
+                </p>
+              </motion.div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <label className="space-y-2 text-sm font-black text-[#1a1a1a] uppercase tracking-widest pl-1">
-                            Email Address
-                            <input 
-                              type="email" 
-                              name="Email"
-                              required
-                              placeholder="aditya@example.com"
-                              className="w-full h-14 bg-gray-50 rounded-2xl border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#d90f40] px-6 outline-none transition-all font-medium text-[#1a1a1a]"
-                            />
-                          </label>
-                          <label className="space-y-2 text-sm font-black text-[#1a1a1a] uppercase tracking-widest pl-1">
-                            WhatsApp Number
-                            <input 
-                              type="tel" 
-                              name="Phone no"
-                              required
-                              placeholder="+91 98765 43210"
-                              className="w-full h-14 bg-gray-50 rounded-2xl border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#d90f40] px-6 outline-none transition-all font-medium text-[#1a1a1a]"
-                            />
-                          </label>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <label className="space-y-2 text-sm font-black text-[#1a1a1a] uppercase tracking-widest pl-1">
-                            Qualification
-                            <select 
-                              name="Qualification"
-                              className="w-full h-14 bg-gray-50 rounded-2xl border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#d90f40] px-6 outline-none transition-all font-medium text-[#1a1a1a] appearance-none"
-                            >
-                              <option>High School (10th)</option>
-                              <option>Senior Secondary (12th)</option>
-                              <option>Undergraduate (UG)</option>
-                              <option>Postgraduate (PG)</option>
-                              <option>Working Professional</option>
-                            </select>
-                          </label>
-                          <label className="space-y-2 text-sm font-black text-[#1a1a1a] uppercase tracking-widest pl-1">
-                            Reason to Join
-                            <select 
-                              name="Reason"
-                              className="w-full h-14 bg-gray-50 rounded-2xl border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#d90f40] px-6 outline-none transition-all font-medium text-[#1a1a1a] appearance-none"
-                            >
-                              <option>Study Abroad</option>
-                              <option>Job / Work Permit</option>
-                              <option>Improve Communication</option>
-                              <option>Other</option>
-                            </select>
-                          </label>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <label className="space-y-2 text-sm font-black text-[#1a1a1a] uppercase tracking-widest pl-1">
-                            English Proficiency
-                            <select 
-                              name="English Level"
-                              className="w-full h-14 bg-gray-50 rounded-2xl border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#d90f40] px-6 outline-none transition-all font-medium text-[#1a1a1a] appearance-none"
-                            >
-                              <option>Beginner</option>
-                              <option>Intermediate</option>
-                              <option>Advanced</option>
-                            </select>
-                          </label>
-                          <label className="space-y-2 text-sm font-black text-[#1a1a1a] uppercase tracking-widest pl-1">
-                            Preferred Batch
-                            <select 
-                              name="Batch"
-                              className="w-full h-14 bg-gray-50 rounded-2xl border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#d90f40] px-6 outline-none transition-all font-medium text-[#1a1a1a] appearance-none"
-                            >
-                              <option>Morning (7 AM - 10 AM)</option>
-                              <option>Afternoon (1 PM - 4 PM)</option>
-                              <option>Evening (6 PM - 9 PM)</option>
-                            </select>
-                          </label>
-                        </div>
-
-                        <div className="space-y-2">
-                          <label className="text-sm font-black text-[#1a1a1a] uppercase tracking-widest pl-1">Any Specific Suggestions?</label>
-                          <textarea 
-                            name="Suggestion"
-                            placeholder="Tell us about your goals..."
-                            className="w-full h-32 bg-gray-50 rounded-3xl border-none ring-1 ring-gray-100 focus:ring-2 focus:ring-[#d90f40] p-6 outline-none transition-all font-medium text-[#1a1a1a] resize-none"
-                          ></textarea>
-                        </div>
-
-                        <div className="flex items-center gap-4 group cursor-pointer">
-                          <input 
-                            type="checkbox" 
-                            id="consent" 
-                            name="Consent to contact"
-                            required
-                            className="w-6 h-6 rounded-lg border-2 border-gray-200 text-[#d90f40] focus:ring-[#d90f40] cursor-pointer"
-                          />
-                          <label htmlFor="consent" className="text-xs font-bold text-gray-500 leading-tight">
-                            I agree to be contacted by Apex Edge team via Email, WhatsApp, or Call for further enrollment details.
-                          </label>
-                        </div>
-                      </div>
-
-                      <div className="pt-4">
-                        <button
-                          type="submit"
-                          className="w-full h-12 bg-[#1a1a1a] text-white rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-[#d90f40] transition-all shadow-xl shadow-gray-200 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
-                          disabled={isSubmitting}
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                              Processing...
-                            </>
-                          ) : (
-                            <>
-                              Enroll Now
-                              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </>
-                          )}
-                        </button>
-                        <p className="text-[10px] text-center text-gray-400 mt-4 uppercase tracking-[0.2em] font-bold">
-                          Expert callback within 24 hours
-                        </p>
-                      </div>
-                    </motion.form>
-                  ) : (
-                    <motion.div 
-                      key="success"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="text-center py-12"
-                    >
-                      <div className="w-24 h-24 bg-[#2d7f72] text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-[#2d7f72]/30">
-                        <ShieldCheck className="w-12 h-12" />
-                      </div>
-                      <h5 className="text-3xl font-black text-[#1a1a1a] mb-4">You're on the list!</h5>
-                      <p className="text-gray-500 font-medium mb-8">
-                        Our head counselor will reach out to you on WhatsApp within 2 hours.
-                      </p>
-                      <button 
-                        onClick={() => setIsSubmitted(false)}
-                        className="text-[#d90f40] font-black text-sm uppercase tracking-widest border-b-2 border-[#d90f40]"
-                      >
-                        Enroll in another course
-                      </button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+              {/* Card 3: CELPIP Ready */}
+              <motion.div
+                onMouseEnter={() => setHoveredCardIndex(2)}
+                onMouseLeave={() => setHoveredCardIndex(null)}
+                animate={{
+                  scale: hoveredCardIndex === 2 ? 1.05 : hoveredCardIndex !== null ? 0.95 : 1,
+                  rotate: hoveredCardIndex === 2 ? 0 : 4,
+                  y: hoveredCardIndex === 2 ? -15 : 140,
+                  zIndex: hoveredCardIndex === 2 ? 50 : 10,
+                  opacity: hoveredCardIndex !== null && hoveredCardIndex !== 2 ? 0.6 : 1
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="w-full bg-white rounded-3xl p-5 border border-amber-500/10 shadow-xl cursor-pointer absolute top-40 left-0 right-0 max-w-[400px] mx-auto"
+              >
+                <div className="flex justify-between items-start mb-3">
+                  <span className="px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 font-black text-[9px] uppercase tracking-wider">
+                    CELPIP Ready
+                  </span>
+                  <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-600">
+                    <ShieldCheck className="w-4.5 h-4.5" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-black text-[#1a1a1a] uppercase tracking-tight">CLB 9+ Canadian PR</h3>
+                <p className="text-xs text-gray-500 font-bold mt-1 leading-relaxed">
+                  Specialized feedback pipelines, Canadian PR accent checks & mock exams.
+                </p>
               </motion.div>
             </div>
           </div>
         </section>
 
+        {/* Important Enrollment Pointers ("important baate") */}
+        <section className="bg-white py-20 px-4 sm:px-6 lg:px-12 border-t border-[#d90f40]/5">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-[#d90f40] font-black text-xs uppercase tracking-widest pl-1">Enrollment Guidelines</span>
+              <h2 className="text-3xl sm:text-5xl font-black text-[#1a1a1a] uppercase mt-2 tracking-tight">Important Things To Know</h2>
+              <p className="text-sm sm:text-base text-gray-500 font-bold max-w-xl mx-auto mt-3">Read through our core training blueprints designed to secure target scores efficiently.</p>
+            </div>
 
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="bg-[#fdf2e8] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-[#d90f40] text-white flex items-center justify-center mb-6 shadow-md">
+                    <Star className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-black text-[#1a1a1a] mb-3">1-on-1 Mentoring</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 font-semibold leading-relaxed">Tailored, custom blueprints matching your modules' strengths and addressing vocabulary or grammar weaknesses directly.</p>
+                </div>
+              </div>
+
+              <div className="bg-[#fdf2e8] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-[#d90f40] text-white flex items-center justify-center mb-6 shadow-md">
+                    <Zap className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-black text-[#1a1a1a] mb-3">Evaluation Blueprint</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 font-semibold leading-relaxed">Daily writing reviews and live speaking checks graded by experienced IELTS, PTE, and CELPIP instructors.</p>
+                </div>
+              </div>
+
+              <div className="bg-[#fdf2e8] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-[#d90f40] text-white flex items-center justify-center mb-6 shadow-md">
+                    <ShieldCheck className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-black text-[#1a1a1a] mb-3">Target Batch Time</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 font-semibold leading-relaxed">Flexible morning, afternoon, and evening schedules configured to match college-going and working student routines.</p>
+                </div>
+              </div>
+
+              <div className="bg-[#fdf2e8] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-[#d90f40] text-white flex items-center justify-center mb-6 shadow-md">
+                    <BookOpen className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-black text-[#1a1a1a] mb-3">Premium Study Banks</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 font-semibold leading-relaxed">All-inclusive mock sheets, template packages, descriptive outlines, and exam-exact mock systems provided free.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Modern Form Section - Boarding Pass Design */}
+        <section id="registration-form-section" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#f3dde2]">
+          <div className="max-w-5xl mx-auto">
+
+            <AnimatePresence mode="wait">
+              {!isSubmitted ? (
+                <motion.form
+                  key="boarding-form"
+                  onSubmit={handleSubmit}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {/* Boarding Pass Ticket Container */}
+                  <div className="w-full bg-white rounded-[2rem] border border-[#d90f40]/10 shadow-[0_20px_50px_rgba(217,15,64,0.05)] overflow-hidden flex flex-col md:flex-row relative">
+
+                    {/* Decorative Background Orb */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#d90f40]/2 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+
+                    {/* Left Part: Passenger Info */}
+                    <div className="flex-grow p-6 sm:p-10 space-y-6">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <span className="text-[#d90f40] font-black text-[10px] uppercase tracking-[0.2em]">Boarding Pass</span>
+                          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] uppercase tracking-tight mt-1">Passenger Details</h2>
+                          <p className="text-xs text-gray-400 font-bold mt-1">Complete details to authorize your trial classes and mock access check-in.</p>
+                        </div>
+                        {/* Passport Photo Slot */}
+                        <div className="relative w-16 h-16 border-2 border-dashed border-[#d90f40]/30 rounded-xl p-0.5 flex items-center justify-center bg-gray-50 overflow-hidden shrink-0">
+                          <img
+                            src="/students/ielts.png"
+                            alt="Passenger Photo"
+                            className="w-full h-full object-cover rounded-lg filter grayscale"
+                          />
+                          {/* Admitted Stamp */}
+                          <div className="absolute -bottom-1 -right-1 bg-green-500 text-white font-black text-[6px] uppercase px-1.5 py-0.5 rounded rotate-12 shadow-sm select-none">
+                            Admitted
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <label className="space-y-1.5 block text-[10px] font-black text-gray-900 uppercase tracking-widest pl-1">
+                          Full Name
+                          <input
+                            type="text"
+                            name="Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Enter your full name"
+                            required
+                            className="w-full h-12 px-5 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 focus:bg-white text-sm text-[#1a1a1a] font-bold transition-all placeholder-gray-500"
+                          />
+                        </label>
+
+                        <label className="space-y-1.5 block text-[10px] font-black text-gray-900 uppercase tracking-widest pl-1">
+                          Email Address
+                          <input
+                            type="email"
+                            name="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="your.email@company.com"
+                            required
+                            className="w-full h-12 px-5 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 focus:bg-white text-sm text-[#1a1a1a] font-bold transition-all placeholder-gray-500"
+                          />
+                        </label>
+
+                        <label className="space-y-1.5 block text-[10px] font-black text-gray-900 uppercase tracking-widest pl-1">
+                          WhatsApp Number
+                          <input
+                            type="tel"
+                            name="Phone no"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            placeholder="+91 98765 43210"
+                            required
+                            className="w-full h-12 px-5 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 focus:bg-white text-sm text-[#1a1a1a] font-bold transition-all placeholder-gray-500"
+                          />
+                        </label>
+
+                        <label className="space-y-1.5 block text-[10px] font-black text-gray-900 uppercase tracking-widest pl-1">
+                          City
+                          <input
+                            type="text"
+                            name="city"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            placeholder="Enter your city"
+                            required
+                            className="w-full h-12 px-5 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 focus:bg-white text-sm text-[#1a1a1a] font-bold transition-all placeholder-gray-500"
+                          />
+                        </label>
+
+                        <label className="space-y-1.5 block text-[10px] font-black text-gray-900 uppercase tracking-widest pl-1 relative">
+                          Target Country
+                          <select
+                            name="Country"
+                            value={country}
+                            onChange={(e) => setCountry(e.target.value)}
+                            required
+                            className="w-full h-12 px-5 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 text-sm text-[#1a1a1a] font-bold transition-all appearance-none cursor-pointer pr-10"
+                          >
+                            <option value="" disabled>Select destination</option>
+                            <option value="Canada">Canada</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="Australia">Australia</option>
+                            <option value="United States">United States</option>
+                            <option value="New Zealand">New Zealand</option>
+                            <option value="Other">Other</option>
+                          </select>
+                          <div className="absolute right-5 bottom-3.5 pointer-events-none text-gray-900">
+                            <ChevronDown className="w-3.5 h-3.5" />
+                          </div>
+                        </label>
+
+                        <label className="space-y-1.5 block text-[10px] font-black text-gray-900 uppercase tracking-widest pl-1">
+                          Departure Date
+                          <input
+                            type="date"
+                            name="Date"
+                            value={selectedDate}
+                            onChange={(e) => setSelectedDate(e.target.value)}
+                            required
+                            className={`w-full h-12 px-5 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 focus:bg-white text-sm font-bold transition-all cursor-pointer ${selectedDate ? 'text-[#1a1a1a]' : 'text-gray-500'}`}
+                          />
+                        </label>
+                      </div>
+
+                      {/* Barcode details in left footer */}
+                      <div className="flex items-center gap-0.5 opacity-25 pt-4 select-none">
+                        <div className="w-1 h-7 bg-black" />
+                        <div className="w-0.5 h-7 bg-black" />
+                        <div className="w-1.5 h-7 bg-black" />
+                        <div className="w-0.5 h-7 bg-black" />
+                        <div className="w-2.5 h-7 bg-black" />
+                        <div className="w-1 h-7 bg-black" />
+                        <div className="w-0.5 h-7 bg-black" />
+                        <div className="w-1.5 h-7 bg-black" />
+                        <span className="text-[9px] font-mono ml-3 tracking-widest text-[#1a1a1a]">APEX-SUCCESS-2026</span>
+                      </div>
+                    </div>
+
+                    {/* Perforation dashed line with circular cutouts on borders */}
+                    <div className="hidden md:block w-px border-l-2 border-dashed border-[#d90f40]/25 relative shrink-0">
+                      <div className="absolute top-[-10px] left-[-11px] w-5 h-5 rounded-full bg-[#f3dde2] border border-[#d90f40]/5" />
+                      <div className="absolute bottom-[-10px] left-[-11px] w-5 h-5 rounded-full bg-[#f3dde2] border border-[#d90f40]/5" />
+                    </div>
+
+                    {/* Right Part: Ticket Stub */}
+                    <div className="w-full md:w-[320px] bg-gray-50/50 p-6 sm:p-10 flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-100 shrink-0">
+                      <div className="space-y-4">
+                        <label className="space-y-1.5 block text-[10px] font-black text-gray-900 uppercase tracking-widest pl-1 relative">
+                          Choose Subject
+                          <select
+                            name="Selected Course"
+                            value={selectedCourse}
+                            onChange={(e) => setSelectedCourse(e.target.value)}
+                            required
+                            className="w-full h-11 px-4 rounded-xl bg-white border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 text-xs text-[#1a1a1a] font-bold transition-all appearance-none cursor-pointer pr-10"
+                          >
+                            <option value="" disabled>Select course</option>
+                            <option value="IELTS Mastery (Academic & General)">IELTS Mastery (Academic & General)</option>
+                            <option value="PTE Precision (Fast-Track)">PTE Precision (Fast-Track)</option>
+                            <option value="AI Scoring Insight (Speaking Practice, Grammar Modules)">AI Scoring Insight (Speaking Practice, Grammar Modules)</option>
+                            <option value="CELPIP Ready (Canadian PR)">CELPIP Ready (Canadian PR)</option>
+                            <option value="Business Comm. (Corporate Focus)">Business Comm. (Corporate Focus)</option>
+                            <option value="Spoken English (Fluency Focus)">Spoken English (Fluency Focus)</option>
+                          </select>
+                          <div className="absolute right-4 bottom-3.5 pointer-events-none text-gray-900">
+                            <ChevronDown className="w-3.5 h-3.5" />
+                          </div>
+                        </label>
+
+                        <label className="space-y-1.5 block text-[10px] font-black text-gray-900 uppercase tracking-widest pl-1 relative">
+                          Contact Method
+                          <select
+                            name="Contact_Method"
+                            value={method}
+                            onChange={(e) => setMethod(e.target.value)}
+                            required
+                            className="w-full h-11 px-4 rounded-xl bg-white border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 text-xs text-[#1a1a1a] font-bold transition-all appearance-none cursor-pointer pr-10"
+                          >
+                            <option value="" disabled>Select method</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                            <option value="Phone Call">Phone Call</option>
+                            <option value="Email">Email</option>
+                          </select>
+                          <div className="absolute right-4 bottom-3.5 pointer-events-none text-gray-900">
+                            <ChevronDown className="w-3.5 h-3.5" />
+                          </div>
+                        </label>
+
+                        <label className="space-y-1.5 block text-[10px] font-black text-gray-900 uppercase tracking-widest pl-1">
+                          Any suggestions?
+                          <textarea
+                            name="Suggestion"
+                            value={suggestion}
+                            onChange={(e) => setSuggestion(e.target.value)}
+                            placeholder="Tell us about your goals..."
+                            className="w-full h-24 p-3.5 rounded-xl bg-white border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 text-xs text-[#1a1a1a] font-bold resize-none transition-all placeholder-gray-500"
+                          />
+                        </label>
+                      </div>
+
+                      <div className="mt-8 space-y-4">
+                        <label className="flex items-start gap-2.5 text-[9px] text-gray-400 font-bold leading-tight cursor-pointer select-none">
+                          <input
+                            name="Consent to contact"
+                            type="checkbox"
+                            checked={acceptedTerms}
+                            onChange={(e) => setAcceptedTerms(e.target.checked)}
+                            className="mt-0.5 rounded border-gray-200 text-[#d90f40] focus:ring-[#d90f40] cursor-pointer"
+                            required
+                          />
+                          I agree to contact from Apex Edge for enrollment details.
+                        </label>
+
+                        <button
+                          type="submit"
+                          disabled={!formReady || isSubmitting}
+                          className="w-full h-12 rounded-xl bg-[#d90f40] text-white font-black text-xs uppercase tracking-widest hover:bg-[#b80830] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#d90f40]/10 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {isSubmitting ? "Issuing Pass..." : "Confirm Boarding"}
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+                </motion.form>
+              ) : (
+                <motion.div
+                  key="boarding-success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="w-full bg-white rounded-[2rem] border border-[#d90f40]/10 shadow-[0_20px_50px_rgba(217,15,64,0.05)] p-12 text-center space-y-6 relative overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#d90f40]/2 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+
+                  <div className="w-20 h-20 rounded-full bg-green-50 flex items-center justify-center text-green-500 mx-auto mb-4 border border-green-100 shadow-sm animate-bounce">
+                    <CheckCircle2 className="w-10 h-10" />
+                  </div>
+
+                  <span className="inline-flex px-4 py-1.5 rounded-full bg-green-100 text-green-700 font-black text-[10px] uppercase tracking-widest">
+                    Boarding Pass Issued
+                  </span>
+
+                  <h2 className="text-3xl font-black text-[#1a1a1a] uppercase mt-4 tracking-tight leading-none">
+                    Checked In!
+                  </h2>
+
+                  <p className="text-sm text-gray-500 font-bold max-w-sm mx-auto leading-relaxed">
+                    Your boarding details have been registered. Our counselor team will reach out via preferred method within 2 hours to start your blueprint target scoring.
+                  </p>
+
+                  <div className="pt-6 border-t border-dashed border-gray-200 max-w-md mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
+                    <div className="space-y-1">
+                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Passenger</span>
+                      <span className="block text-xs font-black text-[#1a1a1a] uppercase truncate">{name || "Student"}</span>
+                    </div>
+                    <div className="space-y-1">
+                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Target Country</span>
+                      <span className="block text-xs font-black text-[#1a1a1a] uppercase">{country || "Canada"}</span>
+                    </div>
+                    <div className="space-y-1">
+                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Departure Date</span>
+                      <span className="block text-xs font-black text-[#1a1a1a] uppercase">{selectedDate || "Immediate"}</span>
+                    </div>
+                    <div className="space-y-1">
+                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Seat / Status</span>
+                      <span className="block text-xs font-black text-green-600 uppercase">Immediate</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-4">
+                    <button
+                      onClick={handleResetForm}
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white bg-[#1a1a1a] hover:bg-[#d90f40] font-black text-[10px] uppercase tracking-widest transition-all duration-300 cursor-pointer"
+                    >
+                      <Sparkles className="w-3.5 h-3.5" />
+                      Book Another Ticket
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </section>
       </div>
 
       <ApexEdgeFooter />
