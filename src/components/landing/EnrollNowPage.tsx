@@ -114,7 +114,7 @@ export function EnrollNowPage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#fdf2e8] overflow-x-hidden pt-28">
+    <main className="min-h-screen flex flex-col bg-[#f3dde2] overflow-x-hidden pt-28">
       <Navbar />
 
       <div className="flex-grow">
@@ -160,33 +160,15 @@ export function EnrollNowPage() {
                 Enroll today in India's leading training hub for <span className="text-[#1a1a1a]">IELTS, PTE & CELPIP</span> and experience customized results-driven preparation.
               </p>
 
-              <div className="pt-2">
-                <button
-                  onClick={scrollToForm}
-                  className="group relative w-full sm:w-auto h-13 px-8 rounded-full bg-[#d90f40] text-white font-black uppercase tracking-widest text-xs hover:bg-[#b80830] transition-all shadow-lg shadow-[#d90f40]/25 flex items-center justify-center gap-3 cursor-pointer overflow-hidden"
-                >
-                  <span>Book Online Session</span>
-                  <ArrowRight className="w-4.5 h-4.5 group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
-              </div>
+
             </motion.div>
 
-            {/* Right Column: Dynamic Stacked Course Highlight Cards Deck */}
-            <div className="relative w-full max-w-[480px] h-[340px] sm:h-[420px] mx-auto flex flex-col justify-center items-center px-4">
+            {/* Right Column: Stacked Course Highlight Cards Deck - Static Visual Layout */}
+            <div className="relative w-full max-w-[480px] h-[400px] sm:h-[450px] mx-auto mt-8 lg:mt-0 px-4 select-none">
 
               {/* Card 1: IELTS Mastery */}
-              <motion.div
-                onMouseEnter={() => setHoveredCardIndex(0)}
-                onMouseLeave={() => setHoveredCardIndex(null)}
-                animate={{
-                  scale: hoveredCardIndex === 0 ? 1.05 : hoveredCardIndex !== null ? 0.95 : 1,
-                  rotate: hoveredCardIndex === 0 ? 0 : 2,
-                  y: hoveredCardIndex === 0 ? -15 : 0,
-                  zIndex: hoveredCardIndex === 0 ? 50 : 30,
-                  opacity: hoveredCardIndex !== null && hoveredCardIndex !== 0 ? 0.6 : 1
-                }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="w-full bg-white rounded-3xl p-5 border border-[#d90f40]/10 shadow-xl cursor-pointer absolute top-0 left-0 right-0 max-w-[400px] mx-auto"
+              <div
+                className="w-full bg-white rounded-3xl p-5 border border-[#d90f40]/10 shadow-xl absolute top-0 left-0 right-0 max-w-[400px] mx-auto z-30 transform rotate-2"
               >
                 <div className="flex justify-between items-start mb-3">
                   <span className="px-3 py-1 rounded-full bg-[#d90f40]/10 text-[#d90f40] font-black text-[9px] uppercase tracking-wider">
@@ -200,21 +182,11 @@ export function EnrollNowPage() {
                 <p className="text-xs text-gray-500 font-bold mt-1 leading-relaxed">
                   1-on-1 custom strategies, full speaking assessments & mock exam checkups daily.
                 </p>
-              </motion.div>
+              </div>
 
               {/* Card 2: PTE Precision */}
-              <motion.div
-                onMouseEnter={() => setHoveredCardIndex(1)}
-                onMouseLeave={() => setHoveredCardIndex(null)}
-                animate={{
-                  scale: hoveredCardIndex === 1 ? 1.05 : hoveredCardIndex !== null ? 0.95 : 1,
-                  rotate: hoveredCardIndex === 1 ? 0 : -3,
-                  y: hoveredCardIndex === 1 ? -15 : 70,
-                  zIndex: hoveredCardIndex === 1 ? 50 : 20,
-                  opacity: hoveredCardIndex !== null && hoveredCardIndex !== 1 ? 0.6 : 1
-                }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="w-full bg-white rounded-3xl p-5 border border-blue-500/10 shadow-xl cursor-pointer absolute top-20 left-0 right-0 max-w-[400px] mx-auto"
+              <div
+                className="w-full bg-white rounded-3xl p-5 border border-blue-500/10 shadow-xl absolute top-[135px] left-0 right-0 max-w-[400px] mx-auto z-20 transform -rotate-3"
               >
                 <div className="flex justify-between items-start mb-3">
                   <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 font-black text-[9px] uppercase tracking-wider">
@@ -228,21 +200,11 @@ export function EnrollNowPage() {
                 <p className="text-xs text-gray-500 font-bold mt-1 leading-relaxed">
                   Pearson AI algorithm scoring checkups, repeated test strategies & templates.
                 </p>
-              </motion.div>
+              </div>
 
               {/* Card 3: CELPIP Ready */}
-              <motion.div
-                onMouseEnter={() => setHoveredCardIndex(2)}
-                onMouseLeave={() => setHoveredCardIndex(null)}
-                animate={{
-                  scale: hoveredCardIndex === 2 ? 1.05 : hoveredCardIndex !== null ? 0.95 : 1,
-                  rotate: hoveredCardIndex === 2 ? 0 : 4,
-                  y: hoveredCardIndex === 2 ? -15 : 140,
-                  zIndex: hoveredCardIndex === 2 ? 50 : 10,
-                  opacity: hoveredCardIndex !== null && hoveredCardIndex !== 2 ? 0.6 : 1
-                }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="w-full bg-white rounded-3xl p-5 border border-amber-500/10 shadow-xl cursor-pointer absolute top-40 left-0 right-0 max-w-[400px] mx-auto"
+              <div
+                className="w-full bg-white rounded-3xl p-5 border border-amber-500/10 shadow-xl absolute top-[270px] left-0 right-0 max-w-[400px] mx-auto z-10 transform rotate-4"
               >
                 <div className="flex justify-between items-start mb-3">
                   <span className="px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 font-black text-[9px] uppercase tracking-wider">
@@ -256,7 +218,7 @@ export function EnrollNowPage() {
                 <p className="text-xs text-gray-500 font-bold mt-1 leading-relaxed">
                   Specialized feedback pipelines, Canadian PR accent checks & mock exams.
                 </p>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -271,7 +233,7 @@ export function EnrollNowPage() {
             </div>
 
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="bg-[#fdf2e8] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
+              <div className="bg-[#f3dde2] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
                 <div>
                   <div className="w-12 h-12 rounded-2xl bg-[#d90f40] text-white flex items-center justify-center mb-6 shadow-md">
                     <Star className="w-5 h-5" />
@@ -281,7 +243,7 @@ export function EnrollNowPage() {
                 </div>
               </div>
 
-              <div className="bg-[#fdf2e8] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
+              <div className="bg-[#f3dde2] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
                 <div>
                   <div className="w-12 h-12 rounded-2xl bg-[#d90f40] text-white flex items-center justify-center mb-6 shadow-md">
                     <Zap className="w-5 h-5" />
@@ -291,7 +253,7 @@ export function EnrollNowPage() {
                 </div>
               </div>
 
-              <div className="bg-[#fdf2e8] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
+              <div className="bg-[#f3dde2] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
                 <div>
                   <div className="w-12 h-12 rounded-2xl bg-[#d90f40] text-white flex items-center justify-center mb-6 shadow-md">
                     <ShieldCheck className="w-5 h-5" />
@@ -301,7 +263,7 @@ export function EnrollNowPage() {
                 </div>
               </div>
 
-              <div className="bg-[#fdf2e8] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
+              <div className="bg-[#f3dde2] p-8 rounded-[2rem] border border-[#d90f40]/5 flex flex-col justify-between hover:scale-[1.03] transition-all shadow-sm">
                 <div>
                   <div className="w-12 h-12 rounded-2xl bg-[#d90f40] text-white flex items-center justify-center mb-6 shadow-md">
                     <BookOpen className="w-5 h-5" />
