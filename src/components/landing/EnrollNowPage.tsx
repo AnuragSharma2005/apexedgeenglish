@@ -370,12 +370,13 @@ export function EnrollNowPage() {
                             className="w-full h-12 px-5 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 text-sm text-[#1a1a1a] font-bold transition-all appearance-none cursor-pointer pr-10"
                           >
                             <option value="" disabled>Select Country</option>
+                            <option value="India">India</option>
                             <option value="Canada">Canada</option>
                             <option value="United Kingdom">United Kingdom</option>
                             <option value="Australia">Australia</option>
                             <option value="United States">United States</option>
                             <option value="New Zealand">New Zealand</option>
-                            <option value="India">India</option>
+                            
                             <option value="Other">Other</option>
                           </select>
                           <div className="absolute right-5 bottom-3.5 pointer-events-none text-gray-900">
