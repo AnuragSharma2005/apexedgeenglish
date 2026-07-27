@@ -31,6 +31,14 @@ export function EnrollNowPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
 
+  const todayString = useMemo(() => {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  }, []);
+
   const formReady = useMemo(
     () =>
       name.trim() &&
@@ -330,9 +338,9 @@ export function EnrollNowPage() {
                     <div className="flex-grow p-6 sm:p-10 space-y-6">
                       <div className="flex justify-between items-start">
                         <div>
-                          <span className="text-[#d90f40] font-black text-[10px] uppercase tracking-[0.2em]">Boarding Pass</span>
-                          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] uppercase tracking-tight mt-1">Passenger Details</h2>
-                          <p className="text-xs text-gray-400 font-bold mt-1">Complete details to authorize your trial classes and mock access check-in.</p>
+                          <span className="text-[#d90f40] font-black text-[10px] uppercase tracking-[0.2em]">Registration Pass</span>
+                          <h2 className="text-2xl sm:text-3xl font-black text-[#1a1a1a] uppercase tracking-tight mt-1">Enrollment Details</h2>
+                          <p className="text-xs text-gray-400 font-bold mt-1">Please enter your details to enroll and secure your customized batch timing.</p>
                         </div>
                         {/* Passport Photo Slot */}
                         <div className="relative w-16 h-16 border-2 border-dashed border-[#d90f40]/30 rounded-xl p-0.5 flex items-center justify-center bg-gray-50 overflow-hidden shrink-0">
@@ -424,12 +432,13 @@ export function EnrollNowPage() {
                         </label>
 
                         <label className="space-y-1.5 block text-[10px] font-black text-gray-900 uppercase tracking-widest pl-1">
-                          Departure Date
+                          Start Date
                           <input
                             type="date"
                             name="Date"
                             value={selectedDate}
                             onChange={(e) => setSelectedDate(e.target.value)}
+                            min={todayString}
                             required
                             className={`w-full h-12 px-5 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 focus:bg-white text-sm font-bold transition-all cursor-pointer ${selectedDate ? 'text-[#1a1a1a]' : 'text-gray-500'}`}
                           />
@@ -530,7 +539,7 @@ export function EnrollNowPage() {
                           disabled={!formReady || isSubmitting}
                           className="w-full h-12 rounded-xl bg-[#d90f40] text-white font-black text-xs uppercase tracking-widest hover:bg-[#b80830] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#d90f40]/10 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          {isSubmitting ? "Issuing Pass..." : "Confirm Boarding"}
+                          {isSubmitting ? "Enrolling..." : "Confirm Enrollment"}
                           <ArrowRight className="w-4 h-4" />
                         </button>
                       </div>
@@ -552,21 +561,21 @@ export function EnrollNowPage() {
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
 
-                  <span className="inline-flex px-4 py-1.5 rounded-full bg-green-100 text-green-700 font-black text-[10px] uppercase tracking-widest">
-                    Boarding Pass Issued
+                   <span className="inline-flex px-4 py-1.5 rounded-full bg-green-100 text-green-700 font-black text-[10px] uppercase tracking-widest">
+                    Registration Confirmed
                   </span>
 
                   <h2 className="text-3xl font-black text-[#1a1a1a] uppercase mt-4 tracking-tight leading-none">
-                    Checked In!
+                    Enrolled Successfully!
                   </h2>
 
                   <p className="text-sm text-gray-500 font-bold max-w-sm mx-auto leading-relaxed">
-                    Your boarding details have been registered. Our counselor team will reach out via preferred method within 2 hours to start your blueprint target scoring.
+                    Your enrollment details have been successfully registered. Our counselor team will reach out via preferred method within 2 hours to start your blueprint target scoring.
                   </p>
 
                   <div className="pt-6 border-t border-dashed border-gray-200 max-w-md mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
                     <div className="space-y-1">
-                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Passenger</span>
+                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Student</span>
                       <span className="block text-xs font-black text-[#1a1a1a] uppercase truncate">{name || "Student"}</span>
                     </div>
                     <div className="space-y-1">
@@ -574,11 +583,11 @@ export function EnrollNowPage() {
                       <span className="block text-xs font-black text-[#1a1a1a] uppercase">{country || "Canada"}</span>
                     </div>
                     <div className="space-y-1">
-                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Departure Date</span>
+                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Start Date</span>
                       <span className="block text-xs font-black text-[#1a1a1a] uppercase">{selectedDate || "Immediate"}</span>
                     </div>
                     <div className="space-y-1">
-                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Seat / Status</span>
+                      <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Status</span>
                       <span className="block text-xs font-black text-green-600 uppercase">Immediate</span>
                     </div>
                   </div>
@@ -589,7 +598,7 @@ export function EnrollNowPage() {
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white bg-[#1a1a1a] hover:bg-[#d90f40] font-black text-[10px] uppercase tracking-widest transition-all duration-300 cursor-pointer"
                     >
                       <Sparkles className="w-3.5 h-3.5" />
-                      Book Another Ticket
+                      Book Another Demo
                     </button>
                   </div>
                 </motion.div>
