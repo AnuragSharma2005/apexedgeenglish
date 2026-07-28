@@ -80,7 +80,7 @@ export function EnrollNowPage() {
     const formData = new FormData(e.currentTarget);
     formData.append('form_type', 'enroll');
 
-    const ENROLL_SHEET_URL = "https://script.google.com/macros/s/AKfycbzeooCgMcVacJpHKCMCu-UshjgaHMywahS8S5Um2L_LJj7cPCQkvsfpLdBfP7GcVUcS/exec";
+    const ENROLL_SHEET_URL = "https://script.google.com/macros/s/AKfycbwhAPDRLyK5GlqgYTa0CIQVWR_uBBLGTT086QB2AE06Y3AAgKigkR05eUL8sKmXtxDR/exec";
 
     try {
       const formSubmitPromise = fetch("https://formsubmit.co/ajax/apexedgeenglish@gmail.com", {
