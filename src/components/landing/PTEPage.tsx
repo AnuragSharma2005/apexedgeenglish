@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Target, Binary, Sparkles, CircleArrowRight, CheckCircle, ArrowRight, BrainCircuit, Mic2, FileText, Headphones, Trophy, Award, SlidersHorizontal, TrendingUp, Zap, GraduationCap, BookOpenCheck } from "lucide-react";
+import { Target, Binary, Sparkles, CircleArrowRight, CheckCircle, ArrowRight, BrainCircuit, Mic2, FileText, Headphones, Trophy, Award, SlidersHorizontal, TrendingUp, Zap, GraduationCap, BookOpenCheck, BarChart3, Languages, UserCheck, ShieldCheck } from "lucide-react";
 import { Navbar } from "../Navbar";
 import { Link } from "@tanstack/react-router";
 import { ApexEdgeFooter } from "../ApexEdgeFooter";
@@ -319,101 +319,344 @@ export function PTEPage() {
             </div>
          </section>
 
-         {/* Algorithm Decoding Section - The "Brain" of PTE */}
-         <section className="py-32 bg-white relative overflow-hidden">
+         {/* PTE Core Test Format Section - Design 1 (Infographic Cards) Style */}
+         <section className="py-20 sm:py-28 bg-[#fce4ec]/70 relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-               <div className="flex flex-col lg:flex-row gap-16 items-center mb-24">
-                  <div className="lg:w-1/2">
-                     <h2 className="text-5xl sm:text-7xl font-black text-[#1a1a1a] leading-tight mb-8">
-                        The AI <br /> <span className="text-[#d90f40]">Algorithm,</span> <br /> Decoded.
-                     </h2>
-                     <p className="text-xl text-gray-500 font-medium leading-relaxed max-w-xl">
-                        PTE is not an English test—it's a machine processing test.
-                        We don't teach you just English; we teach you how to talk
-                        to the Pearson AI for maximum points.
-                     </p>
+               {/* Header Block */}
+               <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-24">
+                  {/* <p className="text-xs sm:text-sm font-extrabold uppercase tracking-[0.25em] text-gray-500 mb-2">
+                     INFOGRAPHIC DESIGN
+                  </p>
+                  <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">
+                     PTE CORE EXAM STRUCTURE & MODULES
+                  </p> */}
+
+                  {/* Color Dots Indicator */}
+                  <div className="flex items-center justify-center gap-1.5 mb-8">
+                     <span className="w-3 h-3 rounded-sm bg-[#ff5722]" />
+                     <span className="w-3 h-3 rounded-sm bg-[#f5a623]" />
+                     <span className="w-3 h-3 rounded-sm bg-[#00b4d8]" />
+                     <span className="w-3 h-3 rounded-sm bg-[#2a4365]" />
                   </div>
-                  <div className="lg:w-1/2 grid grid-cols-2 gap-6">
-                     {algorithmModules.map((mod, i) => (
+
+                  <h2 className="text-3xl sm:text-5xl font-black text-[#1a1a1a] mb-5 tracking-tight">
+                     PTE Core Test Format
+                  </h2>
+                  <p className="text-sm sm:text-base text-gray-600 font-medium leading-relaxed max-w-2xl mx-auto">
+                     The PTE Core test format is a newly launched exam module in March 2024. Here's a comprehensive format of the PTE core examination:
+                  </p>
+               </div>
+
+               {/* 4 Infographic Cards Layout (Design 1 Replica) */}
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-6 lg:gap-x-8 pt-8">
+                  {/* Card 1: Speaking */}
+                  <motion.div
+                     initial={{ opacity: 0, y: 30 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ duration: 0.5, delay: 0.1 }}
+                     whileHover={{ y: -8 }}
+                     className="relative bg-white rounded-[1.8rem] sm:rounded-[2.2rem] shadow-xl shadow-gray-200/70 border border-gray-100 flex flex-col justify-between pt-20 sm:pt-20 min-h-[350px] md:min-h-0 w-[85%] max-w-[280px] md:w-full md:max-w-none mx-auto transition-all duration-300"
+                  >
+                     {/* Top Floating Badge with Colorful Outer Ring & Shadow */}
+                     <div className="absolute -top-10 sm:-top-11 left-1/2 -translate-x-1/2 w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-white border-[6px] border-[#ff5722] flex items-center justify-center shadow-[0_12px_24px_-6px_rgba(255,87,34,0.35)] z-10">
+                        <Mic2 className="w-8 h-8 sm:w-9 sm:h-9 text-gray-800 stroke-[1.75]" />
+                     </div>
+
+                     {/* Card Body */}
+                     <div className="px-5 sm:px-7 pb-8 text-center flex-1 flex flex-col items-center justify-center">
+                        <h3 className="text-lg sm:text-xl font-black uppercase tracking-wider text-[#ff5722] mb-4">
+                           SPEAKING
+                        </h3>
+                        <p className="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed text-center">
+                           In this test round, the candidate will need to give a formal introduction, read passages loudly, and describe images within a time limit of 54 to 67 minutes.
+                        </p>
+                     </div>
+
+                     {/* Bottom Color Accent Bar */}
+                     <div className="w-full h-3.5 sm:h-4 bg-[#ff5722] rounded-b-[1.8rem] sm:rounded-b-[2.2rem]" />
+                  </motion.div>
+
+                  {/* Card 2: Reading */}
+                  <motion.div
+                     initial={{ opacity: 0, y: 30 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ duration: 0.5, delay: 0.2 }}
+                     whileHover={{ y: -8 }}
+                     className="relative bg-white rounded-[1.8rem] sm:rounded-[2.2rem] shadow-xl shadow-gray-200/70 border border-gray-100 flex flex-col justify-between pt-20 sm:pt-20 min-h-[350px] md:min-h-0 w-[85%] max-w-[280px] md:w-full md:max-w-none mx-auto transition-all duration-300"
+                  >
+                     {/* Top Floating Badge */}
+                     <div className="absolute -top-10 sm:-top-11 left-1/2 -translate-x-1/2 w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-white border-[6px] border-[#f5a623] flex items-center justify-center shadow-[0_12px_24px_-6px_rgba(245,166,35,0.35)] z-10">
+                        <BookOpenCheck className="w-8 h-8 sm:w-9 sm:h-9 text-gray-800 stroke-[1.75]" />
+                     </div>
+
+                     {/* Card Body */}
+                     <div className="px-5 sm:px-7 pb-8 text-center flex-1 flex flex-col items-center justify-center">
+                        <h3 className="text-lg sm:text-xl font-black uppercase tracking-wider text-[#f5a623] mb-4">
+                           READING
+                        </h3>
+                        <p className="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed text-center">
+                           In the PTE core reading test, you will need to read paragraphs and passages as provided within 29 to 30 minutes.
+                        </p>
+                     </div>
+
+                     {/* Bottom Color Accent Bar */}
+                     <div className="w-full h-3.5 sm:h-4 bg-[#f5a623] rounded-b-[1.8rem] sm:rounded-b-[2.2rem]" />
+                  </motion.div>
+
+                  {/* Card 3: Listening */}
+                  <motion.div
+                     initial={{ opacity: 0, y: 30 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ duration: 0.5, delay: 0.3 }}
+                     whileHover={{ y: -8 }}
+                     className="relative bg-white rounded-[1.8rem] sm:rounded-[2.2rem] shadow-xl shadow-gray-200/70 border border-gray-100 flex flex-col justify-between pt-20 sm:pt-20 min-h-[350px] md:min-h-0 w-[85%] max-w-[280px] md:w-full md:max-w-none mx-auto transition-all duration-300"
+                  >
+                     {/* Top Floating Badge */}
+                     <div className="absolute -top-10 sm:-top-11 left-1/2 -translate-x-1/2 w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-white border-[6px] border-[#00b4d8] flex items-center justify-center shadow-[0_12px_24px_-6px_rgba(0,180,216,0.35)] z-10">
+                        <Headphones className="w-8 h-8 sm:w-9 sm:h-9 text-gray-800 stroke-[1.75]" />
+                     </div>
+
+                     {/* Card Body */}
+                     <div className="px-5 sm:px-7 pb-8 text-center flex-1 flex flex-col items-center justify-center">
+                        <h3 className="text-lg sm:text-xl font-black uppercase tracking-wider text-[#00b4d8] mb-4">
+                           LISTENING
+                        </h3>
+                        <p className="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed text-center">
+                           In this test round, the candidate will required to answer audio-based questions, summarize spoken tests, and write dictations within 30 to 40 minutes.
+                        </p>
+                     </div>
+
+                     {/* Bottom Color Accent Bar */}
+                     <div className="w-full h-3.5 sm:h-4 bg-[#00b4d8] rounded-b-[1.8rem] sm:rounded-b-[2.2rem]" />
+                  </motion.div>
+
+                  {/* Card 4: Writing */}
+                  <motion.div
+                     initial={{ opacity: 0, y: 30 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ duration: 0.5, delay: 0.4 }}
+                     whileHover={{ y: -8 }}
+                     className="relative bg-white rounded-[1.8rem] sm:rounded-[2.2rem] shadow-xl shadow-gray-200/70 border border-gray-100 flex flex-col justify-between pt-20 sm:pt-20 min-h-[350px] md:min-h-0 w-[85%] max-w-[280px] md:w-full md:max-w-none mx-auto transition-all duration-300"
+                  >
+                     {/* Top Floating Badge */}
+                     <div className="absolute -top-10 sm:-top-11 left-1/2 -translate-x-1/2 w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-white border-[6px] border-[#2a4365] flex items-center justify-center shadow-[0_12px_24px_-6px_rgba(42,67,101,0.35)] z-10">
+                        <FileText className="w-8 h-8 sm:w-9 sm:h-9 text-gray-800 stroke-[1.75]" />
+                     </div>
+
+                     {/* Card Body */}
+                     <div className="px-5 sm:px-7 pb-8 text-center flex-1 flex flex-col items-center justify-center">
+                        <h3 className="text-lg sm:text-xl font-black uppercase tracking-wider text-[#2a4365] mb-4">
+                           WRITING
+                        </h3>
+                        <p className="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed text-center">
+                           In this test round, the candidate will be required to write short essays, summaries, and multiple-choice questions within a time limit of 54 to 67 minutes.
+                        </p>
+                     </div>
+
+                     {/* Bottom Color Accent Bar */}
+                     <div className="w-full h-3.5 sm:h-4 bg-[#2a4365] rounded-b-[1.8rem] sm:rounded-b-[2.2rem]" />
+                  </motion.div>
+               </div>
+            </div>
+         </section>
+
+         {/* PTE Band Score Chart Section */}
+         <section className="py-20 sm:py-28 bg-gradient-to-b from-white via-slate-50 to-[#fce4ec]/30 relative overflow-hidden">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+               {/* Header */}
+               <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fce4ec] text-[#d90f40] text-xs sm:text-sm font-extrabold uppercase tracking-wider mb-4 border border-[#f8bbd0]">
+                     <BarChart3 className="w-4 h-4" />
+                     Official Pearson Scoring Standards
+                  </div>
+                  <h2 className="text-3xl sm:text-5xl font-black text-[#1a1a1a] mb-4 tracking-tight">
+                     <span className="text-[#d90f40]">PTE</span> Band Score Chart
+                  </h2>
+                  <p className="text-sm sm:text-base text-gray-600 font-medium leading-relaxed">
+                     The score band chart for the PTE examination is as follows:
+                  </p>
+               </div>
+
+               {/* Scorecard Container - Inspired by Image 1 & Image 2 */}
+               <div className="bg-white rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-gray-200/80 border-2 border-red-100 p-4 sm:p-8 lg:p-10">
+                  {/* Two Main Column Banners */}
+                  <div className="grid grid-cols-2 gap-3 sm:gap-6 mb-6">
+                     <div className="bg-[#fcf8f8] border-2 border-[#d90f40]/20 rounded-2xl py-3.5 sm:py-4 px-4 sm:px-6 text-center shadow-sm">
+                        <h3 className="text-base sm:text-2xl font-black text-[#d90f40] tracking-wide flex items-center justify-center gap-2">
+                           <Target className="w-4 h-4 sm:w-5 sm:h-5" />
+                           PTE Score
+                        </h3>
+                     </div>
+                     <div className="bg-[#fcf8f8] border-2 border-[#d90f40]/20 rounded-2xl py-3.5 sm:py-4 px-4 sm:px-6 text-center shadow-sm">
+                        <h3 className="text-base sm:text-2xl font-black text-[#d90f40] tracking-wide flex items-center justify-center gap-2">
+                           <Award className="w-4 h-4 sm:w-5 sm:h-5" />
+                           Proficiency Level
+                        </h3>
+                     </div>
+                  </div>
+
+                  {/* Rows Grid */}
+                  <div className="space-y-3">
+                     {[
+                        { score: "86 - 90", level: "Expert", pct: 100, badgeBg: "bg-emerald-500 text-white", iconColor: "text-emerald-500" },
+                        { score: "83 - 85", level: "Very Good", pct: 94, badgeBg: "bg-teal-500 text-white", iconColor: "text-teal-500" },
+                        { score: "78 - 82", level: "Very Good", pct: 90, badgeBg: "bg-teal-500 text-white", iconColor: "text-teal-500" },
+                        { score: "73 - 77", level: "Good", pct: 84, badgeBg: "bg-blue-500 text-white", iconColor: "text-blue-500" },
+                        { score: "64 - 72", level: "Good", pct: 78, badgeBg: "bg-blue-500 text-white", iconColor: "text-blue-500" },
+                        { score: "58 - 63", level: "Competent", pct: 68, badgeBg: "bg-indigo-500 text-white", iconColor: "text-indigo-500" },
+                        { score: "50 - 57", level: "Competent", pct: 62, badgeBg: "bg-indigo-500 text-white", iconColor: "text-indigo-500" },
+                        { score: "42 - 49", level: "Modest", pct: 52, badgeBg: "bg-amber-500 text-white", iconColor: "text-amber-500" },
+                        { score: "35 - 41", level: "Modest", pct: 44, badgeBg: "bg-amber-500 text-white", iconColor: "text-amber-500" },
+                        { score: "31 - 34", level: "Limited", pct: 36, badgeBg: "bg-rose-500 text-white", iconColor: "text-rose-500" },
+                        { score: "0 - 30", level: "Extremely Limited", pct: 25, badgeBg: "bg-red-500 text-white", iconColor: "text-red-500" },
+                     ].map((item, idx) => (
                         <motion.div
-                           key={i}
-                           whileHover={{ y: -10 }}
-                           className={`p-8 rounded-[2.5rem] ${mod.color} flex flex-col justify-between h-64 border-2 border-transparent hover:border-current/20 transition-all`}
+                           key={idx}
+                           initial={{ opacity: 0, y: 15 }}
+                           whileInView={{ opacity: 1, y: 0 }}
+                           viewport={{ once: true }}
+                           transition={{ duration: 0.3, delay: idx * 0.03 }}
+                           whileHover={{ scale: 1.01, backgroundColor: "#fdf2f4" }}
+                           className="grid grid-cols-2 gap-3 sm:gap-4 items-center p-3 sm:p-4 rounded-xl border border-gray-100 bg-white hover:border-[#d90f40]/30 transition-all duration-200 shadow-sm"
                         >
-                           <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm">
-                              {mod.icon}
+                           {/* Left Column: Score */}
+                           <div className="flex items-center gap-2 sm:gap-3 justify-center px-2 py-1">
+                              <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center bg-gray-50 border border-gray-200 shrink-0 ${item.iconColor}`}>
+                                 <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                              </div>
+                              <span className="text-sm sm:text-lg font-black text-gray-800 tracking-tight">
+                                 {item.score}
+                              </span>
+                              {/* Visual Progress Bar (Hidden on mobile) */}
+                              <div className="w-20 sm:w-28 bg-gray-100 rounded-full h-2 overflow-hidden hidden lg:block ml-2">
+                                 <div
+                                    className={`h-full rounded-full ${item.badgeBg.split(" ")[0]}`}
+                                    style={{ width: `${item.pct}%` }}
+                                 />
+                              </div>
                            </div>
-                           <div>
-                              <h4 className="text-xl font-black mb-2">{mod.title}</h4>
-                              <p className="text-sm font-medium opacity-80">{mod.desc}</p>
+
+                           {/* Right Column: Proficiency Level */}
+                           <div className="flex items-center justify-center px-2 py-1">
+                              <span className={`px-3 sm:px-5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-sm font-extrabold tracking-wide uppercase shadow-sm ${item.badgeBg}`}>
+                                 {item.level}
+                              </span>
                            </div>
                         </motion.div>
                      ))}
                   </div>
                </div>
             </div>
-            {/* Background Decorative Grid */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#d90f40 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
          </section>
 
-         {/* Real-Exam Simulation Showcase */}
-         <section className="py-32 bg-[#1a1a1a] text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-               <div className="text-center mb-20">
-                  <h2 className="text-4xl sm:text-6xl font-black mb-6">Our Mock <span className="text-[#d90f40]">Interface.</span></h2>
-                  <p className="text-xl text-gray-400 font-medium">Practice on a platform that's 100% identical to the real exam.</p>
-               </div>
+         {/* Eligibility Criteria for PTE Test Section - Staggered Colorful Oval Cards Layout */}
+         <section className="py-16 sm:py-28 bg-[#f8fafc] relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+               <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0 relative">
+                  
+                  {/* Left Circle Hub with Red Crescent Ring (Positioned ON TOP with higher Z-Index) */}
+                  <motion.div
+                     initial={{ opacity: 0, scale: 0.95 }}
+                     whileInView={{ opacity: 1, scale: 1 }}
+                     viewport={{ once: true }}
+                     transition={{ duration: 0.5 }}
+                     className="w-full lg:w-[440px] flex items-center justify-center shrink-0 relative z-20"
+                  >
+                     {/* Red Crescent Accent Backing */}
+                     <div className="absolute -left-4 sm:-left-8 top-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] rounded-full bg-[#ff2a4b] z-0" />
 
-               <div className="relative group">
-                  <div className="absolute inset-0 bg-[#d90f40]/20 blur-[120px] group-hover:bg-[#d90f40]/30 transition-all" />
-                  <div className="relative bg-[#222] border-[12px] border-[#333] rounded-[3rem] overflow-hidden shadow-2xl">
-                     <div className="bg-[#333] p-4 flex items-center gap-3">
-                        <div className="flex gap-1.5">
-                           <div className="w-3 h-3 rounded-full bg-red-500" />
-                           <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                           <div className="w-3 h-3 rounded-full bg-green-500" />
+                     {/* Main White Circle Hub (Covers the left edge of right oval cards) */}
+                     <div className="bg-white rounded-full p-6 sm:p-10 lg:p-12 shadow-2xl border-4 border-white text-center flex flex-col justify-center items-center w-[270px] h-[270px] sm:w-[340px] sm:h-[340px] lg:w-[380px] lg:h-[380px] relative z-10 shrink-0">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 text-[#ff2a4b] text-[10px] sm:text-xs font-black uppercase tracking-wider mb-2 sm:mb-3 border border-red-100">
+                           <ShieldCheck className="w-3.5 h-3.5" />
+                           Official Guide
                         </div>
-                        <div className="bg-black/20 rounded-md px-4 py-1 text-xs font-bold text-white/40">pte.apexedge.com/simulation</div>
+                        <h2 className="text-xl sm:text-3xl font-black text-[#1a1a1a] mb-2 tracking-tight leading-tight uppercase">
+                           Eligibility Criteria <br /> For <span className="text-[#ff2a4b]">PTE</span> Test
+                        </h2>
+                        <p className="text-[11px] sm:text-xs text-gray-500 font-medium leading-relaxed max-w-[220px] mx-auto">
+                           The eligibility criteria for candidates to appear for the PTE examination are as follows:
+                        </p>
                      </div>
-                     <div className="p-8 sm:p-16 flex flex-col md:flex-row gap-12 items-center">
-                        <div className="w-full md:w-1/2">
-                           <div className="space-y-8">
-                              <div className="flex gap-6 items-start">
-                                 <div className="w-12 h-12 bg-[#d90f40] rounded-2xl flex items-center justify-center shrink-0">
-                                    <Headphones className="w-6 h-6" />
-                                 </div>
-                                 <div>
-                                    <h5 className="text-2xl font-black mb-2">Immersive Listening</h5>
-                                    <p className="text-gray-400 font-medium">High-fidelity audio samples from past real exams.</p>
-                                 </div>
+                  </motion.div>
+
+                  {/* Right 4 Colorful Oval Cards (Staggered on Desktop, Tucked under Circle) */}
+                  <div className="w-full flex-1 flex flex-col gap-4 sm:gap-5 relative z-10 lg:-ml-28">
+                     {[
+                        {
+                           step: "STEP 01",
+                           title: "AGE",
+                           desc: "To appear for the exam, the candidate must be at least 16 years old. Also, if the candidate is not an adult, they must have a written consent from the guardian.",
+                           bg: "bg-[#ff2a4b]",
+                           icon: UserCheck,
+                           desktopOffset: "lg:translate-x-12"
+                        },
+                        {
+                           step: "STEP 02",
+                           title: "EDUCATION",
+                           desc: "To sit for the PTE exam, a candidate must have completed secondary education from a recognized board or institute.",
+                           bg: "bg-[#ff8c00]",
+                           icon: GraduationCap,
+                           desktopOffset: "lg:translate-x-24"
+                        },
+                        {
+                           step: "STEP 03",
+                           title: "IDENTIFICATION",
+                           desc: "A candidate must have a valid identification card like a passport, a national ID, or a driving license to sit for this examination.",
+                           bg: "bg-[#9c27b0]",
+                           icon: ShieldCheck,
+                           desktopOffset: "lg:translate-x-24"
+                        },
+                        {
+                           step: "STEP 04",
+                           title: "LANGUAGE PROFICIENCY",
+                           desc: "If you want to appear for this test, you should have a basic proficiency in the English language.",
+                           bg: "bg-[#00bfa5]",
+                           icon: Languages,
+                           desktopOffset: "lg:translate-x-4"
+                        },
+                     ].map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                           <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, x: 30 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.4, delay: idx * 0.08 }}
+                              whileHover={{ scale: 1.01, x: 4 }}
+                              className={`relative flex items-center group w-full ${item.desktopOffset}`}
+                           >
+                              {/* Left Solid Colored Circle Icon Badge */}
+                              <div className={`w-14 h-14 sm:w-20 sm:h-20 rounded-full ${item.bg} text-white flex items-center justify-center shrink-0 shadow-lg border-4 border-white relative z-20 -mr-4 sm:-mr-6 group-hover:scale-105 transition-transform`}>
+                                 <Icon className="w-7 h-7 sm:w-9 sm:h-9 text-white stroke-[2]" />
                               </div>
-                              <div className="flex gap-6 items-start">
-                                 <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center shrink-0">
-                                    <FileText className="w-6 h-6" />
-                                 </div>
-                                 <div>
-                                    <h5 className="text-2xl font-black mb-2">Automated Grading</h5>
-                                    <p className="text-gray-400 font-medium">Instant score report with section-wise performance analysis.</p>
-                                 </div>
+
+                              {/* Attached Right Horizontal Pill Bar */}
+                              <div className={`${item.bg} text-white rounded-r-[2.5rem] rounded-l-full py-4 sm:py-5 pl-7 sm:pl-10 pr-6 sm:pr-8 flex-1 shadow-lg shadow-gray-200/60 relative z-10 transition-transform group-hover:translate-x-1`}>
+                                 <h3 className="text-sm sm:text-xl font-black text-white uppercase mb-1 tracking-wide">
+                                    {item.title}
+                                 </h3>
+                                 <p className="text-xs sm:text-sm text-white/95 font-medium leading-relaxed">
+                                    {item.desc}
+                                 </p>
                               </div>
-                           </div>
-                           <Link to="/book-session" className="mt-12 inline-block px-10 py-5 bg-white text-black font-black text-lg rounded-2xl hover:bg-[#d90f40] hover:text-white transition-all">
-                              Try Free Demo
-                           </Link>
-                        </div>
-                        <div className="w-full md:w-1/2 relative">
-                           <div className="bg-white/5 rounded-3xl p-6 border border-white/10">
-                              <img src="/students/celpip.png" className="rounded-2xl opacity-80" alt="Simulation" />
-                           </div>
-                        </div>
-                     </div>
+                           </motion.div>
+                        );
+                     })}
                   </div>
                </div>
             </div>
          </section>
 
+
+
          {/* Success Results - The Apex Elite */}
-         <section className="py-32 bg-[#fce4ec]/30">
+         {/* <section className="py-32 bg-[#fce4ec]/30">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
                <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-24">
                   <div className="text-center md:text-left">
@@ -464,7 +707,7 @@ export function PTEPage() {
                   ))}
                </div>
             </div>
-         </section>
+         </section> */}
 
          {/* Final CTA */}
          <section className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
