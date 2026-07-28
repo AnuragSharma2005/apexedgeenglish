@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Target, Binary, Sparkles, CircleArrowRight, CheckCircle, ArrowRight, BrainCircuit, Mic2, FileText, Headphones, Trophy, Award, SlidersHorizontal, TrendingUp, Zap, GraduationCap, BookOpenCheck, BarChart3, Languages, UserCheck, ShieldCheck } from "lucide-react";
 import { Navbar } from "../Navbar";
 import { Link } from "@tanstack/react-router";
@@ -39,8 +39,23 @@ const algorithmModules = [
    { icon: <Binary />, title: "Algorithm Bypass", desc: "Use our templates that are pre-validated against the latest AI scoring updates.", color: "bg-orange-50 text-orange-600" }
 ];
 
+const featurePills = [
+   { icon: <BrainCircuit className="w-5 h-5" />, label: "AI-Powered Scoring" },
+   { icon: <Target className="w-5 h-5" />, label: "79+ Guaranteed" },
+   { icon: <Mic2 className="w-5 h-5" />, label: "Speaking Mastery" },
+   { icon: <Trophy className="w-5 h-5" />, label: "1000+ Success Stories" },
+];
+
 export function PTEPage() {
    const [activeTab, setActiveTab] = useState(0);
+   const [activePillIndex, setActivePillIndex] = useState(0);
+
+   useEffect(() => {
+      const interval = setInterval(() => {
+         setActivePillIndex((prev) => (prev + 1) % featurePills.length);
+      }, 2500);
+      return () => clearInterval(interval);
+   }, []);
 
    return (
       <div className="min-h-screen bg-white overflow-x-hidden">
@@ -80,7 +95,7 @@ export function PTEPage() {
                         Tiny adjustments in your PTE strategy can create surprising improvement. Most students don't notice what the AI algorithm penalizes. We'll help you decode it and score 79+ fast.
                      </p>
                      <Link
-                        to="/book-session"
+                        to="/enroll"
                         className="inline-flex items-center gap-3 self-start px-7 py-4 rounded-xl bg-white border-2 border-[#1a1a1a] text-[#1a1a1a] font-bold text-base hover:bg-[#1a1a1a] hover:text-white transition-all group"
                      >
                         Book a Free Call
@@ -167,15 +182,11 @@ export function PTEPage() {
             </div>
 
             {/* Quick Feature Pills below hero */}
-            <div className="bg-white py-10 sm:py-14">
+            <div className="bg-white py-8 sm:py-14">
                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-                  <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-                     {[
-                        { icon: <BrainCircuit className="w-5 h-5" />, label: "AI-Powered Scoring" },
-                        { icon: <Target className="w-5 h-5" />, label: "79+ Guaranteed" },
-                        { icon: <Mic2 className="w-5 h-5" />, label: "Speaking Mastery" },
-                        { icon: <Trophy className="w-5 h-5" />, label: "1000+ Success Stories" },
-                     ].map((item, i) => (
+                  {/* Desktop View (All 4 Pills in a Row) */}
+                  <div className="hidden sm:flex flex-wrap justify-center gap-4 sm:gap-6">
+                     {featurePills.map((item, i) => (
                         <motion.div
                            key={i}
                            initial={{ opacity: 0, y: 20 }}
@@ -187,6 +198,23 @@ export function PTEPage() {
                            {item.label}
                         </motion.div>
                      ))}
+                  </div>
+
+                  {/* Mobile View (Auto-slider changing 1 by 1 centered in exact same spot) */}
+                  <div className="sm:hidden flex justify-center items-center h-14 relative w-full overflow-hidden">
+                     <AnimatePresence mode="wait">
+                        <motion.div
+                           key={activePillIndex}
+                           initial={{ opacity: 0, y: 12, scale: 0.95 }}
+                           animate={{ opacity: 1, y: 0, scale: 1 }}
+                           exit={{ opacity: 0, y: -12, scale: 0.95 }}
+                           transition={{ duration: 0.4 }}
+                           className="flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-[#fce4ec] text-[#d90f40] font-bold text-sm border border-[#f8bbd0] shadow-sm text-center"
+                        >
+                           {featurePills[activePillIndex].icon}
+                           <span>{featurePills[activePillIndex].label}</span>
+                        </motion.div>
+                     </AnimatePresence>
                   </div>
                </div>
             </div>
