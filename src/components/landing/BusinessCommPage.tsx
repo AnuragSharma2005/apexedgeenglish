@@ -148,16 +148,6 @@ export function BusinessCommPage() {
                   <Video className="w-5 h-5" />
                 </div>
 
-                {/* 7. Floating Metric Card 2: Bottom-Right "1,000,000 Happy Clients" */}
-                <div className="absolute bottom-[12%] -right-4 sm:-right-8 bg-white/95 backdrop-blur-md p-3 px-4 rounded-2xl shadow-2xl border border-slate-100 z-40 flex items-center gap-3">
-                  <div className="text-left">
-                    <p className="text-xs font-bold text-slate-900 leading-tight">1,000,000 Happy Clients</p>
-                    <div className="flex items-center gap-1 mt-0.5">
-                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                      <span className="text-[10px] font-semibold text-slate-500">4.9 (15k Reviews)</span>
-                    </div>
-                  </div>
-                </div>
 
               </div>
             </motion.div>
@@ -362,7 +352,7 @@ export function BusinessCommPage() {
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-          
+
           {/* Section Title */}
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-24 space-y-3">
             <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white text-amber-600 text-xs font-black uppercase tracking-widest border border-amber-200 shadow-sm">
@@ -384,7 +374,7 @@ export function BusinessCommPage() {
 
             {/* Left Column: Hexagon Shape + 7 Arced Circle Badges */}
             <div className="lg:col-span-5 flex items-center justify-center relative py-6">
-              
+
               {/* Main Outer Hexagon Canvas Container */}
               <div className="relative w-[320px] h-[360px] sm:w-[380px] sm:h-[420px] flex items-center justify-center">
 
@@ -447,7 +437,7 @@ export function BusinessCommPage() {
 
             {/* Right Column: 7 Point Vertical Timeline List */}
             <div className="lg:col-span-7 relative pl-4 sm:pl-8">
-              
+
               {/* Continuous Vertical Timeline Connecting Line */}
               <div className="absolute left-[27px] sm:left-[43px] top-6 bottom-6 w-0.5 bg-slate-200 z-0" />
 
@@ -516,7 +506,7 @@ export function BusinessCommPage() {
                         {item.title}
                       </h3>
                       <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed mt-1">
-                        {item.desc}
+                        {/* {item.desc} */}
                       </p>
                     </div>
                   </motion.div>
