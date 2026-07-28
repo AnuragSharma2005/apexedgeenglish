@@ -580,12 +580,13 @@ export function CELPIPPage() {
               </h2>
               <div className="space-y-4">
                 {[
-                  "Certified & Experienced Trainers",
-                  "Canada Immigration-Focused Curriculum",
-                  "Unlimited Mock Tests",
-                  "100% Online & Fully Flexible",
-                  "Personalised Feedback Every Session",
-                  "Proven Results Across All Skill Levels"
+                  "Live online interactive classes",
+                  "Experienced and certified trainers",
+                  "Comprehensive study material",
+                  "Regular mock tests with detailed feedback",
+                  "Flexible learning schedules",
+                  "Proven techniques to maximise your band score",
+                  "Personalised mentoring and score improvement strategies",
                 ].map((item, i) => (
                   <motion.div
                     key={i}
