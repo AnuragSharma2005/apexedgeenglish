@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, Users, Mic, Smile, CheckCircle, Sparkles, Play, CircleArrowRight, Heart, Star, Layout, ShieldCheck } from "lucide-react";
+import { MessageSquare, Users, Mic, Smile, CheckCircle, Sparkles, Play, ArrowRight, Heart, Star, Layout, ShieldCheck, X } from "lucide-react";
 import { Navbar } from "../Navbar";
 import { Link } from "@tanstack/react-router";
 import { ApexEdgeFooter } from "../ApexEdgeFooter";
@@ -40,99 +40,203 @@ const highlightsData = [
 
 export function SpokenEnglishPage() {
   const [activeTab, setActiveTab] = useState(0);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#fffcf5] overflow-x-hidden">
+    <div className="min-h-screen bg-[#FFFBF8] text-[#2C1820] overflow-x-hidden font-sans">
       <Navbar />
 
-      {/* Energetic Hero Section */}
-      <section className="relative w-full pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center text-center lg:text-left">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-600 font-bold text-xs sm:text-sm mb-6 sm:mb-8 uppercase tracking-widest mx-auto lg:mx-0">
-                <Sparkles className="w-4 h-4" /> Speak with Confidence
-              </div>
-              <h1 className="text-[1.4rem] sm:text-6xl lg:text-8xl font-black text-[#1a1a1a] leading-tight mb-6 sm:mb-8 tracking-tighter">
-                Your Voice, <br className="hidden sm:block" /> <span className="text-orange-500">Unleashed.</span>
-              </h1>
-              <p className="text-lg sm:text-xl text-[#555] leading-relaxed mb-8 sm:mb-10 max-w-xl mx-auto lg:mx-0 font-medium">
-                Master the art of conversation, neutralize your accent, and
-                build the magnetic personality that commands any room.
-                English is your superpower.
-              </p>
+      {/* Hero Section - Pinkish Creamish & White Theme */}
+      <section className="relative w-full pt-28 sm:pt-36 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-12 bg-gradient-to-b from-[#FAF0EB] via-[#FDF4F0] to-[#FFF5F2] overflow-hidden">
+        
+        {/* Floating Line-Art Vector Doodles */}
+        {/* Rocket Line Art - Top Left */}
+        <motion.div 
+          initial={{ y: 0 }}
+          animate={{ y: [-6, 6, -6] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-24 left-6 sm:left-16 lg:left-24 opacity-40 pointer-events-none"
+        >
+          <svg width="70" height="70" viewBox="0 0 64 64" fill="none" stroke="#2C1820" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M32 10C32 10 46 16 46 36C46 44 42 50 42 50L32 44L22 50C22 50 18 44 18 36C18 16 32 10 32 10Z" />
+            <circle cx="32" cy="26" r="4" />
+            <path d="M22 50L14 54L18 42" />
+            <path d="M42 50L50 54L46 42" />
+            <path d="M32 44V56" />
+          </svg>
+        </motion.div>
 
-              <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-6">
-                <Link to="/enroll" className="px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-orange-500 text-white font-bold text-base sm:text-lg shadow-2xl shadow-orange-500/30 hover:bg-orange-600 transition-all flex items-center justify-center gap-3">
-                  Start Talking Now <MessageSquare className="w-6 h-6" />
-                </Link>
-                <div className="flex items-center justify-center gap-4 group cursor-pointer">
-                  {/* <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border-2 border-orange-500/20 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all">
-                    <Mic className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </div> */}
-                  {/* <span className="font-bold text-base sm:text-lg text-[#1a1a1a]">Voice Assessment</span> */}
-                </div>
-              </div>
-            </motion.div>
+        {/* Open Book Line Art - Mid Left */}
+        <motion.div 
+          initial={{ y: 0 }}
+          animate={{ y: [6, -6, 6] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-64 left-4 sm:left-12 lg:left-20 opacity-35 pointer-events-none hidden sm:block"
+        >
+          <svg width="65" height="65" viewBox="0 0 64 64" fill="none" stroke="#2C1820" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 20C12 20 20 16 32 20C44 16 52 20 52 20V48C52 48 44 44 32 48C20 44 12 48 12 48V20Z" />
+            <path d="M32 20V48" />
+            <path d="M18 28H26" />
+            <path d="M18 34H28" />
+            <path d="M36 28H46" />
+            <path d="M36 34H44" />
+          </svg>
+        </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400 rounded-full blur-3xl opacity-20" />
-              <div className="relative rounded-[5rem] overflow-hidden shadow-2xl border-[12px] border-white bg-white rotate-3">
+        {/* Hot Air Balloon Line Art - Top Right */}
+        <motion.div 
+          initial={{ y: 0 }}
+          animate={{ y: [-8, 8, -8] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-24 right-6 sm:right-16 lg:right-28 opacity-40 pointer-events-none"
+        >
+          <svg width="75" height="75" viewBox="0 0 64 64" fill="none" stroke="#2C1820" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M32 8C20 8 14 18 14 28C14 36 22 42 26 44H38C42 42 50 36 50 28C50 18 44 8 32 8Z" />
+            <path d="M22 28C22 18 26 10 32 10C38 10 42 18 42 28" />
+            <path d="M26 44L24 50H40L38 44" />
+            <rect x="26" y="50" width="12" height="8" rx="1" />
+          </svg>
+        </motion.div>
+
+        {/* Geometric Triangle Line Art - Mid Right */}
+        <div className="absolute top-64 right-8 sm:right-16 lg:right-24 opacity-35 pointer-events-none hidden sm:block">
+          <svg width="55" height="55" viewBox="0 0 64 64" fill="none" stroke="#2C1820" strokeWidth="1.5">
+            <polygon points="32,12 52,48 12,48" />
+          </svg>
+        </div>
+
+        {/* Sparkles / Dashed circles */}
+        <div className="absolute top-44 left-1/4 opacity-25 pointer-events-none">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2C1820" strokeWidth="1.5">
+            <circle cx="12" cy="12" r="9" strokeDasharray="3 3" />
+          </svg>
+        </div>
+        <div className="absolute top-36 right-1/3 opacity-30 pointer-events-none">
+          <Sparkles className="w-6 h-6 text-[#2C1820]" />
+        </div>
+
+        {/* Hero Header Content */}
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-[#2C1820] tracking-tight leading-[1.12] mb-6">
+              Grow your Skills to Advance <br className="hidden sm:block" />
+              <span className="text-[#E05670] italic">Your Career path</span>
+            </h1>
+
+            <p className="text-base sm:text-lg lg:text-xl text-[#7E5E6D] font-medium max-w-2xl mx-auto leading-relaxed mb-8">
+              Educating, Inspiring, & Transforming Learners. Premier Spoken English Training for Peak Fluency & Career Success.
+            </p>
+
+            {/* CTA Button */}
+            <div className="flex justify-center mb-12">
+              <Link
+                to="/enroll"
+                className="px-12 sm:px-16 py-4 rounded-full bg-white text-[#2C1820] font-bold text-lg sm:text-xl shadow-xl shadow-rose-200/50 hover:bg-[#2C1820] hover:text-white transition-all flex items-center justify-center gap-3 group border border-rose-100/80 min-w-[220px] sm:min-w-[260px]"
+              >
+                <span>Get Started</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* 3 Arch Student Portrait Cards - Sleek 3-Column Layout on all screens */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="grid grid-cols-3 gap-2 sm:gap-6 lg:gap-8 max-w-4xl mx-auto items-end pt-2 sm:pt-4 px-1 sm:px-0"
+          >
+            {/* Left Arch Card */}
+            <div className="relative group">
+              <div className="rounded-t-[45px] xs:rounded-t-[70px] sm:rounded-t-[140px] rounded-b-[18px] sm:rounded-b-[40px] bg-[#FCE7F3] border-2 sm:border-4 border-white shadow-md sm:shadow-xl overflow-hidden transition-transform duration-300 group-hover:-translate-y-2">
                 <img
-                  src="/students/spoken.png"
-                  alt="Spoken English Student"
-                  className="w-full h-[600px] object-cover"
+                  src="/students/hero_left.png"
+                  onError={(e) => {
+                    (e.target as HTMLElement).setAttribute("src", "/students/spoken.png");
+                  }}
+                  alt="Student Pink"
+                  className="w-full h-[170px] xs:h-[220px] sm:h-[360px] md:h-[420px] object-cover object-top"
                 />
-                <div className="absolute top-10 left-10 p-6 bg-white/90 backdrop-blur-md rounded-3xl shadow-xl border border-orange-100 flex items-center gap-4 animate-bounce">
-                  <div className="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center text-white">
-                    <Heart className="w-6 h-6 fill-current" />
-                  </div>
-                  <div>
-                    <p className="font-black text-black leading-none text-xl">100%</p>
-                    <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">Confidence Boost</p>
-                  </div>
-                </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+
+            {/* Center Arch Card - Double Arch Outline Feature */}
+            <div className="relative group">
+              {/* Outer stroke accent ring */}
+              <div className="absolute -inset-1 sm:-inset-3 border sm:border-2 border-[#2C1820]/25 rounded-t-[52px] xs:rounded-t-[80px] sm:rounded-t-[160px] rounded-b-[22px] sm:rounded-b-[50px] pointer-events-none" />
+              
+              <div className="rounded-t-[45px] xs:rounded-t-[70px] sm:rounded-t-[140px] rounded-b-[18px] sm:rounded-b-[40px] bg-[#E9D5FF] border-2 sm:border-4 border-white shadow-lg sm:shadow-2xl overflow-hidden transition-transform duration-300 group-hover:-translate-y-2 relative z-10">
+                <img
+                  src="/students/hero_center.png"
+                  onError={(e) => {
+                    (e.target as HTMLElement).setAttribute("src", "/students/pte.png");
+                  }}
+                  alt="Student Purple"
+                  className="w-full h-[190px] xs:h-[245px] sm:h-[390px] md:h-[450px] object-cover object-top"
+                />
+              </div>
+            </div>
+
+            {/* Right Arch Card */}
+            <div className="relative group">
+              <div className="rounded-t-[45px] xs:rounded-t-[70px] sm:rounded-t-[140px] rounded-b-[18px] sm:rounded-b-[40px] bg-[#FEF08A] border-2 sm:border-4 border-white shadow-md sm:shadow-xl overflow-hidden transition-transform duration-300 group-hover:-translate-y-2">
+                <img
+                  src="/students/hero_right.png"
+                  onError={(e) => {
+                    (e.target as HTMLElement).setAttribute("src", "/students/celpip_boy.png");
+                  }}
+                  alt="Student Green"
+                  className="w-full h-[170px] xs:h-[220px] sm:h-[360px] md:h-[420px] object-cover object-top"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Organic Wavy / Torn Paper Bottom Edge Transition */}
+        <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none pointer-events-none">
+          <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="relative block w-full h-12 sm:h-20 text-[#FFFBF8] fill-current">
+            <path d="M0,30 C200,90 400,-10 600,45 C800,100 1000,15 1200,50 C1340,75 1400,30 1440,40 L1440,100 L0,100 Z"></path>
+          </svg>
         </div>
       </section>
 
-      {/* Highlights Interactive Section - Based on Image 1 & 2 */}
-      <section className="py-32 bg-white">
+      {/* Highlights Interactive Section */}
+      <section className="py-24 sm:py-32 bg-[#FFFBF8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="text-center mb-20">
-            <h2 className="text-[1.7rem] sm:text-6xl font-black text-[#1a1a1a] mb-4 whitespace-nowrap">
-              Apex Edge’s <span className="text-orange-500">Highlights</span>
+          <div className="text-center mb-16 sm:mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100 text-[#E05670] font-bold text-xs sm:text-sm mb-4 uppercase tracking-widest">
+              <Sparkles className="w-4 h-4" /> Core Advantages
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#2C1820] mb-4">
+              Apex Edge’s <span className="text-[#E05670] italic">Highlights</span>
             </h2>
-            <p className="text-xl text-gray-500 font-medium">Take a sneak peek into the key features of our spoken English classes:</p>
+            <p className="text-lg sm:text-xl text-[#7E5E6D] font-medium max-w-2xl mx-auto">
+              Take a sneak peek into the key features of our spoken English classes:
+            </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            {/* Left Tabs - Mobile Scrollable / Desktop Vertical */}
+            {/* Left Tabs */}
             <div className="flex sm:flex-col overflow-x-auto sm:overflow-visible gap-4 pb-4 sm:pb-0 no-scrollbar snap-x">
               {highlightsData.map((item, index) => (
                 <motion.div
                   key={index}
                   onClick={() => setActiveTab(index)}
-                  className={`cursor-pointer shrink-0 sm:shrink-1 snap-start p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-2 transition-all duration-300 flex items-center gap-4 sm:gap-6 min-w-[200px] sm:min-w-0 ${activeTab === index
-                      ? "bg-white border-orange-500 shadow-xl shadow-orange-500/10 sm:-translate-x-4"
-                      : "bg-gray-50 border-transparent hover:bg-white hover:border-orange-200"
-                    }`}
+                  className={`cursor-pointer shrink-0 sm:shrink-1 snap-start p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-2 transition-all duration-300 flex items-center gap-4 sm:gap-6 min-w-[220px] sm:min-w-0 ${
+                    activeTab === index
+                      ? "bg-white border-[#E05670] shadow-xl shadow-rose-200/30 sm:-translate-x-3"
+                      : "bg-[#FAF0EB]/60 border-transparent hover:bg-white hover:border-rose-200"
+                  }`}
                 >
-                  <span className={`text-base sm:text-xl font-black ${activeTab === index ? "text-orange-500" : "text-gray-400"}`}>
+                  <span className={`text-base sm:text-xl font-black ${activeTab === index ? "text-[#E05670]" : "text-[#B89CA8]"}`}>
                     {item.id}
                   </span>
-                  <h3 className={`text-base sm:text-2xl font-bold ${activeTab === index ? "text-black" : "text-gray-500"}`}>
+                  <h3 className={`text-base sm:text-xl font-bold ${activeTab === index ? "text-[#2C1820]" : "text-[#7E5E6D]"}`}>
                     {item.title}
                   </h3>
                 </motion.div>
@@ -140,34 +244,33 @@ export function SpokenEnglishPage() {
             </div>
 
             {/* Right Content Reveal */}
-            <div className="relative mt-8 lg:mt-0">
+            <div className="relative mt-4 lg:mt-0">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-[#fef9f0] rounded-[2.5rem] sm:rounded-[4rem] p-8 sm:p-12 shadow-2xl relative overflow-hidden"
+                  transition={{ duration: 0.4 }}
+                  className="bg-white rounded-[2.5rem] p-8 sm:p-12 shadow-2xl shadow-rose-100/50 border border-rose-100 relative overflow-hidden"
                 >
                   <div className="relative z-10">
                     <img
                       src={highlightsData[activeTab].image}
-                      className="w-full h-[250px] sm:h-[400px] object-cover rounded-3xl sm:rounded-[3rem] mb-6 sm:mb-10 shadow-lg border-4 border-white"
+                      className="w-full h-[250px] sm:h-[360px] object-cover rounded-3xl mb-8 shadow-md border-4 border-[#FFF5F2]"
                       alt="Highlight"
                     />
-                    <div className="flex items-center gap-4 mb-4 sm:mb-6">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-orange-500 text-white flex items-center justify-center font-black text-lg sm:text-xl">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#E05670] text-white flex items-center justify-center font-bold text-lg sm:text-xl">
                         {highlightsData[activeTab].id.replace(/^0/, '')}
                       </div>
-                      <h4 className="text-2xl sm:text-3xl font-black text-[#1a1a1a]">{highlightsData[activeTab].title}</h4>
+                      <h4 className="text-2xl sm:text-3xl font-serif font-bold text-[#2C1820]">{highlightsData[activeTab].title}</h4>
                     </div>
-                    <p className="text-base sm:text-xl text-gray-600 leading-relaxed font-medium">
+                    <p className="text-base sm:text-lg text-[#6E5562] leading-relaxed font-medium">
                       {highlightsData[activeTab].desc}
                     </p>
                   </div>
-                  {/* Decorative background shape */}
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-rose-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -175,101 +278,102 @@ export function SpokenEnglishPage() {
         </div>
       </section>
 
-      {/* Benefits Alternating Section - Based on Image 3, 4, 5 */}
-      <section className="py-32 bg-[#fffcf5]">
+      {/* Benefits Alternating Section */}
+      <section className="py-24 sm:py-32 bg-[#FAF0EB]/60 border-y border-rose-100/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="text-center mb-24">
-            <h2 className="text-[1.35rem] sm:text-5xl font-black text-[#1a1a1a] leading-[1.2] sm:leading-tight">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#2C1820] leading-tight">
               Why Our Online <br />
-              <span className="text-orange-500">English Speaking Classes</span> <br />
+              <span className="text-[#E05670] italic">English Speaking Classes</span> <br />
               Are the Best Option for You?
             </h2>
-            <p className="mt-6 text-xl text-gray-500 font-medium">The benefits of choosing our online English-speaking classes are as follows:</p>
+            <p className="mt-4 text-lg sm:text-xl text-[#7E5E6D] font-medium max-w-xl mx-auto">
+              Tailored learning paths designed for effortless fluency:
+            </p>
           </div>
 
-          <div className="space-y-40">
+          <div className="space-y-28 sm:space-y-36">
             {/* Feature 1: Affiliated Trainers */}
-            <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-center gap-4 mb-8">
-                  <Layout className="w-12 h-12 text-orange-500 shrink-0" />
-                  <h3 className="text-xl font-black text-[#1a1a1a] whitespace-nowrap">Affiliated Trainers</h3>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-rose-100 text-[#E05670] flex items-center justify-center shrink-0">
+                    <Layout className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2C1820]">Affiliated Trainers</h3>
                 </div>
-                <p className="text-xl text-gray-600 leading-relaxed font-medium">
-                  At Apex Edge, our trainers are not only certified but also bring years of practical
-                  experience to the table. They are dedicated to enhancing your learning experience
-                  through personalized attention and customized lesson plans. Each trainer is well-versed
-                  in the latest teaching methodologies, ensuring you receive high-quality coaching
-                  tailored to your individual needs.
+                <p className="text-base sm:text-lg text-[#6E5562] leading-relaxed font-medium">
+                  At Apex Edge, our trainers are certified experts with years of practical experience.
+                  They enhance your learning journey with 1:1 personalized coaching and customized lesson plans
+                  tailored to your unique accent, vocabulary, and career goals.
                 </p>
               </motion.div>
               <div className="relative">
-                <div className="absolute inset-0 bg-orange-500/10 rounded-[5rem] rotate-6 scale-105" />
+                <div className="absolute inset-0 bg-[#E05670]/10 rounded-[3rem] rotate-3 scale-105" />
                 <img
                   src="/students/group.png"
-                  className="relative rounded-[5rem] w-full h-[500px] object-cover shadow-2xl border-4 border-white [clip-path:polygon(25%_0%,100%_0%,100%_100%,0%_100%,0%_25%)]"
+                  className="relative rounded-[3rem] w-full h-[380px] sm:h-[450px] object-cover shadow-xl border-4 border-white"
                   alt="Affiliated Trainers"
                 />
               </div>
             </div>
 
             {/* Feature 2: Flexible Scheduling */}
-            <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div className="order-2 lg:order-1 relative">
-                <div className="absolute inset-0 bg-blue-500/10 rounded-[5rem] -rotate-6 scale-105" />
+                <div className="absolute inset-0 bg-[#C084FC]/15 rounded-[3rem] -rotate-3 scale-105" />
                 <img
                   src="/students/ielts.png"
-                  className="relative rounded-[5rem] w-full h-[500px] object-cover shadow-2xl border-4 border-white [clip-path:polygon(0%_0%,75%_0%,100%_25%,100%_100%,0%_100%)]"
+                  className="relative rounded-[3rem] w-full h-[380px] sm:h-[450px] object-cover shadow-xl border-4 border-white"
                   alt="Flexible Scheduling"
                 />
               </div>
               <motion.div
-                initial={{ opacity: 0, x: 50 }}
+                initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 className="order-1 lg:order-2"
               >
-                <div className="flex items-center gap-4 mb-8">
-                  <Smile className="w-12 h-12 text-blue-500 shrink-0" />
-                  <h3 className="text-xl font-black text-[#1a1a1a] whitespace-nowrap">Flexible Scheduling</h3>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center shrink-0">
+                    <Smile className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2C1820]">Flexible Scheduling</h3>
                 </div>
-                <p className="text-xl text-gray-600 leading-relaxed font-medium">
-                  We understand that everyone has unique schedules, which is why our online classes
-                  offer exceptional flexibility. You can book sessions at times that suit your lifestyle,
-                  whether it's early morning, late evening, or even weekends. This flexibility allows you
-                  to balance your learning with other commitments, ensuring that you receive focused
-                  attention from our trainers without feeling rushed or overwhelmed.
+                <p className="text-base sm:text-lg text-[#6E5562] leading-relaxed font-medium">
+                  Enjoy maximum flexibility with 24/7 slot booking. Choose early morning or late night sessions
+                  that seamlessly integrate with your work or university schedule without any stress.
                 </p>
               </motion.div>
             </div>
 
             {/* Feature 3: Recognised Certification */}
-            <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <div className="flex items-center gap-4 mb-8">
-                  <ShieldCheck className="w-12 h-12 text-emerald-500 shrink-0" />
-                  <h3 className="text-xl font-black text-[#1a1a1a] whitespace-nowrap">Recognised Certification</h3>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2C1820]">Recognised Certification</h3>
                 </div>
-                <p className="text-xl text-gray-600 leading-relaxed font-medium">
-                  Upon successful completion of your course, you will receive a recognised
-                  certification from Apex Edge, which enhances your credentials and career
-                  prospects. Our certifications are acknowledged by various educational institutions
-                  and employers, making them valuable assets in your professional journey.
+                <p className="text-base sm:text-lg text-[#6E5562] leading-relaxed font-medium">
+                  Earn a prestigious fluency certificate recognized by top employers and institutions worldwide,
+                  boosting your professional resume and job interview success.
                 </p>
               </motion.div>
               <div className="relative">
-                <div className="absolute inset-0 bg-emerald-500/10 rounded-[5rem] rotate-3 scale-105" />
+                <div className="absolute inset-0 bg-emerald-500/10 rounded-[3rem] rotate-2 scale-105" />
                 <img
                   src="/students/celpip.png"
-                  className="relative rounded-[5rem] w-full h-[500px] object-cover shadow-2xl border-4 border-white [clip-path:polygon(50%_0%,100%_38%,82%_100%,18%_100%,0%_38%)]"
+                  className="relative rounded-[3rem] w-full h-[380px] sm:h-[450px] object-cover shadow-xl border-4 border-white"
                   alt="Recognised Certification"
                 />
               </div>
@@ -278,15 +382,15 @@ export function SpokenEnglishPage() {
         </div>
       </section>
 
-      {/* Community / Practice Section - Restored from previous step */}
-      <section className="py-32 px-4 sm:px-6 lg:px-12 bg-white">
+      {/* Community & Practice CTA Section */}
+      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 bg-[#FFFBF8]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl sm:text-5xl font-black text-[#1a1a1a] mb-12 leading-tight">
-                Learn by <span className="text-orange-500">Doing.</span> <br /> Speak by Practice.
+              <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#2C1820] mb-8 leading-tight">
+                Learn by <span className="text-[#E05670] italic">Doing.</span> <br /> Speak by Practice.
               </h2>
-              <div className="space-y-8">
+              <div className="space-y-6">
                 {[
                   "Daily 1-on-1 speaking practice sessions",
                   "Interactive group debates and discussions",
@@ -300,37 +404,84 @@ export function SpokenEnglishPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="flex items-center gap-4 text-xl font-bold text-gray-700"
+                    className="flex items-center gap-4 text-base sm:text-lg font-semibold text-[#523B46]"
                   >
-                    <CheckCircle className="w-8 h-8 text-green-500" />
+                    <div className="w-7 h-7 rounded-full bg-rose-100 text-[#E05670] flex items-center justify-center shrink-0">
+                      <CheckCircle className="w-4 h-4" />
+                    </div>
                     {item}
                   </motion.div>
                 ))}
               </div>
-              <Link to="/enroll" className="mt-16 px-12 py-6 rounded-full bg-black text-white font-black text-xl hover:bg-orange-500 transition-colors inline-block">
-                Join the Free Session
+
+              <Link
+                to="/enroll"
+                className="mt-12 px-10 py-4 rounded-full bg-[#2C1820] text-white font-bold text-lg hover:bg-[#E05670] transition-colors inline-flex items-center gap-3 shadow-xl"
+              >
+                <span>Join Free Trial Session</span>
+                <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
 
             <div className="relative grid grid-cols-2 gap-6">
-              <div className="space-y-6 pt-12">
-                <img src="/students/group.png" className="rounded-[3rem] w-full h-[300px] object-cover shadow-2xl" alt="study" />
-                <div className="p-8 bg-orange-500 rounded-[3rem] text-white">
-                  <Smile className="w-12 h-12 mb-4" />
-                  <h4 className="text-2xl font-bold mb-2">98% Satisfied</h4>
+              <div className="space-y-6 pt-10">
+                <img src="/students/group.png" className="rounded-[2.5rem] w-full h-[260px] object-cover shadow-lg border-2 border-rose-100" alt="study" />
+                <div className="p-6 bg-[#E05670] rounded-[2.5rem] text-white shadow-lg">
+                  <Smile className="w-10 h-10 mb-3" />
+                  <h4 className="text-2xl font-bold mb-1">98% Satisfied</h4>
+                  <p className="text-xs font-medium text-rose-100">Proven student transformation</p>
                 </div>
               </div>
               <div className="space-y-6">
-                <div className="p-8 bg-blue-500 rounded-[3rem] text-white">
-                  <MessageSquare className="w-12 h-12 mb-4" />
-                  <h4 className="text-2xl font-bold mb-2">24/7 Support</h4>
+                <div className="p-6 bg-[#2C1820] rounded-[2.5rem] text-white shadow-lg">
+                  <MessageSquare className="w-10 h-10 mb-3 text-rose-300" />
+                  <h4 className="text-2xl font-bold mb-1">24/7 Coaching</h4>
+                  <p className="text-xs font-medium text-gray-300">Live feedback & practice</p>
                 </div>
-                <img src="/students/ielts.png" className="rounded-[3rem] w-full h-[300px] object-cover shadow-2xl" alt="study" />
+                <img src="/students/ielts.png" className="rounded-[2.5rem] w-full h-[260px] object-cover shadow-lg border-2 border-rose-100" alt="study" />
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Video Modal Popup */}
+      <AnimatePresence>
+        {isVideoOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            onClick={() => setIsVideoOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl p-6 sm:p-8 max-w-3xl w-full relative shadow-2xl"
+            >
+              <button
+                onClick={() => setIsVideoOpen(false)}
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <h3 className="text-2xl font-serif font-bold text-[#2C1820] mb-4">Apex Edge Spoken English Preview</h3>
+              <div className="aspect-video rounded-2xl overflow-hidden bg-black flex items-center justify-center relative">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
+                  title="Spoken English Overview"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <ApexEdgeFooter />
     </div>
