@@ -205,30 +205,30 @@ export function SpokenEnglishPage() {
         </div>
       </section>
 
-      {/* New Spoken English Batch Banner Section */}
-      <section className="py-10 sm:py-16 px-4 sm:px-6 lg:px-12 bg-[#FFFBF8] relative z-20">
-        <div className="max-w-6xl mx-auto">
+      {/* New Spoken English Batch Banner Section - Clean White Compact Layout */}
+      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-12 bg-[#FFFBF8] relative z-20">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-[#FAF0EB] via-[#FDF4F0] to-[#FFF0F4] rounded-[2.5rem] sm:rounded-[3.5rem] p-6 sm:p-10 lg:p-12 border-2 border-rose-100/80 shadow-xl shadow-rose-200/20 relative overflow-hidden grid lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+            className="bg-white rounded-[2rem] sm:rounded-[3rem] p-5 sm:p-8 lg:p-10 border border-gray-100 shadow-xl shadow-rose-100/30 relative overflow-hidden grid lg:grid-cols-12 gap-6 lg:gap-10 items-center"
           >
-            {/* Background Decorative Blurs */}
-            <div className="absolute top-0 right-0 w-72 h-72 bg-rose-200/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-200/40 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+            {/* Soft Decorative Ambient Circles */}
+            <div className="absolute top-0 right-0 w-60 h-60 bg-rose-50 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-52 h-52 bg-sky-50 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
-            {/* Left Column: Student Avatar Graphic with Layered Dots */}
+            {/* Left Column: Student Graphic */}
             <div className="lg:col-span-5 relative flex justify-center items-center">
-              <div className="relative w-56 sm:w-72 lg:w-full max-w-[320px] aspect-square flex items-center justify-center">
+              <div className="relative w-48 sm:w-60 lg:w-full max-w-[270px] aspect-square flex items-center justify-center">
                 {/* Main Vibrant Blue Backdrop Circle */}
-                <div className="absolute inset-2 sm:inset-4 rounded-full bg-gradient-to-br from-[#38BDF8] via-[#0284C7] to-[#0369A1] shadow-xl shadow-sky-500/25" />
+                <div className="absolute inset-2 rounded-full bg-gradient-to-br from-[#38BDF8] via-[#0284C7] to-[#0369A1] shadow-md shadow-sky-500/20" />
                 
                 {/* Floating Pink & Blue Graphic Circles */}
-                <div className="absolute -top-1 -right-1 sm:top-2 sm:right-2 w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-[#FB7185] animate-pulse" />
-                <div className="absolute top-1/4 -left-2 sm:-left-4 w-6 sm:w-8 h-6 sm:h-8 rounded-full bg-[#38BDF8]" />
-                <div className="absolute bottom-6 -right-2 sm:-right-3 w-5 sm:w-6 h-5 sm:h-6 rounded-full bg-[#F43F5E]" />
-                <div className="absolute bottom-2 left-8 w-4 sm:w-5 h-4 sm:h-5 rounded-full bg-[#38BDF8]" />
+                <div className="absolute -top-1 -right-1 sm:top-1 sm:right-1 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-[#FB7185] animate-pulse" />
+                <div className="absolute top-1/4 -left-2 sm:-left-3 w-5 sm:w-6 h-5 sm:h-6 rounded-full bg-[#38BDF8]" />
+                <div className="absolute bottom-5 -right-2 w-4 sm:w-5 h-4 sm:h-5 rounded-full bg-[#F43F5E]" />
+                <div className="absolute bottom-2 left-6 w-3 sm:w-4 h-3 sm:h-4 rounded-full bg-[#38BDF8]" />
 
                 {/* Student Cutout */}
                 <img
@@ -237,44 +237,44 @@ export function SpokenEnglishPage() {
                     (e.target as HTMLElement).setAttribute("src", "/students/spoken.png");
                   }}
                   alt="Student Spoken English Batch"
-                  className="relative z-10 w-[88%] h-[88%] object-cover object-top rounded-full border-4 border-white shadow-2xl"
+                  className="relative z-10 w-[88%] h-[88%] object-cover object-top rounded-full border-4 border-white shadow-xl"
                 />
               </div>
             </div>
 
-            {/* Right Column: Text & WhatsApp Call-To-Action */}
+            {/* Right Column: Compact Text & CTA */}
             <div className="lg:col-span-7 text-center lg:text-left relative z-10">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100 text-[#E05670] font-bold text-xs sm:text-sm mb-4 border border-rose-200">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#E05670] animate-ping" />
+              {/* Live Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-50 text-[#E05670] font-bold text-xs mb-3 border border-rose-100">
+                <span className="w-2 h-2 rounded-full bg-[#E05670] animate-ping" />
                 <span>Live Batch Alert</span>
               </div>
 
-              {/* Title 1 */}
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#1A1A1A] tracking-tight leading-tight mb-3">
+              {/* Title 1 (Smaller, Compact) */}
+              <h2 className="text-xl sm:text-3xl font-black text-[#1A1A1A] tracking-tight leading-tight mb-2">
                 New Spoken English <br className="hidden sm:block" />
-                <span className="text-[#1A1A1A]">Batch Starts Today.</span>
+                <span>Batch Starts Today.</span>
               </h2>
 
               {/* Title 2 Highlighted */}
-              <h3 className="text-xl sm:text-3xl font-extrabold text-[#0284C7] leading-snug mb-3">
+              <h3 className="text-lg sm:text-2xl font-bold text-[#0284C7] leading-snug mb-2">
                 Join now and Master in English Speaking.
               </h3>
 
-              {/* Seat Urgency Subtext */}
-              <p className="text-sm sm:text-base text-gray-500 font-medium mb-8">
+              {/* Urgency Subtext */}
+              <p className="text-xs sm:text-sm text-gray-500 font-medium mb-6">
                 Only <span className="font-bold text-[#E05670]">75 seats left</span> for our spoken english classes
               </p>
 
-              {/* WhatsApp Button */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+              {/* Buttons */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
                 <a
                   href="https://wa.me/918360079077?text=Hi,%20I%20want%20to%20join%20the%20New%20Spoken%20English%20Batch!"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-7 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-base sm:text-lg shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-3"
+                  className="px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm sm:text-base shadow-md shadow-emerald-500/20 hover:scale-105 transition-all flex items-center justify-center gap-2.5"
                 >
-                  <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-0.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                   </svg>
                   <span>WhatsApp Now</span>
@@ -282,10 +282,10 @@ export function SpokenEnglishPage() {
 
                 <Link
                   to="/enroll"
-                  className="px-7 py-3.5 rounded-full bg-[#1A1A1A] hover:bg-black text-white font-bold text-base sm:text-lg shadow-md hover:scale-105 transition-all flex items-center justify-center gap-2"
+                  className="px-6 py-3 rounded-full bg-[#1A1A1A] hover:bg-black text-white font-bold text-sm sm:text-base shadow-sm hover:scale-105 transition-all flex items-center justify-center gap-2"
                 >
                   <span>Enroll Now</span>
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
