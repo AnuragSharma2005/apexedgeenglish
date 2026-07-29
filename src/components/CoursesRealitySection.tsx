@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type TouchEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import type { LucideIcon } from "lucide-react";
-import { BookOpenCheck, MonitorPlay, Presentation, ScanText, ArrowRight } from "lucide-react";
+import { BookOpenCheck, MonitorPlay, Presentation, ScanText, ArrowRight, Baby } from "lucide-react";
 
 type CourseCard = {
   title: string;
@@ -45,13 +45,23 @@ const courses: CourseCard[] = [
     to: "/spoken-english",
   },
   {
+    title: "Phoenix Course",
+    description:
+      "A safe, trusted and friendly English education platform designed to support families and children with nurturing and expert guidance.",
+    icon: Baby,
+    accent: "#698c73",
+    number: "04",
+    arrowPosition: "bottom",
+    to: "/phoenix",
+  },
+  {
     title: "CELPIP Preparation",
     description:
       "Prepare with focused CELPIP practice, expert feedback, and strategy-driven lessons that help you improve fluency, accuracy, and test confidence.",
     icon: ScanText,
     accent: "#e34f62",
-    number: "04",
-    arrowPosition: "bottom",
+    number: "05",
+    arrowPosition: "top",
     to: "/celpip",
   },
   {
@@ -60,8 +70,8 @@ const courses: CourseCard[] = [
       "Build job-ready communication with practical interview drills, vocabulary coaching, and confidence techniques for real conversations.",
     icon: BookOpenCheck,
     accent: "#4d9b6a",
-    number: "05",
-    arrowPosition: "top",
+    number: "06",
+    arrowPosition: "bottom",
     to: "/business-communications",
   },
 ];

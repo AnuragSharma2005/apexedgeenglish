@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, BookOpenCheck, BriefcaseBusiness, Languages, Mic2, ScanText } from "lucide-react";
+import { ArrowRight, BookOpenCheck, BriefcaseBusiness, Languages, Mic2, ScanText, Baby } from "lucide-react";
 
 const resources = [
   {
@@ -16,6 +16,11 @@ const resources = [
     title: "Spoken English",
     icon: Mic2,
     to: "/spoken-english",
+  },
+  {
+    title: "Phoenix",
+    icon: Baby,
+    to: "/phoenix",
   },
   {
     title: "CELPIP",

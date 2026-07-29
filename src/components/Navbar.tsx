@@ -96,6 +96,7 @@ export function Navbar() {
                       { to: "/celpip", label: "CELPIP", color: "#f59e0b", short: "CELPIP" },
                       { to: "/business-communications", label: "Business Communications", color: "#10b981", short: "BUS." },
                       { to: "/spoken-english", label: "Spoken English", color: "#f59e0b", short: "SE" },
+                      { to: "/phoenix", label: "Phoenix", color: "#698c73", short: "PHX" },
                     ].map((item) => (
                       <Link
                         key={item.to}
@@ -236,6 +237,12 @@ export function Navbar() {
                       SE
                     </div>
                     <span className="text-base font-semibold text-[#333]">Spoken English</span>
+                  </Link>
+                  <Link to="/phoenix" className="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition">
+                    <div className="w-10 h-10 bg-[#698c73] rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
+                      PHX
+                    </div>
+                    <span className="text-base font-semibold text-[#333]">Phoenix</span>
                   </Link>
                 </div>
               )}

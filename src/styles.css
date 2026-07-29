@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap');
 @import "tailwindcss" ;
 @source "../src";
 @import "tw-animate-css";
+
+.font-phoenix {
+  font-family: 'Fredoka', 'Quicksand', sans-serif;
+}
 
 @custom-variant dark (&:is(.dark *));
 

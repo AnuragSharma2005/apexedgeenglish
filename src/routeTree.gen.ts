@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SpokenEnglishRouteImport } from './routes/spoken-english'
 import { Route as PteRouteImport } from './routes/pte'
+import { Route as PhoenixRouteImport } from './routes/phoenix'
 import { Route as IeltsRouteImport } from './routes/ielts'
 import { Route as EnrollRouteImport } from './routes/enroll'
 import { Route as ContactUsRouteImport } from './routes/contact-us'
@@ -30,6 +31,11 @@ const SpokenEnglishRoute = SpokenEnglishRouteImport.update({
 const PteRoute = PteRouteImport.update({
   id: '/pte',
   path: '/pte',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhoenixRoute = PhoenixRouteImport.update({
+  id: '/phoenix',
+  path: '/phoenix',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IeltsRoute = IeltsRouteImport.update({
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/contact-us': typeof ContactUsRoute
   '/enroll': typeof EnrollRoute
   '/ielts': typeof IeltsRoute
+  '/phoenix': typeof PhoenixRoute
   '/pte': typeof PteRoute
   '/spoken-english': typeof SpokenEnglishRoute
   '/teachers/$teacherId': typeof TeachersTeacherIdRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByTo {
   '/contact-us': typeof ContactUsRoute
   '/enroll': typeof EnrollRoute
   '/ielts': typeof IeltsRoute
+  '/phoenix': typeof PhoenixRoute
   '/pte': typeof PteRoute
   '/spoken-english': typeof SpokenEnglishRoute
   '/teachers/$teacherId': typeof TeachersTeacherIdRoute
@@ -122,6 +130,7 @@ export interface FileRoutesById {
   '/contact-us': typeof ContactUsRoute
   '/enroll': typeof EnrollRoute
   '/ielts': typeof IeltsRoute
+  '/phoenix': typeof PhoenixRoute
   '/pte': typeof PteRoute
   '/spoken-english': typeof SpokenEnglishRoute
   '/teachers/$teacherId': typeof TeachersTeacherIdRoute
@@ -138,6 +147,7 @@ export interface FileRouteTypes {
     | '/contact-us'
     | '/enroll'
     | '/ielts'
+    | '/phoenix'
     | '/pte'
     | '/spoken-english'
     | '/teachers/$teacherId'
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/contact-us'
     | '/enroll'
     | '/ielts'
+    | '/phoenix'
     | '/pte'
     | '/spoken-english'
     | '/teachers/$teacherId'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/contact-us'
     | '/enroll'
     | '/ielts'
+    | '/phoenix'
     | '/pte'
     | '/spoken-english'
     | '/teachers/$teacherId'
@@ -181,6 +193,7 @@ export interface RootRouteChildren {
   ContactUsRoute: typeof ContactUsRoute
   EnrollRoute: typeof EnrollRoute
   IeltsRoute: typeof IeltsRoute
+  PhoenixRoute: typeof PhoenixRoute
   PteRoute: typeof PteRoute
   SpokenEnglishRoute: typeof SpokenEnglishRoute
   TeachersTeacherIdRoute: typeof TeachersTeacherIdRoute
@@ -200,6 +213,13 @@ declare module '@tanstack/react-router' {
       path: '/pte'
       fullPath: '/pte'
       preLoaderRoute: typeof PteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/phoenix': {
+      id: '/phoenix'
+      path: '/phoenix'
+      fullPath: '/phoenix'
+      preLoaderRoute: typeof PhoenixRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ielts': {
@@ -285,6 +305,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactUsRoute: ContactUsRoute,
   EnrollRoute: EnrollRoute,
   IeltsRoute: IeltsRoute,
+  PhoenixRoute: PhoenixRoute,
   PteRoute: PteRoute,
   SpokenEnglishRoute: SpokenEnglishRoute,
   TeachersTeacherIdRoute: TeachersTeacherIdRoute,
