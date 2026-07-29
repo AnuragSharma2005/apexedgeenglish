@@ -205,14 +205,14 @@ export function SpokenEnglishPage() {
         </div>
       </section>
 
-      {/* New Spoken English Batch Banner Section - Clean White Compact Layout */}
-      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-12 bg-[#FFFBF8] relative z-20">
+      {/* New Spoken English Batch Banner Section - White Background & Soft Pinkish Container */}
+      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-12 bg-white relative z-20">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-[2rem] sm:rounded-[3rem] p-5 sm:p-8 lg:p-10 border border-gray-100 shadow-xl shadow-rose-100/30 relative overflow-hidden grid lg:grid-cols-12 gap-6 lg:gap-10 items-center"
+            className="bg-gradient-to-br from-[#FFF5F2] via-[#FDF0EC] to-[#FAF0EB] rounded-[2rem] sm:rounded-[3rem] p-5 sm:p-8 lg:p-10 border border-rose-100 shadow-xl shadow-rose-200/25 relative overflow-hidden grid lg:grid-cols-12 gap-6 lg:gap-10 items-center"
           >
             {/* Soft Decorative Ambient Circles */}
             <div className="absolute top-0 right-0 w-60 h-60 bg-rose-50 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -262,9 +262,9 @@ export function SpokenEnglishPage() {
               </h3>
 
               {/* Urgency Subtext */}
-              <p className="text-xs sm:text-sm text-gray-500 font-medium mb-6">
+              {/* <p className="text-xs sm:text-sm text-gray-500 font-medium mb-6">
                 Only <span className="font-bold text-[#E05670]">75 seats left</span> for our spoken english classes
-              </p>
+              </p> */}
 
               {/* Buttons */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
