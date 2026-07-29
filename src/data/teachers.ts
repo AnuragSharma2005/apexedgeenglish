@@ -15,7 +15,7 @@ export const teachers: Teacher[] = [
     id: "Ashish",
     name: "Ashish Rawat",
     qualification: "Business Communication Expert",
-    image: "/teachers/vikram.png",
+    image: "/teachers/ashish.png",
     experience: "10+ Years",
     specialization: "Communication Skills",
     bio: "Ashish is passionate about breaking the barriers of communication. His interactive teaching style ensures that students gain confidence in speaking English fluently.",
