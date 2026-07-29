@@ -18,9 +18,9 @@ const resources = [
     to: "/spoken-english",
   },
   {
-    title: "Phoenix",
+    title: "Phonics",
     icon: Baby,
-    to: "/phoenix",
+    to: "/phonics",
   },
   {
     title: "CELPIP",

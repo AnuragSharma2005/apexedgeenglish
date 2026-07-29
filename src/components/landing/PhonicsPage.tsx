@@ -242,13 +242,13 @@ const phonicsFeatures = [
   }
 ];
 
-export function PhoenixPage() {
+export function PhonicsPage() {
   const [activeFaqTab, setActiveFaqTab] = useState<string>("General");
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
-  const transparentGirl = useTransparentImage("/students/phoenix_girl.png");
-  const transparentBaby = useTransparentImage("/students/phoenix_baby.png");
-  const transparentCaregiver = useTransparentImage("/students/phoenix_caregiver.png");
+  const transparentGirl = useTransparentImage("/students/phonics_girl.png");
+  const transparentBaby = useTransparentImage("/students/phonics_baby.png");
+  const transparentCaregiver = useTransparentImage("/students/phonics_caregiver.png");
 
   // Interactive Soundboard State
   const [selectedSound, setSelectedSound] = useState<string>("sh");
@@ -278,7 +278,7 @@ export function PhoenixPage() {
   };
 
   return (
-    <div className="font-phoenix bg-[#FAF8F3] min-h-screen text-[#363B37] overflow-hidden flex flex-col">
+    <div className="font-Phonics bg-[#FAF8F3] min-h-screen text-[#363B37] overflow-hidden flex flex-col">
       <Navbar />
 
       <main className="flex-grow pb-0 relative w-full">
@@ -519,22 +519,22 @@ export function PhoenixPage() {
               {
                 title: "Storytelling & Songs",
                 desc: "Activity-based approach combining stories and picture recognition to make learning enjoyable.",
-                img: "/students/phoenix_card_in_home.png"
+                img: "/students/phonics_card_in_home.png"
               },
               {
                 title: "Letter Sounds",
                 desc: "Children learn the relationship between letters and sounds to read words confidently.",
-                img: "/students/phoenix_card_sleep.png"
+                img: "/students/phonics_card_sleep.png"
               },
               {
                 title: "Independent Blending",
                 desc: "Blend sounds to read new words independently rather than memorising them.",
-                img: "/students/phoenix_card_babysitting.png"
+                img: "/students/phonics_card_babysitting.png"
               },
               {
                 title: "Fluent Reading",
                 desc: "Gain reading confidence and spelling enhancement from an early age.",
-                img: "/students/phoenix_card_nanny.png"
+                img: "/students/phonics_card_nanny.png"
               }
             ].map((card, idx) => (
               <motion.div
@@ -560,7 +560,7 @@ export function PhoenixPage() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-bold mt-5 text-[#363B37] font-phoenix tracking-tight">
+                  <h3 className="text-xl font-bold mt-5 text-[#363B37] font-Phonics tracking-tight">
                     {card.title}
                   </h3>
 
@@ -606,10 +606,10 @@ export function PhoenixPage() {
           </div>
 
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block bg-[#eba37a]/20 text-[#eba37a] border border-[#eba37a]/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3 font-phoenix">
+            <div className="inline-block bg-[#eba37a]/20 text-[#eba37a] border border-[#eba37a]/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3 font-Phonics">
               Playzone
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl leading-tight font-normal tracking-tight text-[#363B37] font-phoenix">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl leading-tight font-normal tracking-tight text-[#363B37] font-Phonics">
               Play & Learn: <span className="font-semibold text-[#1c1d1c]">Phonics Fun!</span>
             </h2>
             <p className="text-sm sm:text-base text-[#555E58] max-w-xl mx-auto mt-4 font-normal">
@@ -623,7 +623,7 @@ export function PhoenixPage() {
             {/* Column 1: Phonics Soundboard */}
             <div className="lg:col-span-6 bg-white border-[2.5px] border-[#363B37] rounded-[2rem] p-6 sm:p-8 shadow-[6px_6px_0px_#363B37] flex flex-col justify-between min-h-[480px]">
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#363B37] flex items-center gap-2 mb-2 font-phoenix">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#363B37] flex items-center gap-2 mb-2 font-Phonics">
                   <Volume2 className="w-6 h-6 text-[#eba37a]" />
                   Phonics Soundboard
                 </h3>
@@ -656,7 +656,7 @@ export function PhoenixPage() {
               <div className="bg-[#FAF8F3] border-2 border-[#363B37] rounded-2xl p-5 relative overflow-hidden flex flex-col sm:flex-row items-center gap-5">
                 {/* Waveform Visualizer on the side */}
                 <div className="flex flex-col items-center sm:border-r border-[#363B37]/10 pr-0 sm:pr-5 shrink-0">
-                  <div className="w-16 h-16 rounded-full bg-[#363B37] text-white flex items-center justify-center text-3xl font-bold font-phoenix shadow-inner">
+                  <div className="w-16 h-16 rounded-full bg-[#363B37] text-white flex items-center justify-center text-3xl font-bold font-Phonics shadow-inner">
                     {activeSoundDetail.sound}
                   </div>
                   {/* Small wave bars */}
@@ -674,10 +674,10 @@ export function PhoenixPage() {
 
                 {/* Detail text */}
                 <div className="text-left flex-grow">
-                  <span className="inline-block bg-[#95b09d]/30 text-[#2e3d33] px-2.5 py-0.5 rounded-full text-xs font-bold mb-1.5 uppercase font-phoenix">
+                  <span className="inline-block bg-[#95b09d]/30 text-[#2e3d33] px-2.5 py-0.5 rounded-full text-xs font-bold mb-1.5 uppercase font-Phonics">
                     Vocalization Guide
                   </span>
-                  <h4 className="text-lg font-bold text-[#363B37] flex items-center gap-1.5 font-phoenix">
+                  <h4 className="text-lg font-bold text-[#363B37] flex items-center gap-1.5 font-Phonics">
                     "{activeSoundDetail.sound}" as in <span className="underline decoration-[#eba37a] decoration-2">{activeSoundDetail.word}</span>
                   </h4>
                   <p className="text-sm text-[#555E58] mt-1.5 leading-relaxed font-normal">
@@ -691,7 +691,7 @@ export function PhoenixPage() {
             {/* Column 2: 3-Letter Word Builder */}
             <div className="lg:col-span-6 bg-white border-[2.5px] border-[#363B37] rounded-[2rem] p-6 sm:p-8 shadow-[6px_6px_0px_#363B37] flex flex-col justify-between min-h-[480px]">
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#363B37] flex items-center gap-2 mb-2 font-phoenix">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#363B37] flex items-center gap-2 mb-2 font-Phonics">
                   <Sparkles className="w-6 h-6 text-[#e6b85c]" />
                   3-Letter Word Builder
                 </h3>
@@ -710,7 +710,7 @@ export function PhoenixPage() {
                         <motion.span
                           initial={{ scale: 0.5, y: 15 }}
                           animate={{ scale: 1, y: 0 }}
-                          className="font-phoenix"
+                          className="font-Phonics"
                         >
                           {letter}
                         </motion.span>
@@ -800,7 +800,7 @@ export function PhoenixPage() {
                           <Sparkles className="w-5 h-5 animate-pulse text-[#eba37a]" />
                         </div>
                       )}
-                      <h4 className="text-lg font-bold flex items-center gap-1.5 uppercase font-phoenix">
+                      <h4 className="text-lg font-bold flex items-center gap-1.5 uppercase font-Phonics">
                         {wordContent.title}
                       </h4>
                       <p className="text-sm mt-1 leading-relaxed font-normal">
@@ -858,7 +858,7 @@ export function PhoenixPage() {
               <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-t-full overflow-hidden border-[3px] border-[#FAF8F3] shadow-xl bg-[#FAF8F3]/5">
                 <img
                   src={transparentCaregiver}
-                  alt="Phoenix Caregiver"
+                  alt="Phonics Caregiver"
                   className="w-full h-full object-cover select-none pointer-events-none"
                 />
               </div>
@@ -916,13 +916,13 @@ export function PhoenixPage() {
           }}
         >
           {/* Decorative Floating Letters */}
-          <div className="absolute top-12 left-[5%] text-[#eba37a]/15 text-9xl font-bold select-none pointer-events-none hidden lg:block font-phoenix">
+          <div className="absolute top-12 left-[5%] text-[#eba37a]/15 text-9xl font-bold select-none pointer-events-none hidden lg:block font-Phonics">
             A
           </div>
-          <div className="absolute bottom-16 right-[5%] text-[#95b09d]/20 text-9xl font-bold select-none pointer-events-none hidden lg:block font-phoenix">
+          <div className="absolute bottom-16 right-[5%] text-[#95b09d]/20 text-9xl font-bold select-none pointer-events-none hidden lg:block font-Phonics">
             B
           </div>
-          <div className="absolute top-[40%] right-[3%] text-[#e6b85c]/15 text-8xl font-bold select-none pointer-events-none hidden xl:block font-phoenix">
+          <div className="absolute top-[40%] right-[3%] text-[#e6b85c]/15 text-8xl font-bold select-none pointer-events-none hidden xl:block font-Phonics">
             C
           </div>
 
@@ -969,7 +969,7 @@ export function PhoenixPage() {
                             {item.tag}
                           </span>
                         </div>
-                        <h3 className="text-lg sm:text-xl font-bold text-[#363B37] font-phoenix tracking-tight mb-2">
+                        <h3 className="text-lg sm:text-xl font-bold text-[#363B37] font-Phonics tracking-tight mb-2">
                           {item.title}
                         </h3>
                         <p className="text-xs sm:text-sm text-[#555E58] font-normal leading-relaxed font-sans">
@@ -999,7 +999,7 @@ export function PhoenixPage() {
                             {item.tag}
                           </span>
                         </div>
-                        <h3 className="text-lg sm:text-xl font-bold text-[#363B37] font-phoenix tracking-tight mb-2">
+                        <h3 className="text-lg sm:text-xl font-bold text-[#363B37] font-Phonics tracking-tight mb-2">
                           {item.title}
                         </h3>
                         <p className="text-xs sm:text-sm text-[#555E58] font-normal leading-relaxed font-sans">
@@ -1101,7 +1101,7 @@ export function PhoenixPage() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-[#363B37] font-phoenix tracking-tight mb-3">
+                    <h3 className="text-xl font-bold text-[#363B37] font-Phonics tracking-tight mb-3">
                       {step.title}
                     </h3>
 
@@ -1214,7 +1214,7 @@ export function PhoenixPage() {
                       <div className="w-8 h-8 rounded-lg bg-white border-2 border-[#363B37] flex items-center justify-center shadow-[1.5px_1.5px_0px_#363B37]">
                         <item.icon className="w-4 h-4 text-[#363B37]" />
                       </div>
-                      <h4 className="text-sm font-bold text-[#363B37] font-phoenix tracking-tight">
+                      <h4 className="text-sm font-bold text-[#363B37] font-Phonics tracking-tight">
                         {item.title}
                       </h4>
                     </div>
@@ -1250,7 +1250,7 @@ export function PhoenixPage() {
               {/* Arched image */}
               <div className="relative w-full max-w-[400px] aspect-[4/5] rounded-t-full overflow-hidden border-[3px] border-[#363B37] shadow-xl bg-white z-10">
                 <img
-                  src="/students/phoenix_safety_play.png"
+                  src="/students/phonics_safety_play.png"
                   alt="Children playing safely outdoor"
                   className="w-full h-full object-cover select-none pointer-events-none"
                 />
@@ -1327,7 +1327,7 @@ export function PhoenixPage() {
               {/* Right Column: Smiling Mother & Baby Image */}
               <div className="relative w-full md:w-[45%] min-h-[300px] md:min-h-full overflow-hidden border-t-[2.5px] md:border-t-0 md:border-l-[2.5px] border-[#363B37] flex items-stretch rounded-t-[2rem] md:rounded-t-none md:rounded-l-full z-10 bg-[#eef1ed]">
                 <img
-                  src="/students/phoenix_cta_mother_baby.png"
+                  src="/students/phonics_cta_mother_baby.png"
                   alt="Mother holding baby"
                   className="w-full h-full object-cover select-none pointer-events-none"
                 />

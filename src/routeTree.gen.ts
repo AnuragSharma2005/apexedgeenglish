@@ -11,7 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SpokenEnglishRouteImport } from './routes/spoken-english'
 import { Route as PteRouteImport } from './routes/pte'
-import { Route as PhoenixRouteImport } from './routes/phoenix'
+import { Route as PhonicsRouteImport } from './routes/phonics'
 import { Route as IeltsRouteImport } from './routes/ielts'
 import { Route as EnrollRouteImport } from './routes/enroll'
 import { Route as ContactUsRouteImport } from './routes/contact-us'
@@ -33,9 +33,9 @@ const PteRoute = PteRouteImport.update({
   path: '/pte',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PhoenixRoute = PhoenixRouteImport.update({
-  id: '/phoenix',
-  path: '/phoenix',
+const PhonicsRoute = PhonicsRouteImport.update({
+  id: '/phonics',
+  path: '/phonics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IeltsRoute = IeltsRouteImport.update({
@@ -99,7 +99,7 @@ export interface FileRoutesByFullPath {
   '/contact-us': typeof ContactUsRoute
   '/enroll': typeof EnrollRoute
   '/ielts': typeof IeltsRoute
-  '/phoenix': typeof PhoenixRoute
+  '/phonics': typeof PhonicsRoute
   '/pte': typeof PteRoute
   '/spoken-english': typeof SpokenEnglishRoute
   '/teachers/$teacherId': typeof TeachersTeacherIdRoute
@@ -114,7 +114,7 @@ export interface FileRoutesByTo {
   '/contact-us': typeof ContactUsRoute
   '/enroll': typeof EnrollRoute
   '/ielts': typeof IeltsRoute
-  '/phoenix': typeof PhoenixRoute
+  '/phonics': typeof PhonicsRoute
   '/pte': typeof PteRoute
   '/spoken-english': typeof SpokenEnglishRoute
   '/teachers/$teacherId': typeof TeachersTeacherIdRoute
@@ -130,7 +130,7 @@ export interface FileRoutesById {
   '/contact-us': typeof ContactUsRoute
   '/enroll': typeof EnrollRoute
   '/ielts': typeof IeltsRoute
-  '/phoenix': typeof PhoenixRoute
+  '/phonics': typeof PhonicsRoute
   '/pte': typeof PteRoute
   '/spoken-english': typeof SpokenEnglishRoute
   '/teachers/$teacherId': typeof TeachersTeacherIdRoute
@@ -147,7 +147,7 @@ export interface FileRouteTypes {
     | '/contact-us'
     | '/enroll'
     | '/ielts'
-    | '/phoenix'
+    | '/phonics'
     | '/pte'
     | '/spoken-english'
     | '/teachers/$teacherId'
@@ -162,7 +162,7 @@ export interface FileRouteTypes {
     | '/contact-us'
     | '/enroll'
     | '/ielts'
-    | '/phoenix'
+    | '/phonics'
     | '/pte'
     | '/spoken-english'
     | '/teachers/$teacherId'
@@ -177,7 +177,7 @@ export interface FileRouteTypes {
     | '/contact-us'
     | '/enroll'
     | '/ielts'
-    | '/phoenix'
+    | '/phonics'
     | '/pte'
     | '/spoken-english'
     | '/teachers/$teacherId'
@@ -193,7 +193,7 @@ export interface RootRouteChildren {
   ContactUsRoute: typeof ContactUsRoute
   EnrollRoute: typeof EnrollRoute
   IeltsRoute: typeof IeltsRoute
-  PhoenixRoute: typeof PhoenixRoute
+  PhonicsRoute: typeof PhonicsRoute
   PteRoute: typeof PteRoute
   SpokenEnglishRoute: typeof SpokenEnglishRoute
   TeachersTeacherIdRoute: typeof TeachersTeacherIdRoute
@@ -215,11 +215,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/phoenix': {
-      id: '/phoenix'
-      path: '/phoenix'
-      fullPath: '/phoenix'
-      preLoaderRoute: typeof PhoenixRouteImport
+    '/phonics': {
+      id: '/phonics'
+      path: '/phonics'
+      fullPath: '/phonics'
+      preLoaderRoute: typeof PhonicsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ielts': {
@@ -305,7 +305,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactUsRoute: ContactUsRoute,
   EnrollRoute: EnrollRoute,
   IeltsRoute: IeltsRoute,
-  PhoenixRoute: PhoenixRoute,
+  PhonicsRoute: PhonicsRoute,
   PteRoute: PteRoute,
   SpokenEnglishRoute: SpokenEnglishRoute,
   TeachersTeacherIdRoute: TeachersTeacherIdRoute,
