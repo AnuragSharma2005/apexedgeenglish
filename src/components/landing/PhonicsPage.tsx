@@ -442,7 +442,7 @@ export function PhonicsPage() {
                 <span className="text-[1.1em] font-normal">›</span>
               </Link>
               <Link
-                to="/enroll"
+                to="/contact-us"
                 className="text-[#363B37] font-semibold underline underline-offset-4 hover:text-[#1c1d1c] transition duration-300 text-sm sm:text-base cursor-pointer"
               >
                 Get in Touch
