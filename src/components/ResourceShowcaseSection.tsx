@@ -68,7 +68,7 @@ export function ResourceShowcaseSection() {
             </h2>
           </div>
 
-          <div className="mt-24 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4 xl:gap-5">
+          <div className="mt-24 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 lg:gap-4 xl:gap-5">
             {resources.map((resource) => (
               <ResourceCard key={resource.title} {...resource} />
             ))}
