@@ -91,12 +91,12 @@ export function Navbar() {
                     onMouseEnter={() => setIsCoursesDropdownOpen(true)}
                   >
                     {[
+                      { to: "/phonics", label: "Phonics", color: "#698c73", short: "PHN" },
                       { to: "/ielts", label: "IELTS", color: "#d72646", short: "IELTS" },
                       { to: "/pte", label: "PTE", color: "#2c5aa0", short: "PTE" },
                       { to: "/celpip", label: "CELPIP", color: "#f59e0b", short: "CELPIP" },
                       { to: "/business-communications", label: "Business Communications", color: "#10b981", short: "BUS." },
                       { to: "/spoken-english", label: "Spoken English", color: "#f59e0b", short: "SE" },
-                      { to: "/phonics", label: "Phonics", color: "#698c73", short: "PHN" },
                     ].map((item) => (
                       <Link
                         key={item.to}

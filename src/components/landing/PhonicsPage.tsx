@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { Navbar } from "../Navbar";
 import { ApexEdgeFooter } from "../ApexEdgeFooter";
@@ -75,6 +75,46 @@ const generateSmallWavesPath = () => {
   return path;
 };
 const smallWavesPath = generateSmallWavesPath();
+
+// Floating alphabet particle data
+const floatingLetters = [
+  { letter: "A", x: "8%", delay: 0, duration: 7, color: "#eba37a" },
+  { letter: "B", x: "18%", delay: 1.2, duration: 9, color: "#95b09d" },
+  { letter: "C", x: "28%", delay: 0.5, duration: 6, color: "#e6b85c" },
+  { letter: "D", x: "72%", delay: 1.8, duration: 8, color: "#eba37a" },
+  { letter: "E", x: "82%", delay: 0.3, duration: 7.5, color: "#95b09d" },
+  { letter: "F", x: "92%", delay: 1, duration: 9, color: "#e6b85c" },
+  { letter: "G", x: "50%", delay: 2, duration: 8.5, color: "#eba37a" },
+];
+
+// Scroll-triggered animated card component
+function AnimatedCard({ children, delay = 0, direction = "up", className = "" }: { children: React.ReactNode; delay?: number; direction?: "up" | "left" | "right"; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: direction === "up" ? 50 : 0,
+      x: direction === "left" ? -60 : direction === "right" ? 60 : 0,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 80,
+        damping: 15,
+        delay,
+      }
+    }
+  };
+  return (
+    <motion.div ref={ref} variants={variants} initial="hidden" animate={isInView ? "visible" : "hidden"} className={className}>
+      {children}
+    </motion.div>
+  );
+}
 
 function useTransparentImage(src: string) {
   const [processedSrc, setProcessedSrc] = useState<string>(src);
@@ -277,6 +317,7 @@ export function PhonicsPage() {
     setActiveSlots([null, null, null]);
   };
 
+
   return (
     <div className="font-Phonics bg-[#FAF8F3] min-h-screen text-[#363B37] overflow-hidden flex flex-col">
       <Navbar />
@@ -431,7 +472,6 @@ export function PhonicsPage() {
 
           {/* Left Kid Container */}
           <div className="absolute left-0 bottom-0 w-[38%] lg:w-[42%] xl:w-[45%] max-w-[520px] h-[90%] lg:h-[95%] flex flex-col justify-end items-start z-10 hidden sm:flex pointer-events-none select-none">
-            {/* Kid Image with transparent PNG source (NO blend mode and no shadow!) */}
             <motion.img
               initial={{ opacity: 0, x: -50, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -444,7 +484,6 @@ export function PhonicsPage() {
 
           {/* Right Kid Container */}
           <div className="absolute right-0 bottom-0 w-[40%] lg:w-[44%] xl:w-[47%] max-w-[540px] h-[90%] lg:h-[95%] flex flex-col justify-end items-end z-10 hidden sm:flex pointer-events-none select-none">
-            {/* Kid Image with transparent PNG source (NO blend mode and no shadow!) */}
             <motion.img
               initial={{ opacity: 0, x: 50, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -537,11 +576,10 @@ export function PhonicsPage() {
                 img: "/students/phonics_card_nanny.png"
               }
             ].map((card, idx) => (
-              <motion.div
+              <AnimatedCard
                 key={card.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.15 }}
+                delay={idx * 0.12}
+                direction="up"
                 className="relative group w-full"
               >
                 {/* Double-bordered offset solid shadow */}
@@ -555,7 +593,7 @@ export function PhonicsPage() {
                     <img
                       src={card.img}
                       alt={card.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none pointer-events-none"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out select-none pointer-events-none"
                     />
                   </div>
 
@@ -570,15 +608,17 @@ export function PhonicsPage() {
                   </p>
 
                   {/* Learn More Button */}
-                  <Link
-                    to="/enroll"
-                    className="bg-[#363B37] hover:bg-[#252826] text-white px-7 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition duration-300 shadow-sm cursor-pointer mt-auto border border-[#363B37]"
-                  >
-                    Learn More
-                  </Link>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-auto">
+                    <Link
+                      to="/enroll"
+                      className="bg-[#363B37] hover:bg-[#252826] text-white px-7 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition duration-300 shadow-sm cursor-pointer border border-[#363B37] inline-block"
+                    >
+                      Learn More
+                    </Link>
+                  </motion.div>
 
                 </div>
-              </motion.div>
+              </AnimatedCard>
             ))}
           </div>
 
@@ -597,34 +637,51 @@ export function PhonicsPage() {
 
         {/* Phonics Playzone: Soundboard & Word Builder */}
         <div className="w-full bg-[#FAF8F3] py-20 px-4 sm:px-8 z-30 relative overflow-hidden flex flex-col items-center">
-          {/* Decorative Sparkles / Shapes */}
-          <div className="absolute top-10 left-[5%] w-12 h-12 pointer-events-none opacity-20 hidden lg:block">
-            <Sparkles className="w-full h-full text-[#eba37a]" />
-          </div>
-          <div className="absolute bottom-10 right-[5%] w-16 h-16 pointer-events-none opacity-20 hidden lg:block">
-            <Sparkles className="w-full h-full text-[#e6b85c]" />
-          </div>
+          {/* Animated Decorative Sparkles */}
+          <motion.div
+            className="absolute top-10 left-[5%] w-12 h-12 pointer-events-none hidden lg:block"
+            animate={{ rotate: 360, scale: [1, 1.2, 1] }}
+            transition={{ rotate: { duration: 12, repeat: Infinity, ease: "linear" }, scale: { duration: 3, repeat: Infinity, ease: "easeInOut" } }}
+          >
+            <Sparkles className="w-full h-full text-[#eba37a] opacity-30" />
+          </motion.div>
+          <motion.div
+            className="absolute bottom-10 right-[5%] w-16 h-16 pointer-events-none hidden lg:block"
+            animate={{ rotate: -360, scale: [1, 1.3, 1] }}
+            transition={{ rotate: { duration: 15, repeat: Infinity, ease: "linear" }, scale: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
+          >
+            <Sparkles className="w-full h-full text-[#e6b85c] opacity-30" />
+          </motion.div>
 
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block bg-[#eba37a]/20 text-[#eba37a] border border-[#eba37a]/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3 font-Phonics">
+          <AnimatedCard direction="up" className="text-center max-w-3xl mx-auto mb-16">
+            <motion.div
+              className="inline-block bg-[#eba37a]/20 text-[#eba37a] border border-[#eba37a]/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3 font-Phonics"
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            >
               Playzone
-            </div>
+            </motion.div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl leading-tight font-normal tracking-tight text-[#363B37] font-Phonics">
               Play & Learn: <span className="font-semibold text-[#1c1d1c]">Phonics Fun!</span>
             </h2>
             <p className="text-sm sm:text-base text-[#555E58] max-w-xl mx-auto mt-4 font-normal">
               Click letter sounds to practice blending, or build 3-letter words to see illustrations!
             </p>
-          </div>
+          </AnimatedCard>
 
           {/* Game Dashboard Grid */}
           <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch z-10 relative px-4">
 
             {/* Column 1: Phonics Soundboard */}
-            <div className="lg:col-span-6 bg-white border-[2.5px] border-[#363B37] rounded-[2rem] p-6 sm:p-8 shadow-[6px_6px_0px_#363B37] flex flex-col justify-between min-h-[480px]">
+            <AnimatedCard direction="left" className="lg:col-span-6 bg-white border-[2.5px] border-[#363B37] rounded-[2rem] p-6 sm:p-8 shadow-[6px_6px_0px_#363B37] flex flex-col justify-between min-h-[480px]">
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-[#363B37] flex items-center gap-2 mb-2 font-Phonics">
-                  <Volume2 className="w-6 h-6 text-[#eba37a]" />
+                  <motion.div
+                    animate={{ rotate: [0, 15, -10, 5, 0] }}
+                    transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3 }}
+                  >
+                    <Volume2 className="w-6 h-6 text-[#eba37a]" />
+                  </motion.div>
                   Phonics Soundboard
                 </h3>
                 <p className="text-sm text-[#555E58] mb-6">
@@ -633,20 +690,37 @@ export function PhonicsPage() {
 
                 {/* Sounds grid */}
                 <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6">
-                  {soundboardData.map((item) => {
+                  {soundboardData.map((item, sIdx) => {
                     const isSelected = selectedSound === item.sound;
                     return (
-                      <button
+                      <motion.button
                         key={item.sound}
                         onClick={() => setSelectedSound(item.sound)}
-                        className={`py-4 rounded-2xl border-2 font-bold text-lg sm:text-xl flex flex-col items-center justify-center transition-all cursor-pointer ${isSelected
+                        whileHover={{ scale: 1.07, y: -3 }}
+                        whileTap={{ scale: 0.93 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20, delay: sIdx * 0.07 }}
+                        className={`py-4 rounded-2xl border-2 font-bold text-lg sm:text-xl flex flex-col items-center justify-center transition-colors cursor-pointer relative overflow-hidden ${isSelected
                           ? "bg-[#363B37] border-[#363B37] text-white shadow-[2px_2px_0px_#eba37a]"
                           : "bg-[#FAF8F3] border-[#363B37] text-[#363B37] hover:bg-[#eae7df]"
                           }`}
                       >
-                        <span className="text-2xl mb-1">{item.symbol}</span>
+                        {isSelected && (
+                          <motion.div
+                            className="absolute inset-0 bg-white/10 rounded-2xl"
+                            initial={{ scale: 0, opacity: 0.6 }}
+                            animate={{ scale: 3, opacity: 0 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                          />
+                        )}
+                        <motion.span
+                          className="text-2xl mb-1"
+                          animate={isSelected ? { scale: [1, 1.3, 1], rotate: [0, 10, -5, 0] } : {}}
+                          transition={{ duration: 0.4 }}
+                        >{item.symbol}</motion.span>
                         <span>{item.sound}</span>
-                      </button>
+                      </motion.button>
                     );
                   })}
                 </div>
@@ -686,10 +760,10 @@ export function PhonicsPage() {
                 </div>
               </div>
 
-            </div>
+            </AnimatedCard>
 
             {/* Column 2: 3-Letter Word Builder */}
-            <div className="lg:col-span-6 bg-white border-[2.5px] border-[#363B37] rounded-[2rem] p-6 sm:p-8 shadow-[6px_6px_0px_#363B37] flex flex-col justify-between min-h-[480px]">
+            <AnimatedCard direction="right" className="lg:col-span-6 bg-white border-[2.5px] border-[#363B37] rounded-[2rem] p-6 sm:p-8 shadow-[6px_6px_0px_#363B37] flex flex-col justify-between min-h-[480px]">
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-[#363B37] flex items-center gap-2 mb-2 font-Phonics">
                   <Sparkles className="w-6 h-6 text-[#e6b85c]" />
@@ -825,7 +899,7 @@ export function PhonicsPage() {
                 </div>
               </div>
 
-            </div>
+            </AnimatedCard>
 
           </div>
         </div>
@@ -945,8 +1019,14 @@ export function PhonicsPage() {
           {/* Journey Path Timeline */}
           <div className="relative max-w-5xl w-full mx-auto px-4 z-20">
 
-            {/* Center Dashed Connection Line */}
-            <div className="absolute top-8 bottom-8 left-4 md:left-1/2 md:-translate-x-1/2 border-l-[3px] border-dashed border-[#363B37]/20 z-0" />
+            {/* Center Dashed Connection Line - animated draw */}
+            <motion.div
+              className="absolute top-8 bottom-8 left-4 md:left-1/2 md:-translate-x-1/2 border-l-[3px] border-dashed border-[#363B37]/20 z-0"
+              initial={{ scaleY: 0, originY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+            />
 
             {/* Steps */}
             {phonicsFeatures.map((item, idx) => {
@@ -957,55 +1037,72 @@ export function PhonicsPage() {
                   {/* Left Side Content (Desktop Only for Odd indices) */}
                   <div className="hidden md:flex w-[45%] justify-end">
                     {isOdd && (
-                      <motion.div
-                        whileHover={{ scale: 1.04, rotate: -0.5 }}
-                        className={`relative p-8 border-[2.5px] border-[#363B37] text-left max-w-md ${item.bg} ${item.shape} shadow-[4px_4px_0px_#363B37] transition-all`}
-                      >
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-10 h-10 bg-white rounded-xl border-2 border-[#363B37] flex items-center justify-center shadow-[1.5px_1.5px_0px_#363B37]">
-                            <item.icon className="w-5 h-5 text-[#363B37]" />
+                      <AnimatedCard direction="left" delay={0.1}>
+                        <motion.div
+                          whileHover={{ scale: 1.05, rotate: -1, y: -4 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                          className={`relative p-8 border-[2.5px] border-[#363B37] text-left max-w-md ${item.bg} ${item.shape} shadow-[4px_4px_0px_#363B37] cursor-default`}
+                        >
+                          <div className="flex items-center gap-3 mb-3">
+                            <motion.div
+                              className="w-10 h-10 bg-white rounded-xl border-2 border-[#363B37] flex items-center justify-center shadow-[1.5px_1.5px_0px_#363B37]"
+                              whileHover={{ rotate: 15 }}
+                            >
+                              <item.icon className="w-5 h-5 text-[#363B37]" />
+                            </motion.div>
+                            <span className="px-3 py-0.5 bg-white border border-[#363B37] rounded-full text-[10px] font-black uppercase tracking-wider text-[#363B37]">
+                              {item.tag}
+                            </span>
                           </div>
-                          <span className="px-3 py-0.5 bg-white border border-[#363B37] rounded-full text-[10px] font-black uppercase tracking-wider text-[#363B37]">
-                            {item.tag}
-                          </span>
-                        </div>
-                        <h3 className="text-lg sm:text-xl font-bold text-[#363B37] font-Phonics tracking-tight mb-2">
-                          {item.title}
-                        </h3>
-                        <p className="text-xs sm:text-sm text-[#555E58] font-normal leading-relaxed font-sans">
-                          {item.desc}
-                        </p>
-                      </motion.div>
+                          <h3 className="text-lg sm:text-xl font-bold text-[#363B37] font-Phonics tracking-tight mb-2">
+                            {item.title}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-[#555E58] font-normal leading-relaxed font-sans">
+                            {item.desc}
+                          </p>
+                        </motion.div>
+                      </AnimatedCard>
                     )}
                   </div>
 
-                  {/* Center Node / Number Dot */}
-                  <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full border-[2.5px] border-[#363B37] bg-[#FAF8F3] flex items-center justify-center z-10 shadow-[2px_2px_0px_#363B37]">
+                  {/* Center Node / Number Dot - pulsing */}
+                  <motion.div
+                    className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full border-[2.5px] border-[#363B37] bg-[#FAF8F3] flex items-center justify-center z-10 shadow-[2px_2px_0px_#363B37]"
+                    whileInView={{ scale: [0, 1.3, 1] }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1, type: "spring" }}
+                  >
                     <span className="text-xs font-black text-[#363B37]">{idx + 1}</span>
-                  </div>
+                  </motion.div>
 
                   {/* Right Side Content (Desktop Even, Mobile All) */}
                   <div className="w-full md:w-[45%] flex justify-start pl-12 md:pl-0">
                     {(!isOdd || true) && (
-                      <motion.div
-                        whileHover={{ scale: 1.04, rotate: 0.5 }}
-                        className={`relative p-8 border-[2.5px] border-[#363B37] text-left max-w-md ${item.bg} ${item.shape} shadow-[4px_4px_0px_#363B37] transition-all ${isOdd ? "md:hidden" : ""}`}
-                      >
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-10 h-10 bg-white rounded-xl border-2 border-[#363B37] flex items-center justify-center shadow-[1.5px_1.5px_0px_#363B37]">
-                            <item.icon className="w-5 h-5 text-[#363B37]" />
+                      <AnimatedCard direction="right" delay={0.1}>
+                        <motion.div
+                          whileHover={{ scale: 1.05, rotate: 1, y: -4 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                          className={`relative p-8 border-[2.5px] border-[#363B37] text-left max-w-md ${item.bg} ${item.shape} shadow-[4px_4px_0px_#363B37] cursor-default ${isOdd ? "md:hidden" : ""}`}
+                        >
+                          <div className="flex items-center gap-3 mb-3">
+                            <motion.div
+                              className="w-10 h-10 bg-white rounded-xl border-2 border-[#363B37] flex items-center justify-center shadow-[1.5px_1.5px_0px_#363B37]"
+                              whileHover={{ rotate: -15 }}
+                            >
+                              <item.icon className="w-5 h-5 text-[#363B37]" />
+                            </motion.div>
+                            <span className="px-3 py-0.5 bg-white border border-[#363B37] rounded-full text-[10px] font-black uppercase tracking-wider text-[#363B37]">
+                              {item.tag}
+                            </span>
                           </div>
-                          <span className="px-3 py-0.5 bg-white border border-[#363B37] rounded-full text-[10px] font-black uppercase tracking-wider text-[#363B37]">
-                            {item.tag}
-                          </span>
-                        </div>
-                        <h3 className="text-lg sm:text-xl font-bold text-[#363B37] font-Phonics tracking-tight mb-2">
-                          {item.title}
-                        </h3>
-                        <p className="text-xs sm:text-sm text-[#555E58] font-normal leading-relaxed font-sans">
-                          {item.desc}
-                        </p>
-                      </motion.div>
+                          <h3 className="text-lg sm:text-xl font-bold text-[#363B37] font-Phonics tracking-tight mb-2">
+                            {item.title}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-[#555E58] font-normal leading-relaxed font-sans">
+                            {item.desc}
+                          </p>
+                        </motion.div>
+                      </AnimatedCard>
                     )}
                   </div>
 
@@ -1030,14 +1127,39 @@ export function PhonicsPage() {
         {/* Section 3: Learning Progression Roadmap (Mustard Yellow Background) */}
         <div className="w-full bg-[#e6b85c] py-20 px-4 sm:px-8 z-30 relative overflow-hidden flex flex-col items-center">
 
-          <div className="text-[#363B37] text-center max-w-4xl mx-auto mb-16 relative z-10">
+          {/* Animated background blobs */}
+          {["15%", "70%", "40%"].map((left, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-32 h-32 rounded-full opacity-20 pointer-events-none"
+              style={{
+                left,
+                top: `${20 + i * 25}%`,
+                background: ["#fff", "#363B37", "#fff"][i],
+                filter: "blur(30px)",
+              }}
+              animate={{
+                scale: [1, 1.4, 1],
+                x: [0, 30, 0],
+                y: [0, -20, 0],
+              }}
+              transition={{
+                duration: 6 + i * 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 1.5,
+              }}
+            />
+          ))}
+
+          <AnimatedCard direction="up" className="text-[#363B37] text-center max-w-4xl mx-auto mb-16 relative z-10">
             <h2 className="text-3xl sm:text-4xl md:text-5xl leading-tight font-normal tracking-tight">
               Our 3-Stage <span className="font-semibold">Learning Roadmap</span>
             </h2>
             <p className="text-sm sm:text-base text-[#4f4327] max-w-xl mx-auto mt-4 font-normal leading-relaxed">
               How we guide young learners from single letter sounds to confident, fluent English reading
             </p>
-          </div>
+          </AnimatedCard>
 
           {/* Curriculum Progression Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 max-w-7xl w-full mx-auto px-4 z-20 relative">
@@ -1048,7 +1170,8 @@ export function PhonicsPage() {
                 age: "Ages 4 - 5",
                 desc: "Focuses on single letter-sound recognition, phonemic sound awareness, and blending simple 3-letter words (CVC words like CAT, SUN, PIN) using interactive play cards.",
                 tag: "Phonemic Mapping",
-                shape: "rounded-[2rem_2rem_0.5rem_2.2rem]"
+                shape: "rounded-[2rem_2rem_0.5rem_2.2rem]",
+                borderRadius: "2rem 2rem 0.5rem 2.2rem"
               },
               {
                 stage: "Stage 2",
@@ -1056,7 +1179,8 @@ export function PhonicsPage() {
                 age: "Ages 5 - 6",
                 desc: "Grouping letters (like sh, ch, th, ee) and blending double consonants (like bl, cr, st) to read longer, multi-syllabic words independently without memorising them.",
                 tag: "Sound Blending",
-                shape: "rounded-[2rem_0.5rem_2rem_2rem]"
+                shape: "rounded-[2rem_0.5rem_2rem_2rem]",
+                borderRadius: "2rem 0.5rem 2rem 2rem"
               },
               {
                 stage: "Stage 3",
@@ -1064,37 +1188,40 @@ export function PhonicsPage() {
                 age: "Ages 6+",
                 desc: "Focuses on phonetic spelling rules, vocabulary expansion, natural sentence structures, and reading short story passages smoothly and confidently.",
                 tag: "Sentence Fluency",
-                shape: "rounded-[0.5rem_2rem_2rem_2rem]"
+                shape: "rounded-[0.5rem_2rem_2rem_2rem]",
+                borderRadius: "0.5rem 2rem 2rem 2rem"
               }
             ].map((step, idx) => (
-              <motion.div
+              <AnimatedCard
                 key={step.title}
-                initial={{ opacity: 0, y: 35 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.15 }}
+                delay={idx * 0.15}
+                direction="up"
                 className="relative group w-full h-full"
               >
                 {/* 3D solid shadow */}
-                <div
-                  className="absolute inset-0 bg-[#363B37] translate-x-2.5 translate-y-2.5 z-0 transition-transform group-hover:translate-x-3.5 group-hover:translate-y-3.5"
-                  style={{
-                    borderRadius: step.shape === "rounded-[2rem_2rem_0.5rem_2.2rem]"
-                      ? "2rem 2rem 0.5rem 2.2rem"
-                      : step.shape === "rounded-[2rem_0.5rem_2rem_2rem]"
-                        ? "2rem 0.5rem 2rem 2rem"
-                        : "0.5rem 2rem 2rem 2rem"
-                  }}
+                <motion.div
+                  className="absolute inset-0 bg-[#363B37] translate-x-2.5 translate-y-2.5 z-0"
+                  style={{ borderRadius: step.borderRadius }}
+                  whileHover={{ x: 14, y: 14 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 />
 
                 {/* Card container */}
-                <div className={`relative bg-white border-[2.5px] border-[#363B37] p-8 z-10 flex flex-col justify-between h-full min-h-[280px] transform transition-transform duration-300 group-hover:-translate-x-1 group-hover:-translate-y-1 ${step.shape} shadow-md`}>
+                <motion.div
+                  className={`relative bg-white border-[2.5px] border-[#363B37] p-8 z-10 flex flex-col justify-between h-full min-h-[280px] ${step.shape} shadow-md cursor-default`}
+                  whileHover={{ x: -4, y: -4 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
 
                   <div>
                     {/* Header: Stage Number Badge & Tag */}
                     <div className="flex items-center justify-between gap-3 mb-5">
-                      <span className="px-3.5 py-1 bg-[#363B37] text-white border-2 border-[#363B37] rounded-full text-xs font-black uppercase tracking-wider shadow-[1.5px_1.5px_0px_#363B37]">
+                      <motion.span
+                        className="px-3.5 py-1 bg-[#363B37] text-white border-2 border-[#363B37] rounded-full text-xs font-black uppercase tracking-wider shadow-[1.5px_1.5px_0px_#363B37]"
+                        whileHover={{ scale: 1.1 }}
+                      >
                         {step.stage}
-                      </span>
+                      </motion.span>
                       <span className="text-[10px] font-black uppercase tracking-wider text-[#eba37a] border border-[#eba37a]/30 bg-[#eba37a]/10 px-2 py-0.5 rounded-md">
                         {step.age}
                       </span>
@@ -1117,8 +1244,8 @@ export function PhonicsPage() {
                     <span className="text-xs font-bold text-[#363B37]">{step.tag}</span>
                   </div>
 
-                </div>
-              </motion.div>
+                </motion.div>
+              </AnimatedCard>
             ))}
           </div>
 
@@ -1146,12 +1273,14 @@ export function PhonicsPage() {
 
             {/* Left Column: Heading and Outcomes Stickers */}
             <div className="lg:col-span-6 flex flex-col items-start text-left w-full">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl leading-tight font-normal tracking-tight text-[#363B37] mb-4">
-                Learning <span className="font-semibold">Outcomes</span>
-              </h2>
-              <p className="text-sm sm:text-base text-[#555E58] font-normal mb-10 leading-relaxed max-w-xl">
-                By the end of the Phonics Training program, children will earn these valuable speech and reading milestones:
-              </p>
+              <AnimatedCard direction="left" className="w-full">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl leading-tight font-normal tracking-tight text-[#363B37] mb-4">
+                  Learning <span className="font-semibold">Outcomes</span>
+                </h2>
+                <p className="text-sm sm:text-base text-[#555E58] font-normal mb-10 leading-relaxed max-w-xl">
+                  By the end of the Phonics Training program, children will earn these valuable speech and reading milestones:
+                </p>
+              </AnimatedCard>
 
               {/* Outcomes Stickers Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full max-w-xl">
@@ -1205,57 +1334,72 @@ export function PhonicsPage() {
                     shape: "rounded-[12px_20px_20px_12px]"
                   }
                 ].map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className={`relative p-5 border-2 border-[#363B37] text-left ${item.bg} ${item.shape} ${item.rot} shadow-[3px_3px_0px_#363B37] transition-all duration-300`}
-                  >
-                    <div className="flex items-center gap-2.5 mb-2.5">
-                      <div className="w-8 h-8 rounded-lg bg-white border-2 border-[#363B37] flex items-center justify-center shadow-[1.5px_1.5px_0px_#363B37]">
-                        <item.icon className="w-4 h-4 text-[#363B37]" />
+                  <AnimatedCard key={idx} delay={idx * 0.08} direction="up">
+                    <motion.div
+                      whileHover={{ scale: 1.07, y: -5, rotate: 0 }}
+                      animate={{ rotate: parseFloat(item.rot.includes("-rotate") ? item.rot.replace(/[^0-9.-]/g, "-").split("-").pop() || "0" : item.rot.replace(/[^0-9.]/g, "")) * (item.rot.includes("-") ? -1 : 1) }}
+                      transition={{ type: "spring", stiffness: 250, damping: 15 }}
+                      className={`relative p-5 border-2 border-[#363B37] text-left ${item.bg} ${item.shape} shadow-[3px_3px_0px_#363B37] cursor-default`}
+                    >
+                      <div className="flex items-center gap-2.5 mb-2.5">
+                        <motion.div
+                          className="w-8 h-8 rounded-lg bg-white border-2 border-[#363B37] flex items-center justify-center shadow-[1.5px_1.5px_0px_#363B37]"
+                          whileHover={{ rotate: 20, scale: 1.1 }}
+                        >
+                          <item.icon className="w-4 h-4 text-[#363B37]" />
+                        </motion.div>
+                        <h4 className="text-sm font-bold text-[#363B37] font-Phonics tracking-tight">
+                          {item.title}
+                        </h4>
                       </div>
-                      <h4 className="text-sm font-bold text-[#363B37] font-Phonics tracking-tight">
-                        {item.title}
-                      </h4>
-                    </div>
-                    <p className="text-xs text-[#555E58] font-normal leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </motion.div>
+                      <p className="text-xs text-[#555E58] font-normal leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </motion.div>
+                  </AnimatedCard>
                 ))}
               </div>
             </div>
 
             {/* Right Column: Arched Outdoor Safety Image */}
-            <div className="lg:col-span-6 flex justify-center w-full relative">
-              {/* Backing blobs */}
-              <div
+            <AnimatedCard direction="right" className="lg:col-span-6 flex justify-center w-full relative">
+              {/* Animated backing blob */}
+              <motion.div
                 className="absolute right-[5%] bottom-[10%] w-64 h-64 rounded-full filter blur-[2px] opacity-40 z-0 pointer-events-none select-none"
                 style={{
                   background: "radial-gradient(circle, #eba37a 0%, #e89e72 70%, transparent 100%)",
                   clipPath: "polygon(20% 10%, 95% 20%, 85% 95%, 15% 100%, 0% 70%)",
                 }}
+                animate={{ scale: [1, 1.15, 1], rotate: [0, 5, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               />
 
-              {/* Butterflies / leaf hand-drawn doodles */}
-              <div className="absolute -top-10 left-[15%] w-16 h-16 pointer-events-none opacity-85 select-none hidden sm:block">
-                <svg viewBox="0 0 100 100" className="w-full h-full stroke-[#e6b85c] stroke-[2.2] fill-none" strokeLinecap="round">
-                  {/* Floating loops resembling butterflies */}
+              {/* Animated butterflies */}
+              <motion.div
+                className="absolute -top-10 left-[15%] w-16 h-16 pointer-events-none select-none hidden sm:block"
+                animate={{ y: [0, -10, 0], rotate: [0, 8, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <svg viewBox="0 0 100 100" className="w-full h-full stroke-[#e6b85c] stroke-[2.2] fill-none opacity-85" strokeLinecap="round">
                   <path d="M20,30 C25,20 35,20 30,35 C25,50 15,40 20,30 Z" />
                   <path d="M35,35 C40,25 50,25 45,40 C40,55 30,45 35,35 Z" />
                   <path d="M60,25 C65,15 75,15 70,30 C65,45 55,35 60,25 Z" />
                 </svg>
-              </div>
+              </motion.div>
 
-              {/* Arched image */}
-              <div className="relative w-full max-w-[400px] aspect-[4/5] rounded-t-full overflow-hidden border-[3px] border-[#363B37] shadow-xl bg-white z-10">
+              {/* Arched image with float */}
+              <motion.div
+                className="relative w-full max-w-[400px] aspect-[4/5] rounded-t-full overflow-hidden border-[3px] border-[#363B37] shadow-xl bg-white z-10"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
                 <img
                   src="/students/phonics_safety_play.png"
                   alt="Children playing safely outdoor"
                   className="w-full h-full object-cover select-none pointer-events-none"
                 />
-              </div>
-            </div>
+              </motion.div>
+            </AnimatedCard>
 
           </div>
 
