@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, Users, Mic, Smile, CheckCircle, Sparkles, Play, ArrowRight, Heart, Star, Layout, ShieldCheck, X } from "lucide-react";
+import { MessageSquare, Users, Mic, Smile, CheckCircle, Sparkles, Play, ArrowRight, Heart, Star, Layout, ShieldCheck, X, Video, Volume2, BookOpen, Award, UserCheck, Globe } from "lucide-react";
 import { Navbar } from "../Navbar";
 import { Link } from "@tanstack/react-router";
 import { ApexEdgeFooter } from "../ApexEdgeFooter";
@@ -35,6 +35,79 @@ const highlightsData = [
     title: "Real-Time Practice",
     desc: "Engage in live conversations and real-world simulations to build instantaneous confidence and fluency.",
     image: "/students/celpip.png"
+  }
+];
+
+const learningStepsData = [
+  {
+    step: "STEP 01",
+    title: "Interactive Live Sessions",
+    desc: "Engage in live, dynamic group and 1:1 sessions with expert tutors.",
+    icon: Video,
+    color: "from-sky-500 to-blue-600",
+    shadow: "shadow-sky-500/25",
+    badgeBg: "bg-sky-50 text-sky-600",
+    borderColor: "border-sky-200"
+  },
+  {
+    step: "STEP 02",
+    title: "Daily Speaking Practice",
+    desc: "Build muscle memory with real-time daily conversational drills.",
+    icon: Mic,
+    color: "from-[#E05670] to-rose-600",
+    shadow: "shadow-rose-500/25",
+    badgeBg: "bg-rose-50 text-[#E05670]",
+    borderColor: "border-rose-200"
+  },
+  {
+    step: "STEP 03",
+    title: "Pronunciation & Accent Improvement",
+    desc: "Refine your phonetics, intonation, and clarity for natural speech.",
+    icon: Volume2,
+    color: "from-purple-500 to-indigo-600",
+    shadow: "shadow-purple-500/25",
+    badgeBg: "bg-purple-50 text-purple-600",
+    borderColor: "border-purple-200"
+  },
+  {
+    step: "STEP 04",
+    title: "Vocabulary & Grammar Enhancement",
+    desc: "Master practical words and flawless grammar structure naturally.",
+    icon: BookOpen,
+    color: "from-emerald-500 to-teal-600",
+    shadow: "shadow-emerald-500/25",
+    badgeBg: "bg-emerald-50 text-emerald-600",
+    borderColor: "border-emerald-200"
+  },
+  {
+    step: "STEP 05",
+    title: "Public Speaking & Confidence Activities",
+    desc: "Overcome hesitation with group discussions and presentation tasks.",
+    icon: Award,
+    color: "from-amber-500 to-orange-600",
+    shadow: "shadow-amber-500/25",
+    badgeBg: "bg-amber-50 text-amber-600",
+    borderColor: "border-amber-200"
+  },
+  {
+    step: "STEP 06",
+    title: "Personalised Trainer Feedback",
+    desc: "Receive 1:1 corrective guidance from experienced language trainers.",
+    icon: UserCheck,
+    color: "from-fuchsia-500 to-pink-600",
+    shadow: "shadow-fuchsia-500/25",
+    badgeBg: "bg-fuchsia-50 text-fuchsia-600",
+    borderColor: "border-fuchsia-200"
+  },
+  {
+    step: "STEP 07",
+    title: "Practical Real-Life Communication",
+    desc: "Apply your skills in interviews, office meetings, and daily life.",
+    icon: Globe,
+    color: "from-cyan-500 to-blue-600",
+    shadow: "shadow-cyan-500/25",
+    badgeBg: "bg-cyan-50 text-cyan-600",
+    borderColor: "border-cyan-200"
   }
 ];
 
@@ -293,83 +366,116 @@ export function SpokenEnglishPage() {
         </div>
       </section>
 
-      {/* Highlights Interactive Section */}
-      <section className="py-24 sm:py-32 bg-[#FFFBF8]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="text-center mb-16 sm:mb-20">
+      {/* Interactive Step-by-Step Learning Roadmap Section (Matching User Reference Image) */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-12 bg-white relative z-20 overflow-hidden border-t border-gray-100">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16 sm:mb-24">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100 text-[#E05670] font-bold text-xs sm:text-sm mb-4 uppercase tracking-widest">
-              <Sparkles className="w-4 h-4" /> Core Advantages
+              <Sparkles className="w-4 h-4" /> Learning Pathway
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#2C1820] mb-4">
-              Apex Edge’s <span className="text-[#E05670] italic">Highlights</span>
+              How You Will <span className="text-[#E05670] italic">Master Spoken English</span>
             </h2>
             <p className="text-lg sm:text-xl text-[#7E5E6D] font-medium max-w-2xl mx-auto">
-              Take a sneak peek into the key features of our spoken English classes:
+              Our structured 7-step process designed for rapid fluency, accent refinement, and real-world confidence.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            {/* Left Tabs */}
-            <div className="flex sm:flex-col overflow-x-auto sm:overflow-visible gap-4 pb-4 sm:pb-0 no-scrollbar snap-x">
-              {highlightsData.map((item, index) => (
+          {/* Desktop Circle Roadmap Flow (lg screens) - Reference infographic style */}
+          <div className="hidden lg:block relative">
+            {/* Horizontal connecting line through circle centers */}
+            <div className="absolute top-[calc(50%-2px)] left-0 right-0 h-1 bg-gradient-to-r from-sky-300 via-rose-300 to-cyan-300 rounded-full z-0 pointer-events-none" />
+
+            {/* 7 Step Nodes Row */}
+            <div className="relative z-10 flex items-center justify-between gap-0">
+              {learningStepsData.map((item, index) => {
+                const IconComponent = item.icon;
+                const isEven = index % 2 === 0; // odd index = label below, even = label above
+
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.7 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="flex flex-col items-center group flex-1"
+                  >
+                    {/* Top label (shown for even index) */}
+                    <div className={`text-center mb-3 ${isEven ? "visible" : "invisible"} min-h-[70px] flex flex-col justify-end`}>
+                      <span className={`text-xs font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full ${item.badgeBg} mb-1 inline-block`}>
+                        {item.step}
+                      </span>
+                      <h4 className="text-sm font-bold text-[#1A1A1A] leading-snug px-1">
+                        {item.title}
+                      </h4>
+                    </div>
+
+                    {/* Large Vibrant Circle */}
+                    <div className={`w-20 h-20 xl:w-24 xl:h-24 rounded-full bg-gradient-to-br ${item.color} ${item.shadow} text-white flex items-center justify-center border-4 border-white shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-rose-300/40 relative z-10`}>
+                      <IconComponent className="w-5 h-5 xl:w-6 xl:h-6" />
+                    </div>
+
+                    {/* Bottom label (shown for odd index) */}
+                    <div className={`text-center mt-3 ${!isEven ? "visible" : "invisible"} min-h-[70px] flex flex-col justify-start`}>
+                      <span className={`text-xs font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full ${item.badgeBg} mb-1 inline-block`}>
+                        {item.step}
+                      </span>
+                      <h4 className="text-sm font-bold text-[#1A1A1A] leading-snug px-1">
+                        {item.title}
+                      </h4>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile & Tablet Vertical Step Roadmap Flow (sm/md screens) */}
+          <div className="lg:hidden relative pl-6 sm:pl-10 space-y-8">
+            {/* Vertical Connecting Line */}
+            <div className="absolute top-4 bottom-4 left-9 sm:left-14 w-1 bg-gradient-to-b from-sky-400 via-rose-400 to-cyan-400 rounded-full" />
+
+            {learningStepsData.map((item, index) => {
+              const IconComponent = item.icon;
+              return (
                 <motion.div
                   key={index}
-                  onClick={() => setActiveTab(index)}
-                  className={`cursor-pointer shrink-0 sm:shrink-1 snap-start p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-2 transition-all duration-300 flex items-center gap-4 sm:gap-6 min-w-[220px] sm:min-w-0 ${
-                    activeTab === index
-                      ? "bg-white border-[#E05670] shadow-xl shadow-rose-200/30 sm:-translate-x-3"
-                      : "bg-[#FAF0EB]/60 border-transparent hover:bg-white hover:border-rose-200"
-                  }`}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  className="relative flex items-start gap-4 sm:gap-6 group"
                 >
-                  <span className={`text-base sm:text-xl font-black ${activeTab === index ? "text-[#E05670]" : "text-[#B89CA8]"}`}>
-                    {item.id}
-                  </span>
-                  <h3 className={`text-base sm:text-xl font-bold ${activeTab === index ? "text-[#2C1820]" : "text-[#7E5E6D]"}`}>
-                    {item.title}
-                  </h3>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Right Content Reveal */}
-            <div className="relative mt-4 lg:mt-0">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-white rounded-[2.5rem] p-8 sm:p-12 shadow-2xl shadow-rose-100/50 border border-rose-100 relative overflow-hidden"
-                >
-                  <div className="relative z-10">
-                    <img
-                      src={highlightsData[activeTab].image}
-                      className="w-full h-[250px] sm:h-[360px] object-cover rounded-3xl mb-8 shadow-md border-4 border-[#FFF5F2]"
-                      alt="Highlight"
-                    />
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#E05670] text-white flex items-center justify-center font-bold text-lg sm:text-xl">
-                        {highlightsData[activeTab].id.replace(/^0/, '')}
-                      </div>
-                      <h4 className="text-2xl sm:text-3xl font-serif font-bold text-[#2C1820]">{highlightsData[activeTab].title}</h4>
-                    </div>
-                    <p className="text-base sm:text-lg text-[#6E5562] leading-relaxed font-medium">
-                      {highlightsData[activeTab].desc}
-                    </p>
+                  {/* Circular Icon Node */}
+                  <div className={`shrink-0 w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-gradient-to-br ${item.color} ${item.shadow} text-white flex items-center justify-center border-4 border-white shadow-lg relative z-10 transition-transform group-hover:scale-110`}>
+                    <IconComponent className="w-5 sm:w-6 h-5 sm:h-6" />
                   </div>
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-rose-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
+                  {/* Step Card Content */}
+                  <div className="flex-1 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-gray-100 shadow-md shadow-gray-200/30 group-hover:shadow-xl transition-all">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className={`text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider ${item.badgeBg}`}>
+                        {item.step}
+                      </span>
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold text-[#1A1A1A]">
+                      {item.title}
+                    </h3>
+                  </div>
                 </motion.div>
-              </AnimatePresence>
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Benefits Alternating Section */}
+
+      {/* Benefits Card Grid Section */}
       <section className="py-24 sm:py-32 bg-[#FAF0EB]/60 border-y border-rose-100/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="text-center mb-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="text-center mb-16 sm:mb-20">
             <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#2C1820] leading-tight">
               Why Our Online <br />
               <span className="text-[#E05670] italic">English Speaking Classes</span> <br />
@@ -380,155 +486,171 @@ export function SpokenEnglishPage() {
             </p>
           </div>
 
-          <div className="space-y-28 sm:space-y-36">
-            {/* Feature 1: Affiliated Trainers */}
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-rose-100 text-[#E05670] flex items-center justify-center shrink-0">
-                    <Layout className="w-6 h-6" />
+          <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
+            {[
+              {
+                icon: Layout,
+                iconBg: "bg-gradient-to-br from-[#E05670] to-rose-500",
+                title: "Affiliated Trainers",
+                desc: "Our trainers are certified experts with years of practical experience. They provide 1:1 personalized coaching with customized lesson plans tailored to your accent, vocabulary, and career goals.",
+              },
+              {
+                icon: Mic,
+                iconBg: "bg-gradient-to-br from-violet-500 to-purple-600",
+                title: "Practice-Based Learning",
+                desc: "Experience 100% practice-based learning with real-time speaking drills, live conversations, and real-world simulations that help you master the nuances of English naturally.",
+              },
+              {
+                icon: Smile,
+                iconBg: "bg-gradient-to-br from-amber-400 to-orange-500",
+                title: "Flexible Scheduling",
+                desc: "Enjoy maximum flexibility with 24/7 slot booking. Choose early morning or late night sessions that seamlessly integrate with your work or university schedule without any stress.",
+              },
+              {
+                icon: ShieldCheck,
+                iconBg: "bg-gradient-to-br from-emerald-400 to-teal-600",
+                title: "Recognised Certification",
+                desc: "Earn a prestigious fluency certificate recognized by top employers and institutions worldwide, boosting your professional resume and job interview success rate significantly.",
+              },
+            ].map((card, i) => {
+              const CardIcon = card.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="bg-white rounded-3xl p-8 sm:p-10 border border-rose-100 shadow-lg shadow-rose-100/40 hover:shadow-2xl hover:shadow-rose-200/50 hover:-translate-y-1 transition-all duration-300 group"
+                >
+                  <div className={`w-14 h-14 rounded-2xl ${card.iconBg} text-white flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <CardIcon className="w-7 h-7" />
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2C1820]">Affiliated Trainers</h3>
-                </div>
-                <p className="text-base sm:text-lg text-[#6E5562] leading-relaxed font-medium">
-                  At Apex Edge, our trainers are certified experts with years of practical experience.
-                  They enhance your learning journey with 1:1 personalized coaching and customized lesson plans
-                  tailored to your unique accent, vocabulary, and career goals.
-                </p>
-              </motion.div>
-              <div className="relative">
-                <div className="absolute inset-0 bg-[#E05670]/10 rounded-[3rem] rotate-3 scale-105" />
-                <img
-                  src="/students/group.png"
-                  className="relative rounded-[3rem] w-full h-[380px] sm:h-[450px] object-cover shadow-xl border-4 border-white"
-                  alt="Affiliated Trainers"
-                />
-              </div>
-            </div>
-
-            {/* Feature 2: Flexible Scheduling */}
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="order-2 lg:order-1 relative">
-                <div className="absolute inset-0 bg-[#C084FC]/15 rounded-[3rem] -rotate-3 scale-105" />
-                <img
-                  src="/students/ielts.png"
-                  className="relative rounded-[3rem] w-full h-[380px] sm:h-[450px] object-cover shadow-xl border-4 border-white"
-                  alt="Flexible Scheduling"
-                />
-              </div>
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="order-1 lg:order-2"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center shrink-0">
-                    <Smile className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2C1820]">Flexible Scheduling</h3>
-                </div>
-                <p className="text-base sm:text-lg text-[#6E5562] leading-relaxed font-medium">
-                  Enjoy maximum flexibility with 24/7 slot booking. Choose early morning or late night sessions
-                  that seamlessly integrate with your work or university schedule without any stress.
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Feature 3: Recognised Certification */}
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-                    <ShieldCheck className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2C1820]">Recognised Certification</h3>
-                </div>
-                <p className="text-base sm:text-lg text-[#6E5562] leading-relaxed font-medium">
-                  Earn a prestigious fluency certificate recognized by top employers and institutions worldwide,
-                  boosting your professional resume and job interview success.
-                </p>
-              </motion.div>
-              <div className="relative">
-                <div className="absolute inset-0 bg-emerald-500/10 rounded-[3rem] rotate-2 scale-105" />
-                <img
-                  src="/students/celpip.png"
-                  className="relative rounded-[3rem] w-full h-[380px] sm:h-[450px] object-cover shadow-xl border-4 border-white"
-                  alt="Recognised Certification"
-                />
-              </div>
-            </div>
+                  <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#2C1820] mb-3">
+                    {card.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-[#7E5E6D] leading-relaxed font-medium">
+                    {card.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Community & Practice CTA Section */}
-      <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 bg-[#FFFBF8]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#2C1820] mb-8 leading-tight">
-                Learn by <span className="text-[#E05670] italic">Doing.</span> <br /> Speak by Practice.
-              </h2>
-              <div className="space-y-6">
-                {[
-                  "Daily 1-on-1 speaking practice sessions",
-                  "Interactive group debates and discussions",
-                  "Real-world scenario simulations",
-                  "Video-based feedback from expert coaches",
-                  "Lifelong access to our global community"
-                ].map((item, i) => (
+
+      {/* Circle Infographic Section */}
+      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-12 bg-[#FFFBF8] overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+
+          {/* Section Header */}
+          <div className="text-center mb-14 sm:mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-100 text-[#E05670] font-bold text-xs sm:text-sm mb-4 uppercase tracking-widest">
+              <Sparkles className="w-4 h-4" /> Our Approach
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#2C1820] leading-tight">
+              Learn by <span className="text-[#E05670] italic">Doing.</span><br className="hidden sm:block" /> Speak by Practice.
+            </h2>
+          </div>
+
+          {/* Two Column: Circle Left | Points Right */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+            {/* ===== LEFT: Circle Infographic ===== */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="flex items-center justify-center"
+            >
+              <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px]">
+
+                {/* Outermost dashed ring */}
+                <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#E05670]/20 animate-[spin_30s_linear_infinite]" />
+
+                {/* Second dashed ring */}
+                <div className="absolute inset-6 sm:inset-8 rounded-full border-2 border-dashed border-[#E05670]/30 animate-[spin_20s_linear_infinite_reverse]" />
+
+                {/* Solid outer ring */}
+                <div className="absolute inset-10 sm:inset-14 rounded-full border-[6px] border-[#E05670]/15" />
+
+                {/* Inner white card circle */}
+                <div className="absolute inset-16 sm:inset-20 rounded-full bg-white shadow-2xl shadow-rose-200/50 border-4 border-rose-50 flex items-center justify-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#E05670] to-rose-400 flex items-center justify-center shadow-xl">
+                    <Star className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  </div>
+                </div>
+
+                {/* Satellite 1 — Top */}
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 border-4 border-white shadow-lg flex items-center justify-center">
+                  <Volume2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </div>
+
+                {/* Satellite 2 — Right */}
+                <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#E05670] to-rose-600 border-4 border-white shadow-lg flex items-center justify-center">
+                  <Mic className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </div>
+
+                {/* Satellite 3 — Bottom */}
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 border-4 border-white shadow-lg flex items-center justify-center">
+                  <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </div>
+
+                {/* Satellite 4 — Left */}
+                <div className="absolute top-1/2 -left-2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-violet-500 to-purple-700 border-4 border-white shadow-lg flex items-center justify-center">
+                  <Award className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </div>
+
+              </div>
+            </motion.div>
+
+            {/* ===== RIGHT: 4 Feature Points ===== */}
+            <div className="space-y-6">
+              {[
+                { icon: Volume2, label: "01", title: "Listen Like a Native", desc: "Train your ears to understand real native speakers in films, conversations, and everyday dialogue.", color: "from-sky-400 to-blue-600", shadow: "shadow-sky-200" },
+                { icon: Mic, label: "02", title: "Speak English Naturally", desc: "Practice real-time spoken English with expert tutors in live 1:1 and group sessions daily.", color: "from-[#E05670] to-rose-600", shadow: "shadow-rose-200" },
+                { icon: BookOpen, label: "03", title: "Learn from Your Mistakes", desc: "Get instant, personalized feedback from your trainer after every speaking exercise.", color: "from-emerald-400 to-teal-600", shadow: "shadow-emerald-200" },
+                { icon: Award, label: "04", title: "Track Your Level & Progress", desc: "See your fluency chart grow over time and measure yourself against real benchmarks.", color: "from-violet-500 to-purple-700", shadow: "shadow-purple-200" },
+              ].map((item, i) => {
+                const FeatureIcon = item.icon;
+                return (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: 40 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex items-center gap-4 text-base sm:text-lg font-semibold text-[#523B46]"
+                    transition={{ duration: 0.5, delay: i * 0.12 }}
+                    className="flex items-start gap-5 group"
                   >
-                    <div className="w-7 h-7 rounded-full bg-rose-100 text-[#E05670] flex items-center justify-center shrink-0">
-                      <CheckCircle className="w-4 h-4" />
+                    {/* Colored Icon Circle */}
+                    <div className={`shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} text-white flex items-center justify-center shadow-lg ${item.shadow} group-hover:scale-110 transition-transform duration-300`}>
+                      <FeatureIcon className="w-6 h-6" />
                     </div>
-                    {item}
+
+                    {/* Text */}
+                    <div>
+                      <p className="text-xs font-bold text-[#E05670] mb-0.5 uppercase tracking-wider">{item.label}</p>
+                      <h4 className="text-lg sm:text-xl font-bold text-[#2C1820] mb-1">{item.title}</h4>
+                      <p className="text-sm text-[#7E5E6D] font-medium leading-relaxed">{item.desc}</p>
+                    </div>
                   </motion.div>
-                ))}
-              </div>
+                );
+              })}
 
-              <Link
-                to="/enroll"
-                className="mt-12 px-10 py-4 rounded-full bg-[#2C1820] text-white font-bold text-lg hover:bg-[#E05670] transition-colors inline-flex items-center gap-3 shadow-xl"
-              >
-                <span>Join Free Trial Session</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+              {/* CTA */}
+              <div className="pt-4">
+                <Link
+                  to="/enroll"
+                  className="px-8 py-3.5 rounded-full bg-[#2C1820] text-white font-bold text-base hover:bg-[#E05670] transition-colors inline-flex items-center gap-3 shadow-xl"
+                >
+                  <span>Join Free Trial Session</span>
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
             </div>
 
-            <div className="relative grid grid-cols-2 gap-6">
-              <div className="space-y-6 pt-10">
-                <img src="/students/group.png" className="rounded-[2.5rem] w-full h-[260px] object-cover shadow-lg border-2 border-rose-100" alt="study" />
-                <div className="p-6 bg-[#E05670] rounded-[2.5rem] text-white shadow-lg">
-                  <Smile className="w-10 h-10 mb-3" />
-                  <h4 className="text-2xl font-bold mb-1">98% Satisfied</h4>
-                  <p className="text-xs font-medium text-rose-100">Proven student transformation</p>
-                </div>
-              </div>
-              <div className="space-y-6">
-                <div className="p-6 bg-[#2C1820] rounded-[2.5rem] text-white shadow-lg">
-                  <MessageSquare className="w-10 h-10 mb-3 text-rose-300" />
-                  <h4 className="text-2xl font-bold mb-1">24/7 Coaching</h4>
-                  <p className="text-xs font-medium text-gray-300">Live feedback & practice</p>
-                </div>
-                <img src="/students/ielts.png" className="rounded-[2.5rem] w-full h-[260px] object-cover shadow-lg border-2 border-rose-100" alt="study" />
-              </div>
-            </div>
           </div>
         </div>
       </section>
