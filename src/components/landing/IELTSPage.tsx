@@ -6,6 +6,8 @@ import { ApexEdgeFooter } from "../ApexEdgeFooter";
 
 // Using the generated images
 import studentPrep from "@/assets/student-girl.png"; // Placeholder for the hero, or I can use the absolute path if I want but let's use the workspace assets if available or just the path for now.
+const CUBIC_EASE = [0.16, 1, 0.3, 1] as const;
+
 const heroStudent = "/students/ielts.png";
 const groupStudent = "/students/group.png";
 
@@ -111,7 +113,13 @@ export function IELTSPage() {
       <Navbar />
 
       {/* Hero Section - Exact Replica of Image 1 with Red Curved Background */}
-      <section className="relative w-full pt-32 sm:pt-48 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden font-sans">
+      <motion.section
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="relative w-full pt-32 sm:pt-48 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden font-sans"
+      >
         {/* Red Curved Background Shape based on Image 2 scribble */}
         <div 
           className="absolute top-0 left-0 w-full h-[450px] sm:h-[600px] bg-[#d90f40] z-0" 
@@ -220,10 +228,16 @@ export function IELTSPage() {
             animation: pulse-subtle 3s ease-in-out infinite;
           }
         `}} />
-      </section>
+      </motion.section>
 
       {/* Modules Section - Redesigned to match the colorful tilted cards */}
-      <section className="py-20 sm:py-32 bg-white overflow-hidden">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-20 sm:py-32 bg-white overflow-hidden"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -272,10 +286,16 @@ export function IELTSPage() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 6 Reasons Section - Redesigned based on New Reference Image */}
-      <section className="py-24 sm:py-32 bg-gray-50 overflow-hidden">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-24 sm:py-32 bg-gray-50 overflow-hidden"
+      >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-24">
             <p className="text-[#d90f40] font-bold text-sm uppercase tracking-[0.2em] mb-4">Why Choose Us</p>
@@ -333,10 +353,16 @@ export function IELTSPage() {
             animation: spin-slow 20s linear infinite;
           }
         `}} />
-      </section>
+      </motion.section>
 
       {/* Eligibility Section - Restored */}
-      <section className="py-20 sm:py-32 bg-[#fdf2e8]">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-20 sm:py-32 bg-[#fdf2e8]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="text-center mb-16 sm:mb-20">
             <h2 className="text-3xl sm:text-6xl font-black text-[#1a1a1a] mb-4 sm:mb-6">
@@ -370,54 +396,16 @@ export function IELTSPage() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Quote/CTA Section - Restored */}
-
-
-      {/* 8+ Band CTA Banner - Redesigned based on Image 4 */}
-      {/* <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 bg-white relative z-20">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative overflow-hidden rounded-3xl bg-[#d90f40] px-8 py-0 sm:px-16"
-          > */}
-      {/* Background elements like Image 4 */}
-      {/* <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-              <div className="absolute top-0 left-10 w-20 h-full bg-white rotate-12" />
-              <div className="absolute top-0 left-40 w-10 h-full bg-white rotate-12" />
-            </div> */}
-
-      {/* <div className="relative z-10 grid lg:grid-cols-[auto,1fr] gap-12 items-center"> */}
-      {/* Guy on Left like Image 4 */}
-      {/* <div className="relative hidden lg:block w-[400px] h-[350px]">
-                <img
-                  src="/students/ielts.png"
-                  alt="Student"
-                  className="absolute bottom-0 left-0 w-full h-[450px] object-cover object-top scale-110"
-                />
-              </div> */}
-
-      {/* <div className="text-right py-12 sm:py-16">
-                <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight tracking-tight">
-                  Free online IELTS <br /> Real Mock tests <br />
-                  <span className="text-white/90 text-2xl sm:text-4xl">with Explanation</span>
-                </h2>
-                <div className="flex justify-end gap-6 items-center">
-                  <Link to="/book-session" className="inline-flex items-center justify-center px-12 py-5 bg-white text-[#d90f40] rounded-xl font-black text-lg sm:text-xl hover:bg-gray-50 transition-all shadow-2xl active:scale-95">
-                    Take a test
-                  </Link>
-                </div>
-              </div> */}
-      {/* </div>
-          </motion.div>
-        </div>
-      </section> */}
+      </motion.section>
 
       {/* Girl Banner - Height reduced and fixed based on Image 2 */}
-      <section className="py-6 sm:py-10 px-4 sm:px-6 lg:px-12 bg-white relative z-20">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-6 sm:py-10 px-4 sm:px-6 lg:px-12 bg-white relative z-20"
+      >
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -459,7 +447,7 @@ export function IELTSPage() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       <ApexEdgeFooter />
     </div>

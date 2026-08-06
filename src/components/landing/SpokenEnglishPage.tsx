@@ -5,6 +5,8 @@ import { Navbar } from "../Navbar";
 import { Link } from "@tanstack/react-router";
 import { ApexEdgeFooter } from "../ApexEdgeFooter";
 
+const CUBIC_EASE = [0.16, 1, 0.3, 1] as const;
+
 const highlightsData = [
   {
     id: "01",
@@ -120,8 +122,13 @@ export function SpokenEnglishPage() {
       <Navbar />
 
       {/* Hero Section - Pinkish Creamish & White Theme */}
-      <section className="relative w-full pt-28 sm:pt-36 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-12 bg-gradient-to-b from-[#FAF0EB] via-[#FDF4F0] to-[#FFF5F2] overflow-hidden">
-
+      <motion.section
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="relative w-full pt-28 sm:pt-36 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-12 bg-gradient-to-b from-[#FAF0EB] via-[#FDF4F0] to-[#FFF5F2] overflow-hidden"
+      >
         {/* Floating Line-Art Vector Doodles */}
         {/* Rocket Line Art - Top Left */}
         <motion.div
@@ -276,10 +283,16 @@ export function SpokenEnglishPage() {
             <path d="M0,30 C200,90 400,-10 600,45 C800,100 1000,15 1200,50 C1340,75 1400,30 1440,40 L1440,100 L0,100 Z"></path>
           </svg>
         </div>
-      </section>
+      </motion.section>
 
       {/* New Spoken English Batch Banner Section - White Background & Soft Pinkish Container */}
-      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-12 bg-white relative z-20">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-8 sm:py-12 px-4 sm:px-6 lg:px-12 bg-white relative z-20"
+      >
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -334,11 +347,6 @@ export function SpokenEnglishPage() {
                 Join now and Master in English Speaking.
               </h3>
 
-              {/* Urgency Subtext */}
-              {/* <p className="text-xs sm:text-sm text-gray-500 font-medium mb-6">
-                Only <span className="font-bold text-[#E05670]">75 seats left</span> for our spoken english classes
-              </p> */}
-
               {/* Buttons */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
                 <a
@@ -364,10 +372,16 @@ export function SpokenEnglishPage() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Interactive Step-by-Step Learning Roadmap Section (Matching User Reference Image) */}
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-12 bg-white relative z-20 overflow-hidden border-t border-gray-100">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-20 sm:py-28 px-4 sm:px-6 lg:px-12 bg-white relative z-20 overflow-hidden border-t border-gray-100"
+      >
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16 sm:mb-24">
@@ -469,11 +483,16 @@ export function SpokenEnglishPage() {
             })}
           </div>
         </div>
-      </section>
-
+      </motion.section>
 
       {/* Benefits Card Grid Section */}
-      <section className="py-24 sm:py-32 bg-[#FAF0EB]/60 border-y border-rose-100/60">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-24 sm:py-32 bg-[#FAF0EB]/60 border-y border-rose-100/60"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="text-center mb-16 sm:mb-20">
             <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#2C1820] leading-tight">
@@ -537,11 +556,16 @@ export function SpokenEnglishPage() {
             })}
           </div>
         </div>
-      </section>
-
+      </motion.section>
 
       {/* Circle Infographic Section */}
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-12 bg-[#FFFBF8] overflow-hidden">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-20 sm:py-28 px-4 sm:px-6 lg:px-12 bg-[#FFFBF8] overflow-hidden"
+      >
         <div className="max-w-6xl mx-auto">
 
           {/* Section Header */}
@@ -653,7 +677,7 @@ export function SpokenEnglishPage() {
 
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Video Modal Popup */}
       <AnimatePresence>

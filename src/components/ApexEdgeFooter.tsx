@@ -26,7 +26,7 @@ const supportLinks = [
   { label: "CELPIP", href: "/celpip" },
   { label: "Business Comm.", href: "/business-communications" },
   { label: "Spoken English", href: "/spoken-english" },
-  { label: "Phoenix", href: "/phoenix" },
+  { label: "Phonics", href: "/phonics" },
 ];
 
 const socialLinks = [

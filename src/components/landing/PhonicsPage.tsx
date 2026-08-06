@@ -475,7 +475,7 @@ export function PhonicsPage() {
             <motion.img
               initial={{ opacity: 0, x: -50, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.9, type: "spring", stiffness: 50, delay: 0.3 }}
+              transition={{ duration: 0.9, type: "spring" as const, stiffness: 50, delay: 0.3 }}
               src={transparentGirl}
               alt="Toddler girl with heart sunglasses"
               className="relative w-full z-10 object-contain max-h-full select-none pointer-events-none translate-x-1 sm:translate-x-2"
@@ -487,7 +487,7 @@ export function PhonicsPage() {
             <motion.img
               initial={{ opacity: 0, x: 50, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.9, type: "spring", stiffness: 50, delay: 0.3 }}
+              transition={{ duration: 0.9, type: "spring" as const, stiffness: 50, delay: 0.3 }}
               src={transparentBaby}
               alt="Baby in yellow outfit"
               className="relative w-full z-10 object-contain max-h-full select-none pointer-events-none -translate-x-1 sm:-translate-x-2"
@@ -700,7 +700,7 @@ export function PhonicsPage() {
                         whileTap={{ scale: 0.93 }}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20, delay: sIdx * 0.07 }}
+                        transition={{ type: "spring" as const, stiffness: 300, damping: 20, delay: sIdx * 0.07 }}
                         className={`py-4 rounded-2xl border-2 font-bold text-lg sm:text-xl flex flex-col items-center justify-center transition-colors cursor-pointer relative overflow-hidden ${isSelected
                           ? "bg-[#363B37] border-[#363B37] text-white shadow-[2px_2px_0px_#eba37a]"
                           : "bg-[#FAF8F3] border-[#363B37] text-[#363B37] hover:bg-[#eae7df]"
@@ -1040,7 +1040,7 @@ export function PhonicsPage() {
                       <AnimatedCard direction="left" delay={0.1}>
                         <motion.div
                           whileHover={{ scale: 1.05, rotate: -1, y: -4 }}
-                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                          transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
                           className={`relative p-8 border-[2.5px] border-[#363B37] text-left max-w-md ${item.bg} ${item.shape} shadow-[4px_4px_0px_#363B37] cursor-default`}
                         >
                           <div className="flex items-center gap-3 mb-3">
@@ -1070,7 +1070,7 @@ export function PhonicsPage() {
                     className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full border-[2.5px] border-[#363B37] bg-[#FAF8F3] flex items-center justify-center z-10 shadow-[2px_2px_0px_#363B37]"
                     whileInView={{ scale: [0, 1.3, 1] }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1, type: "spring" }}
+                    transition={{ duration: 0.5, delay: idx * 0.1, type: "spring" as const }}
                   >
                     <span className="text-xs font-black text-[#363B37]">{idx + 1}</span>
                   </motion.div>
@@ -1081,7 +1081,7 @@ export function PhonicsPage() {
                       <AnimatedCard direction="right" delay={0.1}>
                         <motion.div
                           whileHover={{ scale: 1.05, rotate: 1, y: -4 }}
-                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                          transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
                           className={`relative p-8 border-[2.5px] border-[#363B37] text-left max-w-md ${item.bg} ${item.shape} shadow-[4px_4px_0px_#363B37] cursor-default ${isOdd ? "md:hidden" : ""}`}
                         >
                           <div className="flex items-center gap-3 mb-3">
@@ -1203,14 +1203,14 @@ export function PhonicsPage() {
                   className="absolute inset-0 bg-[#363B37] translate-x-2.5 translate-y-2.5 z-0"
                   style={{ borderRadius: step.borderRadius }}
                   whileHover={{ x: 14, y: 14 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  transition={{ type: "spring" as const, stiffness: 300 }}
                 />
 
                 {/* Card container */}
                 <motion.div
                   className={`relative bg-white border-[2.5px] border-[#363B37] p-8 z-10 flex flex-col justify-between h-full min-h-[280px] ${step.shape} shadow-md cursor-default`}
                   whileHover={{ x: -4, y: -4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
                 >
 
                   <div>
@@ -1338,7 +1338,7 @@ export function PhonicsPage() {
                     <motion.div
                       whileHover={{ scale: 1.07, y: -5, rotate: 0 }}
                       animate={{ rotate: parseFloat(item.rot.includes("-rotate") ? item.rot.replace(/[^0-9.-]/g, "-").split("-").pop() || "0" : item.rot.replace(/[^0-9.]/g, "")) * (item.rot.includes("-") ? -1 : 1) }}
-                      transition={{ type: "spring", stiffness: 250, damping: 15 }}
+                      transition={{ type: "spring" as const, stiffness: 250, damping: 15 }}
                       className={`relative p-5 border-2 border-[#363B37] text-left ${item.bg} ${item.shape} shadow-[3px_3px_0px_#363B37] cursor-default`}
                     >
                       <div className="flex items-center gap-2.5 mb-2.5">
