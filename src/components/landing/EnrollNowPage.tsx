@@ -432,9 +432,9 @@ export function EnrollNowPage() {
                             className="w-full h-11 px-4 rounded-xl bg-white border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 text-xs text-[#1a1a1a] font-bold transition-all appearance-none cursor-pointer pr-10"
                           >
                             <option value="" disabled>Select course</option>
+                            <option value="Phonics Training (Kids & Early Learners)">Phonics Training (Kids & Early Learners)</option>
                             <option value="IELTS Mastery (Academic & General)">IELTS Mastery (Academic & General)</option>
                             <option value="PTE Precision (Fast-Track)">PTE Precision (Fast-Track)</option>
-                            <option value="AI Scoring Insight (Speaking Practice, Grammar Modules)">AI Scoring Insight (Speaking Practice, Grammar Modules)</option>
                             <option value="CELPIP Ready (Canadian PR)">CELPIP Ready (Canadian PR)</option>
                             <option value="Business Comm. (Corporate Focus)">Business Comm. (Corporate Focus)</option>
                             <option value="Spoken English (Fluency Focus)">Spoken English (Fluency Focus)</option>
