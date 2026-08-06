@@ -585,7 +585,7 @@ export function PTEPage() {
          <section className="py-16 sm:py-28 bg-[#f8fafc] relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
                <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0 relative">
-                  
+
                   {/* Left Circle Hub with Red Crescent Ring (Positioned ON TOP with higher Z-Index) */}
                   <motion.div
                      initial={{ opacity: 0, scale: 0.95 }}

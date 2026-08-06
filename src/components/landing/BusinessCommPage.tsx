@@ -9,7 +9,7 @@ import { ApexEdgeFooter } from "../ApexEdgeFooter";
 
 export function BusinessCommPage() {
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       <Navbar />
 
       {/* Hero Fold - 1:1 Match of User Reference Image Design */}

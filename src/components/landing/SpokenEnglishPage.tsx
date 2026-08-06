@@ -116,15 +116,15 @@ export function SpokenEnglishPage() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#FFFBF8] text-[#2C1820] overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-[#FFFBF8] text-[#2C1820] overflow-x-hidden">
       <Navbar />
 
       {/* Hero Section - Pinkish Creamish & White Theme */}
       <section className="relative w-full pt-28 sm:pt-36 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-12 bg-gradient-to-b from-[#FAF0EB] via-[#FDF4F0] to-[#FFF5F2] overflow-hidden">
-        
+
         {/* Floating Line-Art Vector Doodles */}
         {/* Rocket Line Art - Top Left */}
-        <motion.div 
+        <motion.div
           initial={{ y: 0 }}
           animate={{ y: [-6, 6, -6] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -140,7 +140,7 @@ export function SpokenEnglishPage() {
         </motion.div>
 
         {/* Open Book Line Art - Mid Left */}
-        <motion.div 
+        <motion.div
           initial={{ y: 0 }}
           animate={{ y: [6, -6, 6] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -157,7 +157,7 @@ export function SpokenEnglishPage() {
         </motion.div>
 
         {/* Hot Air Balloon Line Art - Top Right */}
-        <motion.div 
+        <motion.div
           initial={{ y: 0 }}
           animate={{ y: [-8, 8, -8] }}
           transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
@@ -241,7 +241,7 @@ export function SpokenEnglishPage() {
             <div className="relative group">
               {/* Outer stroke accent ring */}
               <div className="absolute -inset-1 sm:-inset-3 border sm:border-2 border-[#2C1820]/25 rounded-t-[52px] xs:rounded-t-[80px] sm:rounded-t-[160px] rounded-b-[22px] sm:rounded-b-[50px] pointer-events-none" />
-              
+
               <div className="rounded-t-[45px] xs:rounded-t-[70px] sm:rounded-t-[140px] rounded-b-[18px] sm:rounded-b-[40px] bg-[#E9D5FF] border-2 sm:border-4 border-white shadow-lg sm:shadow-2xl overflow-hidden transition-transform duration-300 group-hover:-translate-y-2 relative z-10">
                 <img
                   src="/students/hero_center.png"
@@ -296,7 +296,7 @@ export function SpokenEnglishPage() {
               <div className="relative w-48 sm:w-60 lg:w-full max-w-[270px] aspect-square flex items-center justify-center">
                 {/* Main Vibrant Blue Backdrop Circle */}
                 <div className="absolute inset-2 rounded-full bg-gradient-to-br from-[#38BDF8] via-[#0284C7] to-[#0369A1] shadow-md shadow-sky-500/20" />
-                
+
                 {/* Floating Pink & Blue Graphic Circles */}
                 <div className="absolute -top-1 -right-1 sm:top-1 sm:right-1 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-[#FB7185] animate-pulse" />
                 <div className="absolute top-1/4 -left-2 sm:-left-3 w-5 sm:w-6 h-5 sm:h-6 rounded-full bg-[#38BDF8]" />

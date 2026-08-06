@@ -1,6 +1,7 @@
 import { useState, useEffect, type MouseEvent } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import logo from "@/assets/logo.png";
+import { ENV } from "@/lib/env";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,14 +52,14 @@ export function Navbar() {
             </div>
             <div className="flex items-center gap-2.5 sm:gap-4 ml-auto whitespace-nowrap">
               <a
-                href="mailto:apexedgeenglish@gmail.com "
+                href={`mailto:${ENV.CONTACT_EMAIL}`}
                 className="hover:opacity-85 transition"
               >
-                apexedgeenglish@gmail.com
+                {ENV.CONTACT_EMAIL}
               </a>
               <span className="hidden sm:inline-block h-5 w-px bg-white/45" />
-              <a href="tel:+918360079077" className="hover:opacity-85 transition">
-                +918360079077
+              <a href={`tel:${ENV.CONTACT_PHONE.replace(/\s+/g, "")}`} className="hover:opacity-85 transition">
+                {ENV.CONTACT_PHONE}
               </a>
             </div>
           </div>

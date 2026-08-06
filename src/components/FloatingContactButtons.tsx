@@ -1,5 +1,6 @@
 import { type SVGProps } from "react";
 import { Mail, PhoneCall } from "lucide-react";
+import { ENV } from "@/lib/env";
 
 /* ✅ Clean WhatsApp Icon */
 function WhatsAppIcon(props: SVGProps<SVGSVGElement>) {
@@ -14,21 +15,21 @@ function WhatsAppIcon(props: SVGProps<SVGSVGElement>) {
 const contactActions = [
   {
     label: "Call",
-    href: "tel:+918360079077",
+    href: `tel:${ENV.CONTACT_PHONE.replace(/\s+/g, "")}`,
     icon: PhoneCall,
     bg: "bg-[#d90f40] hover:bg-[#c50e3a]",
     aria: "Call",
   },
   {
     label: "WhatsApp",
-    href: "https://wa.me/918360079077",
+    href: `https://wa.me/${ENV.WHATSAPP_NUMBER.replace(/\D/g, "")}`,
     icon: WhatsAppIcon,
     bg: "bg-[#25d366] hover:bg-[#1ebd5a]",
     aria: "Chat on WhatsApp",
   },
   {
     label: "Email",
-    href: "mailto:apexedgeenglish@gmail.com",
+    href: `mailto:${ENV.CONTACT_EMAIL}`,
     icon: Mail,
     bg: "bg-[#2563eb] hover:bg-[#1d4ed8]",
     aria: "Email",

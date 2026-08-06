@@ -5,10 +5,11 @@ import studentGirl from "@/assets/student-girl.png";
 import { ApexEdgeFooter } from "../ApexEdgeFooter";
 import { Navbar } from "../Navbar";
 import { Mail, Phone, MessageCircle, MapPin, Clock, CheckCircle2, Sparkles } from "lucide-react";
+import { ENV } from "@/lib/env";
 
-const adminEmail = "apexedge@gmail.com";
-const phoneNumber = "+91  83600 79077";
-const whatsappNumber = "+91  83600 79077";
+const adminEmail = ENV.CONTACT_EMAIL;
+const phoneNumber = ENV.CONTACT_PHONE;
+const whatsappNumber = ENV.WHATSAPP_NUMBER;
 
 export function ContactUsPage() {
   const [name, setName] = useState("");
@@ -42,13 +43,13 @@ export function ContactUsPage() {
     setIsSubmitting(true);
     const formData = new FormData(event.currentTarget);
     formData.append('form_type', 'contact');
-    
+
     // GOOGLE SHEETS URL (FOR CONTACT/INQUIRIES ONLY)
-    const CONTACT_SHEET_URL = "https://script.google.com/macros/s/AKfycbw44Z6wh2WRujRvh36WnoYhXUrDN1AvcZxByIGb4gSOL6IIGznhqw06Qj8wkdda7CacNQ/exec"; 
+    const CONTACT_SHEET_URL = ENV.CONTACT_SHEET_URL;
 
     try {
       // Submit to both services in parallel
-      const formSubmitPromise = fetch("https://formsubmit.co/ajax/apexedgeenglish@gmail.com", {
+      const formSubmitPromise = fetch(`https://formsubmit.co/ajax/${ENV.FORMSUBMIT_EMAIL}`, {
         method: "POST",
         body: formData
       });
@@ -58,7 +59,7 @@ export function ContactUsPage() {
       if (CONTACT_SHEET_URL) {
         const params = new URLSearchParams();
         formData.forEach((value, key) => params.append(key, value.toString()));
-        
+
         googleSheetPromise = fetch(CONTACT_SHEET_URL, {
           method: "POST",
           mode: "no-cors", // Essential for Google Apps Script
@@ -244,9 +245,9 @@ export function ContactUsPage() {
 
                 <AnimatePresence mode="wait">
                   {!isSubmitted ? (
-                    <motion.form 
+                    <motion.form
                       key="contact-form"
-                      onSubmit={handleSubmit} 
+                      onSubmit={handleSubmit}
                       className="mt-7 space-y-5"
                       initial={{ opacity: 1 }}
                       exit={{ opacity: 0, y: -20 }}
@@ -392,7 +393,7 @@ export function ContactUsPage() {
                     >
                       <div className="w-24 h-24 bg-[#d90f40]/10 rounded-full flex items-center justify-center mx-auto mb-8 relative">
                         <CheckCircle2 className="w-12 h-12 text-[#d90f40] relative z-10" />
-                        <motion.div 
+                        <motion.div
                           animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
                           transition={{ duration: 2, repeat: Infinity }}
                           className="absolute inset-0 bg-[#d90f40] rounded-full"
@@ -402,7 +403,7 @@ export function ContactUsPage() {
                       <p className="text-gray-500 font-medium mb-10 max-w-xs mx-auto">
                         Thank you for reaching out. Our team will contact you within 24 hours.
                       </p>
-                      <button 
+                      <button
                         onClick={() => setIsSubmitted(false)}
                         className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#1a1a1a] text-white font-black text-sm uppercase tracking-widest hover:bg-[#d90f40] transition-colors"
                       >

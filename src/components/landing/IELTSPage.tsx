@@ -107,11 +107,11 @@ const reasons = [
 
 export function IELTSPage() {
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-white overflow-x-hidden ">
       <Navbar />
 
       {/* Hero Section - Exact Replica of Image 1 with Red Curved Background */}
-      <section className="relative w-full pt-32 sm:pt-48 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden">
+      <section className="relative w-full pt-32 sm:pt-48 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden font-sans">
         {/* Red Curved Background Shape based on Image 2 scribble */}
         <div 
           className="absolute top-0 left-0 w-full h-[450px] sm:h-[600px] bg-[#d90f40] z-0" 

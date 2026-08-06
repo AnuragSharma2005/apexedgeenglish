@@ -44,8 +44,8 @@ function TeacherDetailPage() {
           animate={{ opacity: 1, x: 0 }}
           className="mb-12"
         >
-          <Link 
-            to="/about" 
+          <Link
+            to="/about"
             className="inline-flex items-center gap-2 text-[#d90f40] font-bold group"
           >
             <LucideArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
@@ -55,21 +55,21 @@ function TeacherDetailPage() {
 
         <div className="grid lg:grid-cols-12 gap-16 items-start">
           {/* Left: Image Card */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             className="lg:col-span-5"
           >
             <div className="relative rounded-[3rem] overflow-hidden shadow-2xl shadow-black/10 border-8 border-white">
-              <img 
-                src={teacher.image} 
-                alt={teacher.name} 
+              <img
+                src={teacher.image}
+                alt={teacher.name}
                 className="w-full h-auto object-cover aspect-[4/5]"
               />
               <div className="absolute top-6 right-6">
                 <div className="w-16 h-16 bg-[#d90f40] rounded-2xl flex items-center justify-center text-white shadow-xl rotate-12">
-                   <LucideStar className="w-8 h-8 fill-current" />
+                  <LucideStar className="w-8 h-8 fill-current" />
                 </div>
               </div>
             </div>
@@ -102,7 +102,7 @@ function TeacherDetailPage() {
                 {teacher.name}
               </h1>
               <h3 className="text-2xl font-bold text-[#d90f40] mb-8">{teacher.qualification}</h3>
-              
+
               <div className="bg-white/50 backdrop-blur-sm p-8 rounded-[2.5rem] border border-white mb-12">
                 <p className="text-xl text-[#444] leading-relaxed">
                   {teacher.bio}
@@ -142,12 +142,12 @@ function TeacherDetailPage() {
               </div>
 
               <div className="mt-16 flex flex-wrap gap-6">
-               <button
-                onClick={() => navigate({ to: "/enroll" })}
-                className="w-full px-10 py-5 rounded-2xl bg-[#d90f40] text-white font-bold text-lg shadow-2xl shadow-[#d90f40]/30 hover:scale-105 transition-transform"
-              >
-                Book a Session
-              </button>
+                <button
+                  onClick={() => navigate({ to: "/enroll" })}
+                  className="w-full px-10 py-5 rounded-2xl bg-[#d90f40] text-white font-bold text-lg shadow-2xl shadow-[#d90f40]/30 hover:scale-105 transition-transform"
+                >
+                  Book a Session
+                </button>
               </div>
             </motion.div>
           </div>

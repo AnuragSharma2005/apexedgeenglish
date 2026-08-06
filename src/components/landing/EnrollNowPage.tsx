@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { Navbar } from '../Navbar';
 import { ApexEdgeFooter } from '../ApexEdgeFooter';
+import { ENV } from '@/lib/env';
 
 export function EnrollNowPage() {
   const [name, setName] = useState("");
@@ -80,10 +81,10 @@ export function EnrollNowPage() {
     const formData = new FormData(e.currentTarget);
     formData.append('form_type', 'enroll');
 
-    const ENROLL_SHEET_URL = "https://script.google.com/macros/s/AKfycbwhAPDRLyK5GlqgYTa0CIQVWR_uBBLGTT086QB2AE06Y3AAgKigkR05eUL8sKmXtxDR/exec";
+    const ENROLL_SHEET_URL = ENV.ENROLL_SHEET_URL;
 
     try {
-      const formSubmitPromise = fetch("https://formsubmit.co/ajax/apexedgeenglish@gmail.com", {
+      const formSubmitPromise = fetch(`https://formsubmit.co/ajax/${ENV.FORMSUBMIT_EMAIL}`, {
         method: "POST",
         body: formData
       });
@@ -376,7 +377,7 @@ export function EnrollNowPage() {
                             <option value="Australia">Australia</option>
                             <option value="United States">United States</option>
                             <option value="New Zealand">New Zealand</option>
-                            
+
                             <option value="Other">Other</option>
                           </select>
                           <div className="absolute right-5 bottom-3.5 pointer-events-none text-gray-900">
@@ -514,7 +515,7 @@ export function EnrollNowPage() {
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
 
-                   <span className="inline-flex px-4 py-1.5 rounded-full bg-green-100 text-green-700 font-black text-[10px] uppercase tracking-widest">
+                  <span className="inline-flex px-4 py-1.5 rounded-full bg-green-100 text-green-700 font-black text-[10px] uppercase tracking-widest">
                     Registration Confirmed
                   </span>
 

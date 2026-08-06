@@ -6,7 +6,7 @@ import { ApexEdgeFooter } from "../ApexEdgeFooter";
 
 export function CELPIPPage() {
   return (
-    <div className="min-h-screen bg-[#fcf0f4] overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-[#fcf0f4] overflow-x-hidden ">
       <Navbar />
 
       {/* Main Full-Screen Hero Fold */}

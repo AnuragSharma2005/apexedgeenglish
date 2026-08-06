@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import image from "@/assets/image.png";
+import { ENV } from "@/lib/env";
 
 const exploreLinks = [
   { label: "Home", href: "/" },
@@ -127,15 +128,15 @@ export function ApexEdgeFooter() {
                 <li className="flex items-start gap-2.5">
                   <Phone className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#f6cb3f] sm:h-4 sm:w-4" />
                   <div>
-                    <p>+91 8360079077</p>
+                    <p>{ENV.CONTACT_PHONE}</p>
                     <p className="text-white/58">Admission helpline</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <Phone className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#f6cb3f] sm:h-4 sm:w-4" />
+                  <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#f6cb3f] sm:h-4 sm:w-4" />
                   <div>
-                    <p>+91  83600 79077</p>
-                    <p className="text-white/58">Free demo class</p>
+                    <p>{ENV.CONTACT_EMAIL}</p>
+                    <p className="text-white/58">Free demo & support</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">

@@ -10,6 +10,7 @@ import { ApexEdgeFooter } from "../components/ApexEdgeFooter";
 import { Navbar } from "../components/Navbar";
 import studentGirl from "@/assets/student-girl.png";
 import { Link } from "@tanstack/react-router";
+import { ENV } from "@/lib/env";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -149,9 +150,9 @@ function Index() {
 
                 <p className="mt-4 flex items-center justify-center gap-2 text-[#d70c3f] text-xl sm:text-2xl font-bold tracking-tight">
                   <span aria-hidden="true">📞</span>
-                  +91  83600 79077
+                  {ENV.CONTACT_PHONE}
                 </p>
-                <a href="tel:+918360079077">
+                <a href={`tel:${ENV.CONTACT_PHONE.replace(/\s+/g, "")}`}>
                   <button className="mt-5 w-full rounded-xl bg-[#d70c3f] py-3 text-white text-lg sm:text-xl font-semibold hover:opacity-90 transition">
                     Call Us Now
                   </button>

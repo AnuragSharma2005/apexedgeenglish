@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "../Navbar";
-import { 
-  Users, 
-  MessageSquare, 
-  Settings, 
-  LogOut, 
-  Search, 
-  Filter, 
-  CheckCircle, 
-  Clock, 
+import {
+  Users,
+  MessageSquare,
+  Settings,
+  LogOut,
+  Search,
+  Filter,
+  CheckCircle,
+  Clock,
   AlertCircle,
   ChevronRight,
   Database,
@@ -18,21 +18,22 @@ import {
   Lock,
   Mail
 } from "lucide-react";
+import { ENV } from "@/lib/env";
 
-// CONFIG: URLs for your sheets
-const ENROLL_URL = "https://script.google.com/macros/s/AKfycbwhAPDRLyK5GlqgYTa0CIQVWR_uBBLGTT086QB2AE06Y3AAgKigkR05eUL8sKmXtxDR/exec";
-const CONTACT_URL = "https://script.google.com/macros/s/AKfycbw44Z6wh2WRujRvh36WnoYhXUrDN1AvcZxByIGb4gSOL6IIGznhqw06Qj8wkdda7CacNQ/exec";
+// CONFIG: URLs for sheets from environment
+const ENROLL_URL = ENV.ENROLL_SHEET_URL;
+const CONTACT_URL = ENV.CONTACT_SHEET_URL;
 
-// Login Credentials
-const ADMIN_EMAIL = "admin@apexedge.com";
-const ADMIN_PASSWORD = "apexedge@123";
+// Login Credentials from environment
+const ADMIN_EMAIL = ENV.ADMIN_EMAIL;
+const ADMIN_PASSWORD = ENV.ADMIN_PASSWORD;
 
 export function AdminPanel() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPass, setLoginPass] = useState("");
   const [loginError, setLoginError] = useState("");
-  
+
   const [activeTab, setActiveTab] = useState<"enrollments" | "inquiries">("enrollments");
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
@@ -100,7 +101,7 @@ export function AdminPanel() {
   if (!isLoggedIn) {
     return (
       <div className="min-h-screen bg-[#f8f9fc] flex items-center justify-center p-4 font-sans">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="max-w-md w-full bg-white rounded-3xl shadow-2xl p-10 border border-gray-100"
@@ -118,8 +119,8 @@ export function AdminPanel() {
               <label className="text-xs font-black text-gray-400 uppercase tracking-widest pl-1">Email Address</label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
                   className="w-full h-14 bg-gray-50 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-[#d90f40] pl-12 outline-none transition-all font-medium"
@@ -133,8 +134,8 @@ export function AdminPanel() {
               <label className="text-xs font-black text-gray-400 uppercase tracking-widest pl-1">Password</label>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input 
-                  type="password" 
+                <input
+                  type="password"
                   value={loginPass}
                   onChange={(e) => setLoginPass(e.target.value)}
                   className="w-full h-14 bg-gray-50 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-[#d90f40] pl-12 outline-none transition-all font-medium"
@@ -145,7 +146,7 @@ export function AdminPanel() {
             </div>
 
             {loginError && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="bg-red-50 text-[#d90f40] p-4 rounded-xl text-sm font-bold flex items-center gap-3"
@@ -155,7 +156,7 @@ export function AdminPanel() {
               </motion.div>
             )}
 
-            <button 
+            <button
               type="submit"
               className="w-full h-14 bg-[#1a1a1a] text-white rounded-2xl font-black uppercase tracking-widest hover:bg-[#d90f40] transition-all flex items-center justify-center gap-3 group"
             >
@@ -168,8 +169,8 @@ export function AdminPanel() {
     );
   }
 
-  const filteredData = data.filter(item => 
-    Object.values(item).some(val => 
+  const filteredData = data.filter(item =>
+    Object.values(item).some(val =>
       String(val).toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
@@ -177,7 +178,7 @@ export function AdminPanel() {
   return (
     <div className="min-h-screen bg-[#f8f9fc] font-sans text-[#1a1a1a]">
       <Navbar />
-      
+
       <div className="pt-32 px-4 sm:px-6 lg:px-12 pb-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -191,8 +192,8 @@ export function AdminPanel() {
                 Admin <span className="text-[#d90f40]">Dashboard</span>
               </h1>
             </div>
-            
-            <button 
+
+            <button
               onClick={() => setIsLoggedIn(false)}
               className="h-14 px-8 bg-white border border-gray-100 rounded-2xl font-black uppercase tracking-widest text-sm flex items-center gap-3 hover:bg-red-50 hover:text-[#d90f40] transition-all shadow-sm"
             >
@@ -204,14 +205,14 @@ export function AdminPanel() {
           {/* Controls */}
           <div className="bg-white rounded-[2.5rem] p-4 shadow-xl shadow-gray-200/50 border border-gray-50 mb-8 flex flex-col lg:flex-row items-center gap-4">
             <div className="flex p-1.5 bg-gray-50 rounded-2xl w-full lg:w-auto">
-              <button 
+              <button
                 onClick={() => setActiveTab("enrollments")}
                 className={`flex-1 lg:flex-none px-8 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${activeTab === 'enrollments' ? 'bg-[#d90f40] text-white shadow-lg' : 'text-gray-500 hover:bg-white'}`}
               >
                 <Users className="w-4 h-4" />
                 Enrollments
               </button>
-              <button 
+              <button
                 onClick={() => setActiveTab("inquiries")}
                 className={`flex-1 lg:flex-none px-8 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${activeTab === 'inquiries' ? 'bg-[#d90f40] text-white shadow-lg' : 'text-gray-500 hover:bg-white'}`}
               >
@@ -222,7 +223,7 @@ export function AdminPanel() {
 
             <div className="relative flex-1 w-full">
               <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input 
+              <input
                 type="text"
                 placeholder="Search leads, names, or emails..."
                 value={searchTerm}
@@ -231,7 +232,7 @@ export function AdminPanel() {
               />
             </div>
 
-            <button 
+            <button
               onClick={fetchData}
               className="w-full lg:w-auto h-14 px-8 rounded-2xl bg-[#1a1a1a] text-white font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-[#d90f40] transition-all"
             >
@@ -268,11 +269,11 @@ export function AdminPanel() {
                   </thead>
                   <tbody className="divide-y divide-gray-50">
                     {filteredData.map((item, idx) => (
-                      <motion.tr 
+                      <motion.tr
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: idx * 0.05 }}
-                        key={idx} 
+                        key={idx}
                         className="hover:bg-gray-50/30 transition-colors group"
                       >
                         <td className="px-8 py-6">
@@ -280,11 +281,11 @@ export function AdminPanel() {
                             {/* Timestamp */}
                             <div className="flex items-center gap-1.5 text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">
                               <Clock className="w-3 h-3" />
-                              {getField(item, ['timestamp', 'date', 'time', 'added_on']) ? new Date(getField(item, ['timestamp', 'date', 'time', 'added_on'])).toLocaleString('en-IN', { 
-                                day: '2-digit', 
-                                month: 'short', 
-                                hour: '2-digit', 
-                                minute: '2-digit' 
+                              {getField(item, ['timestamp', 'date', 'time', 'added_on']) ? new Date(getField(item, ['timestamp', 'date', 'time', 'added_on'])).toLocaleString('en-IN', {
+                                day: '2-digit',
+                                month: 'short',
+                                hour: '2-digit',
+                                minute: '2-digit'
                               }) : 'Recent'}
                             </div>
 
@@ -297,7 +298,7 @@ export function AdminPanel() {
                             <span className="text-[#d90f40] font-bold text-sm mt-1">
                               {getField(item, ['Phone no', 'WhatsApp', 'Phone', 'WhatsApp_Number', 'WhatsApp Number', 'phone'])}
                             </span>
-                            
+
                             {/* Extra Lead Details */}
                             <div className="flex flex-wrap gap-2 mt-3">
                               {getField(item, ['Qualification', 'qualification']) && <span className="text-[10px] bg-gray-100 px-2 py-0.5 rounded font-bold text-gray-500 uppercase">{getField(item, ['Qualification', 'qualification'])}</span>}
@@ -329,27 +330,26 @@ export function AdminPanel() {
                           </div>
                         </td>
                         <td className="px-8 py-6">
-                          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest ${
-                            item.Status === 'Contacted' ? 'bg-green-50 text-green-600 border border-green-100' :
-                            item.Status === 'Busy' ? 'bg-orange-50 text-orange-600 border border-orange-100' :
-                            'bg-gray-100 text-gray-400 border border-gray-200'
-                          }`}>
+                          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest ${item.Status === 'Contacted' ? 'bg-green-50 text-green-600 border border-green-100' :
+                              item.Status === 'Busy' ? 'bg-orange-50 text-orange-600 border border-orange-100' :
+                                'bg-gray-100 text-gray-400 border border-gray-200'
+                            }`}>
                             {item.Status === 'Contacted' ? <CheckCircle className="w-3.5 h-3.5" /> :
-                             item.Status === 'Busy' ? <Clock className="w-3.5 h-3.5" /> :
-                             <AlertCircle className="w-3.5 h-3.5" />}
+                              item.Status === 'Busy' ? <Clock className="w-3.5 h-3.5" /> :
+                                <AlertCircle className="w-3.5 h-3.5" />}
                             {item.Status || 'New'}
                           </div>
                         </td>
                         <td className="px-8 py-6 text-right">
                           <div className="flex flex-col items-end gap-2">
-                            <button 
+                            <button
                               onClick={() => updateStatus(item.rowId, "Contacted")}
                               className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-gray-100 text-xs font-black uppercase tracking-widest hover:bg-green-50 hover:text-green-600 hover:border-green-200 transition-all shadow-sm w-full lg:w-auto justify-center"
                             >
                               <CheckCircle className="w-4 h-4" />
                               Contacted
                             </button>
-                            <button 
+                            <button
                               onClick={() => updateStatus(item.rowId, "Busy")}
                               className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-gray-100 text-xs font-black uppercase tracking-widest hover:bg-orange-50 hover:text-orange-600 hover:border-orange-200 transition-all shadow-sm w-full lg:w-auto justify-center"
                             >
