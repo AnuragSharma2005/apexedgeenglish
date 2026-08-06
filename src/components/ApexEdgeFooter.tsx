@@ -91,7 +91,7 @@ export function ApexEdgeFooter() {
 
             <div className="col-span-1">
               <p className="text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-white/55 sm:text-xs sm:tracking-[0.24em]">
-                Explore
+                Support
               </p>
               <ul className="mt-3 space-y-1.5 text-[0.72rem] sm:mt-5 sm:space-y-3 sm:text-base">
                 {exploreLinks.map((link) => (
@@ -106,7 +106,7 @@ export function ApexEdgeFooter() {
 
             <div className="col-span-1">
               <p className="text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-white/55 sm:text-xs sm:tracking-[0.24em]">
-                Support
+               Explore
               </p>
               <ul className="mt-3 space-y-1.5 text-[0.72rem] sm:mt-5 sm:space-y-3 sm:text-base">
                 {supportLinks.map((link) => (
