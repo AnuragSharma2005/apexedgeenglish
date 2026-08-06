@@ -220,6 +220,12 @@ export function Navbar() {
               </button>
               {isCoursesDropdownOpen && (
                 <div className="mt-4 bg-[#f5e8ec] rounded-2xl p-4 space-y-3">
+                  <Link to="/phonics" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition">
+                    <div className="w-10 h-10 bg-[#698c73] rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
+                      PHN
+                    </div>
+                    <span className="text-base font-semibold text-[#333]">Phonics</span>
+                  </Link>
                   <Link to="/ielts" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition">
                     <div className="w-10 h-10 bg-[#d72646] rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
                       IELTS
@@ -249,12 +255,6 @@ export function Navbar() {
                       SE
                     </div>
                     <span className="text-base font-semibold text-[#333]">Spoken English</span>
-                  </Link>
-                  <Link to="/phonics" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition">
-                    <div className="w-10 h-10 bg-[#698c73] rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
-                      PHN
-                    </div>
-                    <span className="text-base font-semibold text-[#333]">Phonics</span>
                   </Link>
                 </div>
               )}
