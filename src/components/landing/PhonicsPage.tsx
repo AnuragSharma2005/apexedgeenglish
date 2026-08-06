@@ -326,7 +326,7 @@ export function PhonicsPage() {
 
         {/* Hero Section Container (Cream background, grid layout, restricted height on desktop) */}
         <div
-          className="relative w-full lg:min-h-[720px] flex flex-col justify-between overflow-hidden pt-28 lg:pt-36 pb-20 sm:pb-28 bg-[#FAF8F3]"
+          className="relative w-full lg:min-h-[720px] flex flex-col justify-between overflow-hidden pt-28 lg:pt-36 pb-32 sm:pb-28 bg-[#FAF8F3]"
           style={{
             backgroundImage: `
               linear-gradient(to right, rgba(54, 59, 55, 0.05) 1px, transparent 1px),
@@ -432,18 +432,18 @@ export function PhonicsPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-row items-center justify-center gap-6 mt-8 sm:mt-10"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mt-6 sm:mt-10 w-full sm:w-auto px-4 sm:px-0 z-30 relative"
             >
               <Link
                 to="/enroll"
-                className="bg-[#363B37] hover:bg-[#252826] text-white px-7 py-3.5 sm:px-8 sm:py-4 rounded-full font-medium transition duration-300 shadow-md flex items-center gap-2 text-sm sm:text-base cursor-pointer"
+                className="bg-[#363B37] hover:bg-[#252826] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-medium transition duration-300 shadow-md flex items-center justify-center gap-2 text-sm sm:text-base cursor-pointer w-full sm:w-auto text-center"
               >
                 Book a Free Demo Class
                 <span className="text-[1.1em] font-normal">›</span>
               </Link>
               <Link
                 to="/contact-us"
-                className="text-[#363B37] font-semibold underline underline-offset-4 hover:text-[#1c1d1c] transition duration-300 text-sm sm:text-base cursor-pointer"
+                className="text-[#363B37] font-semibold underline underline-offset-4 hover:text-[#1c1d1c] transition duration-300 text-sm sm:text-base cursor-pointer py-1"
               >
                 Get in Touch
               </Link>
@@ -471,26 +471,26 @@ export function PhonicsPage() {
           </div>
 
           {/* Left Kid Container */}
-          <div className="absolute left-0 bottom-0 w-[38%] lg:w-[42%] xl:w-[45%] max-w-[520px] h-[90%] lg:h-[95%] flex flex-col justify-end items-start z-10 hidden sm:flex pointer-events-none select-none">
+          <div className="absolute left-0 bottom-0 w-[38%] xs:w-[40%] sm:w-[38%] lg:w-[42%] xl:w-[45%] max-w-[160px] xs:max-w-[180px] sm:max-w-[520px] h-[55%] xs:h-[65%] sm:h-[90%] lg:h-[95%] flex flex-col justify-end items-start z-10 pointer-events-none select-none">
             <motion.img
               initial={{ opacity: 0, x: -50, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.9, type: "spring", stiffness: 50, delay: 0.3 }}
               src={transparentGirl}
               alt="Toddler girl with heart sunglasses"
-              className="relative w-full z-10 object-contain max-h-full select-none pointer-events-none translate-x-2"
+              className="relative w-full z-10 object-contain max-h-full select-none pointer-events-none translate-x-1 sm:translate-x-2"
             />
           </div>
 
           {/* Right Kid Container */}
-          <div className="absolute right-0 bottom-0 w-[40%] lg:w-[44%] xl:w-[47%] max-w-[540px] h-[90%] lg:h-[95%] flex flex-col justify-end items-end z-10 hidden sm:flex pointer-events-none select-none">
+          <div className="absolute right-0 bottom-0 w-[40%] xs:w-[42%] sm:w-[40%] lg:w-[44%] xl:w-[47%] max-w-[170px] xs:max-w-[190px] sm:max-w-[540px] h-[55%] xs:h-[65%] sm:h-[90%] lg:h-[95%] flex flex-col justify-end items-end z-10 pointer-events-none select-none">
             <motion.img
               initial={{ opacity: 0, x: 50, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.9, type: "spring", stiffness: 50, delay: 0.3 }}
               src={transparentBaby}
               alt="Baby in yellow outfit"
-              className="relative w-full z-10 object-contain max-h-full select-none pointer-events-none -translate-x-2"
+              className="relative w-full z-10 object-contain max-h-full select-none pointer-events-none -translate-x-1 sm:-translate-x-2"
             />
           </div>
 
