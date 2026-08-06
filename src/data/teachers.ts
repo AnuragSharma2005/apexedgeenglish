@@ -46,13 +46,13 @@ export const teachers: Teacher[] = [
   },
   {
     id: "deepika",
-    name: "Deepika Arya",
-    qualification: "PTE Specialist",
+    name: "Ms. Deepika Arya",
+    qualification: "Senior PTE Expert",
     image: "/teachers/deepika.jpeg",
-    experience: "8+ Years",
-    specialization: "PTE & CELPIP",
-    bio: "Deepika holds a PhD in English Literature and is a certified PTE trainer. Her analytical approach to language testing makes her one of the most sought-after trainers.",
-    skills: ["PTE Academic", "CELPIP-General", "English Literature", "Grammar Mastery"],
-    achievements: ["Highest Student Success Rate 2023", "Published Author", "IDP Certified Trainer"]
+    experience: "5+ Years",
+    specialization: "PTE & Score Enhancement",
+    bio: "With 5+ years of professional PTE training experience, Ms. Deepika has successfully mentored hundreds of aspirants in achieving competitive PTE scores for study, work, and immigration pathways.\n\nRecognized for her result-driven approach and deep understanding of the latest PTE exam pattern, she delivers strategic, personalized training that helps students maximize their performance across all communicative skills.\n\nHer structured methodology, precision-focused coaching, and unwavering commitment to excellence make her a valued mentor at Apex Edge English.",
+    skills: ["PTE Academic", "AI-Based Test Strategies", "Score Enhancement", "Speaking & Writing Mastery", "Personalized Mentoring", "Mock Test Analysis"],
+    achievements: ["5+ Years of PTE Training", "Result-Driven Coaching", "Valued Mentor at Apex Edge"]
   }
 ];
