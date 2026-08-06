@@ -1,4 +1,4 @@
-import { useEffect,useRef, useState, type TouchEvent } from "react";
+import { useEffect, useRef, useState, type TouchEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import type { LucideIcon } from "lucide-react";
 import { BookOpenCheck, MonitorPlay, Presentation, ScanText, ArrowRight, Baby } from "lucide-react";
