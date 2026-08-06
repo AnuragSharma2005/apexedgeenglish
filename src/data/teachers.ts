@@ -24,14 +24,14 @@ export const teachers: Teacher[] = [
   },
   {
     id: "Deepika",
-    name: "Deepika ",
-    qualification: "IELTS & CELPIP Specialist",
+    name: "Deepika Chawla",
+    qualification: "Founder & Lead Trainer",
     image: "/teachers/deepika_chawla.png",
-    experience: "7+ Years",
-    specialization: "CELPIP & Soft Skills",
-    bio: "Deepika Chawla is a specialist in IELTS and CELPIP training. Her attention to detail and personalized feedback have consistently led to high success rates for her students.",
-    skills: ["IELTS", "CELPIP-LS", "Soft Skills Training", "Interview Preparation"],
-    achievements: ["Community Leader Award", "Student Choice Award 2024", "Certified Trainer"]
+    experience: "8+ Years",
+    specialization: "IELTS & CELPIP",
+    bio: "With over 8 years of experience in English language training, I specialize in preparing students for the IELTS and CELPIP examinations through personalized, strategic, and results-driven coaching.\n\nMy teaching approach combines structured learning, practical exam techniques, and individual mentorship to help learners improve their English proficiency and achieve their target scores with confidence. Every training program at Apex Edge is designed to provide focused guidance, continuous feedback, and proven strategies that prepare students for success in international education, immigration, and career opportunities.\n\nAt Apex Edge, I don't just prepare students for an exam—I empower them to achieve their global aspirations with confidence and excellence.",
+    skills: ["IELTS Preparation", "CELPIP Training", "Structured Learning", "Individual Mentorship", "Exam Techniques", "English Proficiency"],
+    achievements: ["Founder of Apex Edge", "8+ Years of Expert Training", "Empowering Global Aspirations"]
   },
   {
     id: "shikha",
@@ -46,7 +46,7 @@ export const teachers: Teacher[] = [
   },
   {
     id: "deepika",
-    name: "Deepika",
+    name: "Deepika Arya",
     qualification: "PTE Specialist",
     image: "/teachers/deepika.jpeg",
     experience: "8+ Years",

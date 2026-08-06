@@ -253,14 +253,12 @@ function AboutPage() {
                     {/* Buttons */}
                     <div className="w-full flex flex-col gap-3">
                       {/* Get Free Demo Button */}
-                      <a
-                        href={`https://wa.me/918360079077?text=Hello%2C%20I%20want%20to%20book%20a%20free%20demo%20class%20with%20${encodeURIComponent(teacher.name)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        to="/enroll"
                         className="w-full py-3 rounded-2xl bg-[#d90f40] text-white font-bold text-sm tracking-wide shadow-lg shadow-[#d90f40]/30 hover:bg-[#b80d35] hover:scale-105 hover:shadow-xl hover:shadow-[#d90f40]/40 active:scale-95 transition-all duration-300 text-center block"
                       >
                         Get Free Demo
-                      </a>
+                      </Link>
 
                       {/* View Profile Button */}
                       <Link
