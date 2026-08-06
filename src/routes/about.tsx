@@ -171,82 +171,106 @@ function AboutPage() {
         </section>
 
         {/* Teachers Section */}
-        <section id="teachers" className="relative py-32 bg-[linear-gradient(135deg,#c90f3b_0%,#d90f40_45%,#a70e35_100%)] text-white overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 -z-10">
-            <span className="absolute top-12 left-10 h-2 w-2 rounded-full bg-white/90 shadow-[0_0_12px_rgba(255,255,255,0.8)]" />
-            <span className="absolute top-24 right-16 h-2 w-2 rounded-full bg-white/80 shadow-[0_0_10px_rgba(255,255,255,0.7)]" />
-            <span className="absolute top-40 left-1/2 h-2 w-2 rounded-full bg-white/70 shadow-[0_0_10px_rgba(255,255,255,0.6)]" />
-            <span className="absolute bottom-24 left-24 h-2 w-2 rounded-full bg-white/80 shadow-[0_0_10px_rgba(255,255,255,0.7)]" />
-            <span className="absolute bottom-16 right-24 h-2 w-2 rounded-full bg-white/90 shadow-[0_0_12px_rgba(255,255,255,0.8)]" />
-            <span className="absolute top-32 right-1/3 inline-flex text-white/70 text-xs">✦</span>
-            <span className="absolute left-1/3 bottom-28 inline-flex text-white/70 text-xs">✦</span>
+        <section id="teachers" className="relative py-32 overflow-hidden" style={{ background: "linear-gradient(135deg, #fdf2e8 0%, #fff7f0 50%, #fde8e8 100%)" }}>
+          {/* Decorative background blobs */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute -top-20 -left-20 w-96 h-96 bg-[#d90f40]/5 rounded-full blur-3xl" />
+            <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-[#d90f40]/5 rounded-full blur-3xl" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/40 rounded-full blur-3xl" />
           </div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-            <div className="flex flex-col items-center text-center mb-20 gap-8">
-              <div className="max-w-3xl">
-                <motion.span
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="text-white/80 font-bold tracking-widest uppercase text-sm mb-4 block"
-                >
-                  Meet Our Experts
-                </motion.span>
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-black leading-tight text-center"
-                >
-                  The Minds Behind <span className="text-[#1a1a1a]">Apex Edge</span>
-                </motion.h2>
-              </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+            {/* Section Header */}
+            <div className="flex flex-col items-center text-center mb-24">
+              <motion.span
+                initial={{ opacity: 0, y: -10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="inline-block px-5 py-2 rounded-full bg-[#d90f40]/10 text-[#d90f40] font-bold text-sm uppercase tracking-widest mb-5"
+              >
+                Meet Our Experts
+              </motion.span>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#1a1a1a] leading-tight mb-6"
+              >
+                The Minds Behind <span className="text-[#d90f40]">Apex Edge</span>
+              </motion.h2>
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="text-white/85 text-base sm:text-lg max-w-2xl mb-4"
+                className="text-[#555] text-lg max-w-2xl"
               >
                 Our teachers are not just instructors; they are mentors who are committed to your growth and success.
               </motion.p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-center max-w-7xl mx-auto">
+            {/* Teacher Cards — Foreign Prep Style */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 justify-center max-w-7xl mx-auto items-end">
               {teachers.slice(0, 4).map((teacher, index) => (
                 <motion.div
                   key={teacher.id}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 60 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -20 }}
-                  className="group relative bg-[#222] rounded-[2.5rem] overflow-hidden border border-white/5"
+                  transition={{ delay: index * 0.12, duration: 0.6, ease: "easeOut" }}
+                  className="group flex flex-col items-center"
                 >
-                  <div className="aspect-[4/5] overflow-hidden">
-                    <img
-                      src={teacher.image}
-                      alt={teacher.name}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#000] via-transparent to-transparent opacity-90" />
-
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <h4 className="text-2xl font-black mb-1 group-hover:text-[#d90f40] transition-colors whitespace-nowrap">{teacher.name}</h4>
-                    <p className="text-gray-400 text-sm mb-6">{teacher.qualification}</p>
-
-                    <Link
-                      to="/teachers/$teacherId"
-                      params={{ teacherId: teacher.id }}
-                      className="inline-flex items-center gap-2 text-[#d90f40] font-bold text-sm overflow-hidden"
-                    >
-                      <span className="translate-x-0 group-hover:translate-x-2 transition-transform duration-300">VIEW PROFILE</span>
-                      <LucideArrowRight className="w-4 h-4 translate-x-0 group-hover:translate-x-4 transition-transform duration-500" />
-                    </Link>
+                  {/* Photo — overflowing above the card */}
+                  <div className="relative z-10 mb-[-48px]">
+                    <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-3xl overflow-hidden shadow-2xl shadow-[#d90f40]/20 border-4 border-white group-hover:border-[#d90f40] transition-colors duration-300">
+                      <img
+                        src={teacher.image}
+                        alt={teacher.name}
+                        className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${teacher.id === "Ashish" ? "object-[center_40%]" : "object-top"}`}
+                      />
+                    </div>
                   </div>
 
-                  <div className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform rotate-45 group-hover:rotate-0">
-                    <LucideGraduationCap className="w-6 h-6 text-[#d90f40]" />
+                  {/* White Card Body */}
+                  <div className="w-full bg-white rounded-[2rem] pt-16 pb-8 px-6 flex flex-col items-center text-center shadow-xl shadow-[#d90f40]/10 border border-[#d90f40]/10 group-hover:shadow-2xl group-hover:shadow-[#d90f40]/20 transition-all duration-300">
+                    {/* Name */}
+                    <h4 className="text-xl font-black text-[#1a1a1a] mb-1 group-hover:text-[#d90f40] transition-colors">
+                      {teacher.name}
+                    </h4>
+
+                    {/* Certification Badge */}
+                    <span className="inline-block text-[#d90f40] font-bold text-xs uppercase tracking-wider mb-5 px-3 py-1 bg-[#d90f40]/8 rounded-full">
+                      {teacher.qualification}
+                    </span>
+
+                    {/* Divider */}
+                    <div className="w-10 h-0.5 bg-[#d90f40]/30 rounded-full mb-5" />
+
+                    {/* Experience */}
+                    <p className="text-[#888] text-sm font-medium mb-8">
+                      {teacher.experience} Experience
+                    </p>
+
+                    {/* Buttons */}
+                    <div className="w-full flex flex-col gap-3">
+                      {/* Get Free Demo Button */}
+                      <a
+                        href={`https://wa.me/918360079077?text=Hello%2C%20I%20want%20to%20book%20a%20free%20demo%20class%20with%20${encodeURIComponent(teacher.name)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-3 rounded-2xl bg-[#d90f40] text-white font-bold text-sm tracking-wide shadow-lg shadow-[#d90f40]/30 hover:bg-[#b80d35] hover:scale-105 hover:shadow-xl hover:shadow-[#d90f40]/40 active:scale-95 transition-all duration-300 text-center block"
+                      >
+                        Get Free Demo
+                      </a>
+
+                      {/* View Profile Button */}
+                      <Link
+                        to="/teachers/$teacherId"
+                        params={{ teacherId: teacher.id }}
+                        className="w-full py-3 rounded-2xl bg-white border-2 border-[#d90f40] text-[#d90f40] font-bold text-sm tracking-wide hover:bg-[#d90f40] hover:text-white hover:scale-105 hover:shadow-lg hover:shadow-[#d90f40]/30 active:scale-95 transition-all duration-300 text-center block"
+                      >
+                        View Profile
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               ))}

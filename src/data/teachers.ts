@@ -16,15 +16,15 @@ export const teachers: Teacher[] = [
     name: "Ashish Rawat",
     qualification: "Business Communication Expert",
     image: "/teachers/ashish.png",
-    experience: "10+ Years",
-    specialization: "Communication Skills",
-    bio: "Ashish is passionate about breaking the barriers of communication. His interactive teaching style ensures that students gain confidence in speaking English fluently.",
-    skills: ["Conversational English", "Accent Neutralization", "Personality Development", "Corporate Training"],
-    achievements: ["Top Voice on LinkedIn 2021", "Keynote Speaker", "Corporate Communication Expert"]
+    experience: "8+ Years",
+    specialization: "Business Communication",
+    bio: "With over 8 years of experience in Business Communication and Professional English training, I am passionate about helping students and professionals develop the communication skills essential for success in today's global environment.\n\nAs the Business Communication Expert at Apex Edge, I specialize in professional communication, workplace etiquette, presentation skills, interview preparation, and interpersonal effectiveness.\n\nCommunicate with confidence. Lead with impact. Succeed without limits.",
+    skills: ["Professional Communication", "Presentation Skills", "Interview Preparation", "Workplace Etiquette", "Interpersonal Effectiveness", "Business English"],
+    achievements: ["8+ Years of Business Communication Training", "Practical Learning & Personalized Mentoring", "Empowering Professionals for Global Success"]
   },
   {
     id: "Deepika",
-    name: "Deepika Chawla",
+    name: "Deepika ",
     qualification: "IELTS & CELPIP Specialist",
     image: "/teachers/deepika_chawla.png",
     experience: "7+ Years",
@@ -35,7 +35,7 @@ export const teachers: Teacher[] = [
   },
   {
     id: "shikha",
-    name: "Shikha Chawla",
+    name: "Shikha",
     qualification: "Senior IELTS Expert",
     image: "/teachers/shikha.png",
     experience: "8+ Years",
@@ -46,7 +46,7 @@ export const teachers: Teacher[] = [
   },
   {
     id: "deepika",
-    name: "Deepika Arya",
+    name: "Deepika",
     qualification: "PTE Specialist",
     image: "/teachers/deepika.jpeg",
     experience: "8+ Years",
