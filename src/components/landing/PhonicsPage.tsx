@@ -436,7 +436,7 @@ export function PhonicsPage() {
             >
               <Link
                 to="/enroll"
-                className="bg-[#363B37] hover:bg-[#252826] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-medium transition duration-300 shadow-md flex items-center justify-center gap-2 text-sm sm:text-base cursor-pointer w-full sm:w-auto text-center"
+                className="bg-[#363B37] hover:bg-[#252826] text-white px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition duration-300 shadow-md flex items-center justify-center gap-2 text-xs sm:text-base cursor-pointer w-auto sm:w-auto text-center whitespace-nowrap"
               >
                 Book a Free Demo Class
                 <span className="text-[1.1em] font-normal">›</span>
@@ -958,7 +958,7 @@ export function PhonicsPage() {
 
               <Link
                 to="/enroll"
-                className="bg-[#FAF8F3] hover:bg-[#eae7df] text-[#363B37] border-[2.5px] border-[#363B37] px-7 py-3.5 rounded-full font-bold transition inline-flex items-center gap-2 mt-10 cursor-pointer text-sm sm:text-base shadow-[3px_3px_0px_#111] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#111]"
+                className="bg-[#FAF8F3] hover:bg-[#eae7df] text-[#363B37] border-[2.5px] border-[#363B37] px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-bold transition inline-flex items-center gap-2 mt-10 cursor-pointer text-xs sm:text-base shadow-[3px_3px_0px_#111] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#111] whitespace-nowrap"
               >
                 Book a Free Demo Class
                 <span className="text-[1.1em] font-normal">›</span>
@@ -1453,7 +1453,7 @@ export function PhonicsPage() {
                 <div className="relative group">
                   <Link
                     to="/enroll"
-                    className="bg-[#363B37] hover:bg-[#252826] text-white px-7 py-3.5 rounded-full font-bold shadow-md inline-flex items-center gap-2 cursor-pointer text-sm sm:text-base"
+                    className="bg-[#363B37] hover:bg-[#252826] text-white px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-full font-bold shadow-md inline-flex items-center gap-2 cursor-pointer text-xs sm:text-base whitespace-nowrap max-w-full"
                   >
                     Book a Free Demo Class
                     <span className="text-[1.1em] font-normal">›</span>

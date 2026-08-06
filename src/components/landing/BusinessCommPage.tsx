@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import {
   TrendingUp, Award, CircleArrowRight, Globe, Mic, MessageSquare,
-  Video, Star, Mail, Presentation, Users, ShieldCheck, Sparkles, Handshake
+  Video, Mail, Presentation, Users, ShieldCheck, Sparkles, Handshake
 } from "lucide-react";
 import { Navbar } from "../Navbar";
 import { ApexEdgeFooter } from "../ApexEdgeFooter";
@@ -134,10 +134,6 @@ export function BusinessCommPage() {
                   </div>
                   <div className="text-left">
                     <p className="text-xs font-bold text-slate-900 leading-tight">100% Business Growth</p>
-                    <div className="flex items-center gap-1 mt-0.5">
-                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                      <span className="text-[10px] font-semibold text-slate-500">4.9 (1520 Reviews)</span>
-                    </div>
                   </div>
                 </div>
 
@@ -234,7 +230,7 @@ export function BusinessCommPage() {
               className="lg:col-span-8 bg-[#fff5f5] border-2 border-[#d90f40]/10 rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-16 flex flex-col md:flex-row gap-8 sm:gap-12 items-center"
             >
               <div className="w-full md:w-1/2">
-                <h3 className="text-xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 text-[#d90f40] whitespace-nowrap tracking-tight">Digital Command Center</h3>
+                <h3 className="text-xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 text-[#d90f40] leading-tight tracking-tight">Digital Command Center</h3>
                 <p className="text-base sm:text-lg text-gray-600 font-medium">
                   Master the art of high-impact emails, virtual leadership on Zoom,
                   and managing teams across Slack and Microsoft Teams with professional poise.
