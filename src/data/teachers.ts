@@ -35,14 +35,14 @@ export const teachers: Teacher[] = [
   },
   {
     id: "shikha",
-    name: "Shikha",
+    name: "Ms. Shikha",
     qualification: "Senior IELTS Expert",
     image: "/teachers/shikha.png",
-    experience: "8+ Years",
-    specialization: "IELTS & Business English",
-    bio: "Shikha Chawla is a veteran in the field of English language training. With over a decade of experience, she has helped thousands of students achieve their dream band scores in IELTS.",
-    skills: ["IELTS Academic", "IELTS General", "Public Speaking", "Curriculum Design"],
-    achievements: ["Best Educator Award 2022", "Trained 5000+ Students", "British Council Certified"]
+    experience: "5+ Years",
+    specialization: "IELTS & Band Enhancement",
+    bio: "With 5+ years of dedicated IELTS training experience, Ms. Shikha has empowered hundreds of aspirants to achieve their target band scores for higher education, professional registration, and global immigration.\n\nRenowned for her result-oriented mentoring, she combines proven exam strategies with personalized coaching to help students excel in all four IELTS modules.\n\nHer structured teaching methodology, in-depth exam expertise, and commitment to student success have made her a trusted mentor at Apex Edge English.",
+    skills: ["IELTS Academic & General Training", "Writing & Speaking Excellence", "Band Score Enhancement", "Personalized Mentoring", "Mock Test Analysis"],
+    achievements: ["5+ Years of IELTS Training", "Result-Oriented Mentoring", "Trusted Mentor at Apex Edge"]
   },
   {
     id: "deepika",
