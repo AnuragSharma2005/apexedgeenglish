@@ -9,7 +9,7 @@ export const ENV = {
     "https://script.google.com/macros/s/AKfycbwhAPDRLyK5GlqgYTa0CIQVWR_uBBLGTT086QB2AE06Y3AAgKigkR05eUL8sKmXtxDR/exec",
   CONTACT_SHEET_URL:
     (import.meta.env.VITE_CONTACT_SHEET_URL as string) ||
-    "https://script.google.com/macros/s/AKfycbw44Z6wh2WRujRvh36WnoYhXUrDN1AvcZxByIGb4gSOL6IIGznhqw06Qj8wkdda7CacNQ/exec",
+    "https://script.google.com/macros/s/AKfycbwQYHSnoeqPhqaLRxeMzihw3pWaYj2TmttAJTdPtNg5l3KHHPwj8XylawFvOzK094Pd/exec",
   FORMSUBMIT_EMAIL:
     (import.meta.env.VITE_FORMSUBMIT_EMAIL as string) ||
     "apexedgeenglish@gmail.com",
