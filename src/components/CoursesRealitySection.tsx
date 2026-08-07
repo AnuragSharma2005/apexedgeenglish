@@ -45,19 +45,19 @@ const courses: CourseCard[] = [
     to: "/spoken-english",
   },
   {
-    title: "Phoenix Course",
+    title: "Phonics Course",
     description:
-      "A safe, trusted and friendly English education platform designed to support families and children with nurturing and expert guidance.",
+      "Our Phonics Course offers a safe, trusted, and friendly English learning environment tailored for kids and families. Nurture your child's confidence with interactive lessons, foundational phonics, and expert academic mentorship.",
     icon: Baby,
-    accent: "#698c73",
+    accent: "#95b09d",
     number: "04",
     arrowPosition: "bottom",
-    to: "/phoenix",
+    to: "/phonics",
   },
   {
     title: "CELPIP Preparation",
     description:
-      "Prepare with focused CELPIP practice, expert feedback, and strategy-driven lessons that help you improve fluency, accuracy, and test confidence.",
+      "Accelerate your Canadian PR or citizenship journey with our comprehensive CELPIP preparation program. Master all test modules with realistic computer mock tests, section-specific scoring strategies, and personalized expert feedback.",
     icon: ScanText,
     accent: "#e34f62",
     number: "05",
@@ -67,9 +67,9 @@ const courses: CourseCard[] = [
   {
     title: "Interview English Mastery",
     description:
-      "Build job-ready communication with practical interview drills, vocabulary coaching, and confidence techniques for real conversations.",
+      "Elevate your career with our specialized Interview and Business English Mastery program. Practice real workplace scenarios, corporate presentation skills, and high-impact interview techniques to communicate with complete professional poise.",
     icon: BookOpenCheck,
-    accent: "#4d9b6a",
+    accent: "#2563eb",
     number: "06",
     arrowPosition: "bottom",
     to: "/business-communications",

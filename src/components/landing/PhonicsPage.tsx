@@ -326,7 +326,7 @@ export function PhonicsPage() {
 
         {/* Hero Section Container (Cream background, grid layout, restricted height on desktop) */}
         <div
-          className="relative w-full lg:min-h-[720px] flex flex-col justify-between overflow-hidden pt-28 lg:pt-36 pb-20 sm:pb-28 bg-[#FAF8F3]"
+          className="relative w-full lg:min-h-[720px] flex flex-col justify-between overflow-hidden pt-28 lg:pt-36 pb-32 sm:pb-28 bg-[#FAF8F3]"
           style={{
             backgroundImage: `
               linear-gradient(to right, rgba(54, 59, 55, 0.05) 1px, transparent 1px),
@@ -432,18 +432,18 @@ export function PhonicsPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-row items-center justify-center gap-6 mt-8 sm:mt-10"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mt-6 sm:mt-10 w-full sm:w-auto px-4 sm:px-0 z-30 relative"
             >
               <Link
                 to="/enroll"
-                className="bg-[#363B37] hover:bg-[#252826] text-white px-7 py-3.5 sm:px-8 sm:py-4 rounded-full font-medium transition duration-300 shadow-md flex items-center gap-2 text-sm sm:text-base cursor-pointer"
+                className="bg-[#363B37] hover:bg-[#252826] text-white px-5 sm:px-8 py-3 sm:py-4 rounded-full font-medium transition duration-300 shadow-md flex items-center justify-center gap-2 text-xs sm:text-base cursor-pointer w-auto sm:w-auto text-center whitespace-nowrap"
               >
                 Book a Free Demo Class
                 <span className="text-[1.1em] font-normal">›</span>
               </Link>
               <Link
                 to="/contact-us"
-                className="text-[#363B37] font-semibold underline underline-offset-4 hover:text-[#1c1d1c] transition duration-300 text-sm sm:text-base cursor-pointer"
+                className="text-[#363B37] font-semibold underline underline-offset-4 hover:text-[#1c1d1c] transition duration-300 text-sm sm:text-base cursor-pointer py-1"
               >
                 Get in Touch
               </Link>
@@ -471,26 +471,26 @@ export function PhonicsPage() {
           </div>
 
           {/* Left Kid Container */}
-          <div className="absolute left-0 bottom-0 w-[38%] lg:w-[42%] xl:w-[45%] max-w-[520px] h-[90%] lg:h-[95%] flex flex-col justify-end items-start z-10 hidden sm:flex pointer-events-none select-none">
+          <div className="absolute left-0 bottom-0 w-[38%] xs:w-[40%] sm:w-[38%] lg:w-[42%] xl:w-[45%] max-w-[160px] xs:max-w-[180px] sm:max-w-[520px] h-[55%] xs:h-[65%] sm:h-[90%] lg:h-[95%] flex flex-col justify-end items-start z-10 pointer-events-none select-none">
             <motion.img
               initial={{ opacity: 0, x: -50, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.9, type: "spring", stiffness: 50, delay: 0.3 }}
+              transition={{ duration: 0.9, type: "spring" as const, stiffness: 50, delay: 0.3 }}
               src={transparentGirl}
               alt="Toddler girl with heart sunglasses"
-              className="relative w-full z-10 object-contain max-h-full select-none pointer-events-none translate-x-2"
+              className="relative w-full z-10 object-contain max-h-full select-none pointer-events-none translate-x-1 sm:translate-x-2"
             />
           </div>
 
           {/* Right Kid Container */}
-          <div className="absolute right-0 bottom-0 w-[40%] lg:w-[44%] xl:w-[47%] max-w-[540px] h-[90%] lg:h-[95%] flex flex-col justify-end items-end z-10 hidden sm:flex pointer-events-none select-none">
+          <div className="absolute right-0 bottom-0 w-[40%] xs:w-[42%] sm:w-[40%] lg:w-[44%] xl:w-[47%] max-w-[170px] xs:max-w-[190px] sm:max-w-[540px] h-[55%] xs:h-[65%] sm:h-[90%] lg:h-[95%] flex flex-col justify-end items-end z-10 pointer-events-none select-none">
             <motion.img
               initial={{ opacity: 0, x: 50, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.9, type: "spring", stiffness: 50, delay: 0.3 }}
+              transition={{ duration: 0.9, type: "spring" as const, stiffness: 50, delay: 0.3 }}
               src={transparentBaby}
               alt="Baby in yellow outfit"
-              className="relative w-full z-10 object-contain max-h-full select-none pointer-events-none -translate-x-2"
+              className="relative w-full z-10 object-contain max-h-full select-none pointer-events-none -translate-x-1 sm:-translate-x-2"
             />
           </div>
 
@@ -700,7 +700,7 @@ export function PhonicsPage() {
                         whileTap={{ scale: 0.93 }}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20, delay: sIdx * 0.07 }}
+                        transition={{ type: "spring" as const, stiffness: 300, damping: 20, delay: sIdx * 0.07 }}
                         className={`py-4 rounded-2xl border-2 font-bold text-lg sm:text-xl flex flex-col items-center justify-center transition-colors cursor-pointer relative overflow-hidden ${isSelected
                           ? "bg-[#363B37] border-[#363B37] text-white shadow-[2px_2px_0px_#eba37a]"
                           : "bg-[#FAF8F3] border-[#363B37] text-[#363B37] hover:bg-[#eae7df]"
@@ -958,7 +958,7 @@ export function PhonicsPage() {
 
               <Link
                 to="/enroll"
-                className="bg-[#FAF8F3] hover:bg-[#eae7df] text-[#363B37] border-[2.5px] border-[#363B37] px-7 py-3.5 rounded-full font-bold transition inline-flex items-center gap-2 mt-10 cursor-pointer text-sm sm:text-base shadow-[3px_3px_0px_#111] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#111]"
+                className="bg-[#FAF8F3] hover:bg-[#eae7df] text-[#363B37] border-[2.5px] border-[#363B37] px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-bold transition inline-flex items-center gap-2 mt-10 cursor-pointer text-xs sm:text-base shadow-[3px_3px_0px_#111] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#111] whitespace-nowrap"
               >
                 Book a Free Demo Class
                 <span className="text-[1.1em] font-normal">›</span>
@@ -1040,7 +1040,7 @@ export function PhonicsPage() {
                       <AnimatedCard direction="left" delay={0.1}>
                         <motion.div
                           whileHover={{ scale: 1.05, rotate: -1, y: -4 }}
-                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                          transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
                           className={`relative p-8 border-[2.5px] border-[#363B37] text-left max-w-md ${item.bg} ${item.shape} shadow-[4px_4px_0px_#363B37] cursor-default`}
                         >
                           <div className="flex items-center gap-3 mb-3">
@@ -1070,7 +1070,7 @@ export function PhonicsPage() {
                     className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full border-[2.5px] border-[#363B37] bg-[#FAF8F3] flex items-center justify-center z-10 shadow-[2px_2px_0px_#363B37]"
                     whileInView={{ scale: [0, 1.3, 1] }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1, type: "spring" }}
+                    transition={{ duration: 0.5, delay: idx * 0.1, type: "spring" as const }}
                   >
                     <span className="text-xs font-black text-[#363B37]">{idx + 1}</span>
                   </motion.div>
@@ -1081,7 +1081,7 @@ export function PhonicsPage() {
                       <AnimatedCard direction="right" delay={0.1}>
                         <motion.div
                           whileHover={{ scale: 1.05, rotate: 1, y: -4 }}
-                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                          transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
                           className={`relative p-8 border-[2.5px] border-[#363B37] text-left max-w-md ${item.bg} ${item.shape} shadow-[4px_4px_0px_#363B37] cursor-default ${isOdd ? "md:hidden" : ""}`}
                         >
                           <div className="flex items-center gap-3 mb-3">
@@ -1203,14 +1203,14 @@ export function PhonicsPage() {
                   className="absolute inset-0 bg-[#363B37] translate-x-2.5 translate-y-2.5 z-0"
                   style={{ borderRadius: step.borderRadius }}
                   whileHover={{ x: 14, y: 14 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  transition={{ type: "spring" as const, stiffness: 300 }}
                 />
 
                 {/* Card container */}
                 <motion.div
                   className={`relative bg-white border-[2.5px] border-[#363B37] p-8 z-10 flex flex-col justify-between h-full min-h-[280px] ${step.shape} shadow-md cursor-default`}
                   whileHover={{ x: -4, y: -4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
                 >
 
                   <div>
@@ -1338,7 +1338,7 @@ export function PhonicsPage() {
                     <motion.div
                       whileHover={{ scale: 1.07, y: -5, rotate: 0 }}
                       animate={{ rotate: parseFloat(item.rot.includes("-rotate") ? item.rot.replace(/[^0-9.-]/g, "-").split("-").pop() || "0" : item.rot.replace(/[^0-9.]/g, "")) * (item.rot.includes("-") ? -1 : 1) }}
-                      transition={{ type: "spring", stiffness: 250, damping: 15 }}
+                      transition={{ type: "spring" as const, stiffness: 250, damping: 15 }}
                       className={`relative p-5 border-2 border-[#363B37] text-left ${item.bg} ${item.shape} shadow-[3px_3px_0px_#363B37] cursor-default`}
                     >
                       <div className="flex items-center gap-2.5 mb-2.5">
@@ -1453,7 +1453,7 @@ export function PhonicsPage() {
                 <div className="relative group">
                   <Link
                     to="/enroll"
-                    className="bg-[#363B37] hover:bg-[#252826] text-white px-7 py-3.5 rounded-full font-bold shadow-md inline-flex items-center gap-2 cursor-pointer text-sm sm:text-base"
+                    className="bg-[#363B37] hover:bg-[#252826] text-white px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-full font-bold shadow-md inline-flex items-center gap-2 cursor-pointer text-xs sm:text-base whitespace-nowrap max-w-full"
                   >
                     Book a Free Demo Class
                     <span className="text-[1.1em] font-normal">›</span>

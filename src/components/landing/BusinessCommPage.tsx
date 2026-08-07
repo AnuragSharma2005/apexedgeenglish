@@ -2,10 +2,12 @@ import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import {
   TrendingUp, Award, CircleArrowRight, Globe, Mic, MessageSquare,
-  Video, Star, Mail, Presentation, Users, ShieldCheck, Sparkles, Handshake
+  Video, Mail, Presentation, Users, ShieldCheck, Sparkles, Handshake
 } from "lucide-react";
 import { Navbar } from "../Navbar";
 import { ApexEdgeFooter } from "../ApexEdgeFooter";
+
+const CUBIC_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function BusinessCommPage() {
   return (
@@ -13,7 +15,13 @@ export function BusinessCommPage() {
       <Navbar />
 
       {/* Hero Fold - 1:1 Match of User Reference Image Design */}
-      <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden">
+      <motion.section
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden"
+      >
 
         {/* Floating purple ring accent on far left edge */}
         <div className="hidden lg:block absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-4 border-purple-500/80 pointer-events-none" />
@@ -126,10 +134,6 @@ export function BusinessCommPage() {
                   </div>
                   <div className="text-left">
                     <p className="text-xs font-bold text-slate-900 leading-tight">100% Business Growth</p>
-                    <div className="flex items-center gap-1 mt-0.5">
-                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                      <span className="text-[10px] font-semibold text-slate-500">4.9 (1520 Reviews)</span>
-                    </div>
                   </div>
                 </div>
 
@@ -155,12 +159,18 @@ export function BusinessCommPage() {
           </div>
         </div>
 
-      </section>
+      </motion.section>
 
 
 
       {/* Grid-Based Modular Content */}
-      <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-12 bg-white">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-20 sm:py-32 px-4 sm:px-6 lg:px-12 bg-white"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Main Feature */}
@@ -220,7 +230,7 @@ export function BusinessCommPage() {
               className="lg:col-span-8 bg-[#fff5f5] border-2 border-[#d90f40]/10 rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-16 flex flex-col md:flex-row gap-8 sm:gap-12 items-center"
             >
               <div className="w-full md:w-1/2">
-                <h3 className="text-xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 text-[#d90f40] whitespace-nowrap tracking-tight">Digital Command Center</h3>
+                <h3 className="text-xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 text-[#d90f40] leading-tight tracking-tight">Digital Command Center</h3>
                 <p className="text-base sm:text-lg text-gray-600 font-medium">
                   Master the art of high-impact emails, virtual leadership on Zoom,
                   and managing teams across Slack and Microsoft Teams with professional poise.
@@ -235,18 +245,30 @@ export function BusinessCommPage() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Horizontal Ribbon Grid Section */}
-      <section className="py-24 bg-white">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-24 bg-white overflow-hidden"
+      >
         <div className="max-w-7xl mx-auto px-6 text-center">
 
           {/* Heading */}
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-800">
+          <motion.h2
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-4xl sm:text-5xl font-extrabold text-gray-800"
+          >
             Core Communication Skills
-          </h2>
+          </motion.h2>
 
-          {/* Grid */}
+          {/* Grid with Simultaneous Alternating Motion */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10">
 
             {[
@@ -267,14 +289,36 @@ export function BusinessCommPage() {
                 "bg-red-500 border-l-red-500"
               ];
 
+              const isTop = i % 2 === 0;
+
               return (
-                <div key={i} className="flex flex-col items-center">
+                <motion.div
+                  key={i}
+                  initial={{
+                    opacity: 0,
+                    y: isTop ? -70 : 70,
+                    scale: 0.9,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                  }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.85,
+                    delay: 0.1,
+                    ease: CUBIC_EASE,
+                  }}
+                  whileHover={{ y: -8, scale: 1.05 }}
+                  className="flex flex-col items-center group cursor-pointer"
+                >
 
                   {/* Ribbon */}
-                  <div className="relative inline-block">
+                  <div className="relative inline-block transition-transform duration-300 group-hover:scale-110">
 
                     {/* Rectangle */}
-                    <div className={`${styles[i].split(" ")[0]} text-white px-8 py-3 font-bold text-base`}>
+                    <div className={`${styles[i].split(" ")[0]} text-white px-8 py-3 font-bold text-base shadow-md rounded-l-md`}>
                       {`0${i + 1}`}
                     </div>
 
@@ -287,29 +331,35 @@ export function BusinessCommPage() {
                   </div>
 
                   {/* Dotted Line */}
-                  <div className="h-12 border-l-2 border-dashed border-gray-400 mt-4"></div>
+                  <div className="h-12 border-l-2 border-dashed border-gray-400 mt-4 group-hover:border-slate-700 transition-colors" />
 
                   {/* Circle */}
-                  <div className="w-16 h-16 rounded-full border-2 border-gray-400 flex items-center justify-center text-lg font-bold text-gray-600">
+                  <div className="w-16 h-16 rounded-full border-2 border-gray-400 group-hover:border-slate-800 group-hover:bg-slate-900 group-hover:text-white transition-all flex items-center justify-center text-lg font-bold text-gray-600 shadow-sm">
                     •
                   </div>
 
                   {/* Text */}
-                  <p className="mt-4 text-base font-semibold text-gray-800 text-center max-w-[160px] leading-snug">
+                  <p className="mt-4 text-base font-semibold text-gray-800 group-hover:text-slate-950 transition-colors text-center max-w-[160px] leading-snug">
                     {text}
                   </p>
 
-                </div>
+                </motion.div>
               );
             })}
 
           </div>
 
         </div>
-      </section>
+      </motion.section>
 
       {/* Magazine Style Outcome Section */}
-      <section className="py-32 bg-[#fdf2e8]">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-32 bg-[#fdf2e8]"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="relative">
@@ -343,10 +393,16 @@ export function BusinessCommPage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Hexagon Arc Timeline Infographic Section */}
-      <section className="py-24 sm:py-32 bg-slate-50 text-slate-900 relative overflow-hidden">
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: CUBIC_EASE }}
+        className="py-24 sm:py-32 bg-slate-50 text-slate-900 relative overflow-hidden"
+      >
         {/* Subtle Background Pattern & Ambient Glow */}
         <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
@@ -446,43 +502,36 @@ export function BusinessCommPage() {
                 {[
                   {
                     title: "Professional verbal and written communication",
-                    // desc: "Develop executive-level articulation, precise vocabulary, and compelling written expression. Eliminate ambiguity and convey complex ideas with absolute clarity.",
                     dotColor: "bg-[#eab308]",
                     textColor: "text-[#eab308]",
                   },
                   {
                     title: "Email and business correspondence",
-                    // desc: "Craft persuasive emails, executive summaries, memos, and official proposals that prompt immediate action and command professional respect.",
                     dotColor: "bg-[#f59e0b]",
                     textColor: "text-[#f59e0b]",
                   },
                   {
                     title: "Presentation and public speaking skills",
-                    // desc: "Deliver captivating slide decks and keynote speeches with poise, stage presence, audience engagement, and story-driven structure.",
                     dotColor: "bg-[#f97316]",
                     textColor: "text-[#f97316]",
                   },
                   {
                     title: "Meeting and interview communication",
-                    // desc: "Stand out in high-stakes corporate job interviews and lead board meetings with active listening, Q&A mastery, and strategic poise.",
                     dotColor: "bg-[#ea580c]",
                     textColor: "text-[#ea580c]",
                   },
                   {
                     title: "Workplace etiquette and professional confidence",
-                    // desc: "Exude boardroom poise, master non-verbal body language, and navigate diverse workplace cultural dynamics with total assurance.",
                     dotColor: "bg-[#ef4444]",
                     textColor: "text-[#ef4444]",
                   },
                   {
                     title: "Leadership communication techniques",
-                    // desc: "Inspire cross-functional teams, align organizational goals, deliver constructive feedback, and execute strategic persuasion that drives growth.",
                     dotColor: "bg-[#dc2626]",
                     textColor: "text-[#dc2626]",
                   },
                   {
                     title: "Client and team interaction skills",
-                    // desc: "Build enduring high-trust client partnerships, negotiate deal terms smoothly, resolve workplace conflicts, and lead international teams.",
                     dotColor: "bg-[#b91c1c]",
                     textColor: "text-[#b91c1c]",
                   },
@@ -518,7 +567,7 @@ export function BusinessCommPage() {
           </div>
 
         </div>
-      </section>
+      </motion.section>
 
       <ApexEdgeFooter />
     </div>

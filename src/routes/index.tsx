@@ -1,4 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { CoursesRealitySection } from "../components/CoursesRealitySection";
 import { OnlineLearningBenefitsSection } from "../components/OnlineLearningBenefitsSection";
 import { ResourceShowcaseSection } from "../components/ResourceShowcaseSection";
@@ -26,15 +27,59 @@ export const Route = createFileRoute("/")({
   }),
 });
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 45 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const }
+  }
+};
+
+const fadeInScale = {
+  hidden: { opacity: 0, scale: 0.95, y: 35 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const }
+  }
+};
+
+const containerStagger = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const lineVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
+  }
+};
+
 function Index() {
   const navigate = useNavigate();
   return (
     <main className="min-h-screen flex flex-col overflow-x-hidden bg-[#fdf2e8] text-xs sm:text-sm ">
       <Navbar />
 
-      <div className="flex-grow space-y-8 sm:space-y-10">
+      <div className="flex-grow space-y-12 sm:space-y-16">
         {/* Hero */}
-        <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-22 sm:pt-20 lg:pt-32 relative overflow-hidden">
+        <motion.section
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-22 sm:pt-20 lg:pt-32 relative overflow-hidden"
+        >
           <div className="sm:hidden rounded-4xl px-4 pt-4 pb-4">
             <h1 className="text-center text-[1.75rem] leading-[1.14] font-extrabold tracking-tight text-[oklch(0.14_0.02_250)]">
               Best English Learning
@@ -135,9 +180,16 @@ function Index() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-12">
+        {/* Free Demo Banner */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeInScale}
+          className="w-full px-4 sm:px-6 lg:px-10 xl:px-12"
+        >
           <div className="relative overflow-hidden rounded-[2.2rem] bg-[#d70c3f] px-4 py-5 sm:px-6 sm:py-7 lg:px-10 lg:py-8">
             <div className="grid gap-6 lg:grid-cols-[minmax(0,0.28fr)_minmax(0,0.5fr)_minmax(0,0.22fr)] items-center">
               <div className="rounded-[1.6rem] bg-white p-4 sm:p-5 lg:p-6 text-center shadow-[0_20px_40px_-30px_rgba(6,14,34,0.5)]">
@@ -188,9 +240,16 @@ function Index() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-12">
+        {/* How to Change Life Section */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={fadeInUp}
+          className="w-full px-4 sm:px-6 lg:px-10 xl:px-12"
+        >
           <div className="rounded-[2.25rem] p-5 sm:p-8 lg:p-12 xl:p-14">
             <div className="grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-10 xl:gap-14 items-center">
               <div className="relative h-112 sm:h-136 lg:h-160">
@@ -230,62 +289,65 @@ function Index() {
                 <span className="absolute right-[33%] top-28 h-2 w-2 rounded-full bg-[#6eb95b]" />
               </div>
 
-              <div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl leading-tight font-extrabold tracking-tight text-(--brand-text)">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={containerStagger}
+              >
+                <motion.h2 variants={lineVariant} className="text-2xl sm:text-3xl lg:text-4xl leading-tight font-extrabold tracking-tight text-(--brand-text)">
                   How to Change Life with <span className="text-[#d72646]">Apex Edge?</span>
-                </h2>
+                </motion.h2>
 
-                <p className="mt-6 text-base sm:text-lg leading-relaxed text-[oklch(0.32_0.02_250)] max-w-3xl">
-                  Step into a smarter, more refined way of mastering English with Apex Edge English—
-                  where ambition meets expert guidance.
+                <div className="mt-6 space-y-3 text-base sm:text-lg leading-relaxed text-[oklch(0.32_0.02_250)] max-w-3xl">
+                  <motion.p variants={lineVariant}>
+                    Step into a smarter, more refined way of mastering English with Apex Edge English—where ambition meets expert guidance.
+                  </motion.p>
+                  <motion.p variants={lineVariant}>
+                    Whether you're aiming for a high band score in IELTS, sharpening your Spoken English, or preparing for PTE with precision, our thoughtfully designed self-study resources set you on the path to success.
+                  </motion.p>
+                  <motion.p variants={lineVariant}>
+                    Crafted for modern learners, our materials combine clarity, structure, and real exam insight—so you don’t just study, you excel.
+                  </motion.p>
+                  <motion.p variants={lineVariant}>
+                    Every guide and practice module is created to elevate your confidence, accuracy, and fluency effortlessly.
+                  </motion.p>
+                </div>
 
-                  Whether you're aiming for a high band score in IELTS,
-                  sharpening your Spoken English,
-                  or preparing for PTE with precision,
-                  our thoughtfully designed self-study resources set you on the path to success.
-
-                  Crafted for modern learners,
-                  our materials combine clarity, structure, and real exam insight—
-                  so you don’t just study, you excel.
-
-                  Every guide and practice module is created to elevate your confidence,
-                  accuracy, and fluency effortlessly.
-                </p>
-
-                <h2 className="mt-7 text-2xl sm:text-3xl font-semibold text-[oklch(0.2_0.02_250)]">
+                <motion.h2 variants={lineVariant} className="mt-8 text-2xl sm:text-3xl font-semibold text-[oklch(0.2_0.02_250)]">
                   Why Choose Apex Edge English?
-                </h2>
+                </motion.h2>
 
-                <ul className="mt-7 space-y-4">
-                  <li className="flex items-start gap-3 text-[1.35rem] sm:text-[1.3rem] text-[oklch(0.25_0.02_250)] leading-snug">
+                <motion.ul variants={containerStagger} className="mt-6 space-y-4">
+                  <motion.li variants={lineVariant} className="flex items-start gap-3 text-[1.35rem] sm:text-[1.3rem] text-[oklch(0.25_0.02_250)] leading-snug">
                     <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#20a55a] text-white">
                       <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3.5 8.5l2.5 2.5 6-6" />
                       </svg>
                     </span>
                     Complimentary one-on-one counselling sessions with experienced mentors
-                  </li>
+                  </motion.li>
 
-                  <li className="flex items-start gap-3 text-[1.35rem] sm:text-[1.3rem] text-[oklch(0.25_0.02_250)] leading-snug">
+                  <motion.li variants={lineVariant} className="flex items-start gap-3 text-[1.35rem] sm:text-[1.3rem] text-[oklch(0.25_0.02_250)] leading-snug">
                     <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#20a55a] text-white">
                       <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3.5 8.5l2.5 2.5 6-6" />
                       </svg>
                     </span>
                     Flexible, high-quality online classes designed around your schedule
-                  </li>
+                  </motion.li>
 
-                  <li className="flex items-start gap-3 text-[1.35rem] sm:text-[1.3rem] text-[oklch(0.25_0.02_250)] leading-snug">
+                  <motion.li variants={lineVariant} className="flex items-start gap-3 text-[1.35rem] sm:text-[1.3rem] text-[oklch(0.25_0.02_250)] leading-snug">
                     <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#20a55a] text-white">
                       <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3.5 8.5l2.5 2.5 6-6" />
                       </svg>
                     </span>
                     Fully personalized study plans with consistent tracking and accountability
-                  </li>
-                </ul>
+                  </motion.li>
+                </motion.ul>
 
-                <button onClick={() => navigate({ to: "/enroll" })} className="mt-9 inline-flex items-center gap-2 rounded-2xl bg-[#d81343] text-white text-lg sm:text-xl font-semibold px-8 py-4 hover:opacity-90 transition shadow-[0_20px_40px_-28px_rgba(216,19,67,0.75)]">
+                <motion.button variants={lineVariant} onClick={() => navigate({ to: "/enroll" })} className="mt-9 inline-flex items-center gap-2 rounded-2xl bg-[#d81343] text-white text-lg sm:text-xl font-semibold px-8 py-4 hover:opacity-90 transition shadow-[0_20px_40px_-28px_rgba(216,19,67,0.75)] cursor-pointer">
                   Book a Free Session
                   <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/80">
                     <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -293,22 +355,50 @@ function Index() {
                       <path d="M8 4l4 4-4 4" />
                     </svg>
                   </span>
-                </button>
-              </div>
+                </motion.button>
+              </motion.div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        <ResourceShowcaseSection />
-        <StudentSuccessVideosSection />
-        <OnlineLearningBenefitsSection />
-        <CoursesRealitySection />
-        <WhyApexEdgeSection />
-        <ApexEdgeSection />
-        <FrequentlyAskedQuestionsSection />
+        {/* Resource Showcase Section */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUp}>
+          <ResourceShowcaseSection />
+        </motion.div>
+
+        {/* Student Success Videos Section */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUp}>
+          <StudentSuccessVideosSection />
+        </motion.div>
+
+        {/* Online Learning Benefits Section */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUp}>
+          <OnlineLearningBenefitsSection />
+        </motion.div>
+
+        {/* Courses Reality Section */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUp}>
+          <CoursesRealitySection />
+        </motion.div>
+
+        {/* Why Apex Edge Section */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUp}>
+          <WhyApexEdgeSection />
+        </motion.div>
+
+        {/* Apex Edge Section */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUp}>
+          <ApexEdgeSection />
+        </motion.div>
+
+        {/* FAQ Section */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUp}>
+          <FrequentlyAskedQuestionsSection />
+        </motion.div>
       </div>
 
       <ApexEdgeFooter />
     </main>
   );
 }
+

@@ -5,6 +5,8 @@ import { Navbar } from "../Navbar";
 import { Link } from "@tanstack/react-router";
 import { ApexEdgeFooter } from "../ApexEdgeFooter";
 
+const CUBIC_EASE = [0.16, 1, 0.3, 1] as const;
+
 const pteHighlights = [
    {
       id: "01",
@@ -62,7 +64,13 @@ export function PTEPage() {
          <Navbar />
 
          {/* Hero Section — Inspired by Split Layout */}
-         <section className="relative w-full pt-24 sm:pt-28 lg:pt-32 overflow-hidden">
+         <motion.section
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.85, ease: CUBIC_EASE }}
+            className="relative w-full pt-24 sm:pt-28 lg:pt-32 overflow-hidden"
+         >
             {/* Top Content Row: Bold Heading Left + Description Right */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pb-10 sm:pb-14">
                <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-16 items-start">
@@ -218,147 +226,96 @@ export function PTEPage() {
                   </div>
                </div>
             </div>
-         </section>
+         </motion.section>
 
          {/* Winning Combo Section - Image 2 Style Layout */}
-         <section className="py-20 sm:py-28 bg-[#f8f9fa] relative overflow-hidden">
+         <motion.section
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.85, ease: CUBIC_EASE }}
+            className="py-20 sm:py-28 bg-[#f8f9fa] relative overflow-hidden"
+         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
                {/* Section Heading */}
                <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-20 px-1 sm:px-0">
                   <h2 className="text-[1.2rem] xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-[#1a1a1a] leading-snug sm:leading-tight tracking-tight">
                      What makes
                      <br />
-                     <span className="text-[#d90f40]">Apex Edge English and PTE Courses</span>
-                     <br />
-                     a winning combo?
+                     <span className="text-[#d90f40]">Apex Edge English</span> the ultimate choice for PTE preparation?
                   </h2>
                </div>
 
-               {/* 3x2 Grid Cards (Image 2 style layout) */}
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch pt-6">
-                  {/* Card 1: Global Expertise */}
-                  <motion.div
-                     whileHover={{ y: -6 }}
-                     className="bg-white p-7 sm:p-9 rounded-[2rem] shadow-sm border border-gray-100/80 flex flex-col justify-between transition-all"
-                  >
-                     <div>
-                        <div className="flex items-center gap-4 mb-5">
-                           <div className="w-12 h-12 rounded-2xl bg-[#fce4ec] text-[#d90f40] flex items-center justify-center shrink-0">
-                              <Award className="w-6 h-6" />
-                           </div>
-                           <h3 className="text-xl font-extrabold text-[#1a1a1a]">Global Expertise</h3>
+               {/* Main Grid Card Container */}
+               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-14 shadow-xl border border-gray-100">
+                  {/* Left Column - Large Image Feature */}
+                  <div className="lg:col-span-5 relative">
+                     <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border-4 border-[#fce4ec]">
+                        <img
+                           src="/students/pte.png"
+                           alt="PTE Academic Student Strategy session"
+                           className="w-full h-[320px] sm:h-[400px] lg:h-[480px] object-cover object-center"
+                        />
+                        {/* Overlay Tag */}
+                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-md flex items-center gap-2">
+                           <Award className="w-4 h-4 text-[#d90f40]" />
+                           <span className="text-xs font-bold text-gray-800">Proven PTE Formula</span>
                         </div>
-                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-medium">
-                           Guiding PTE aspirants to success with years of international coaching experience and proven exam strategies.
-                        </p>
                      </div>
-                  </motion.div>
+                  </div>
 
-                  {/* Card 2: Personalised Learning (Elevated & Taller Highlighted Card on Desktop) */}
-                  <motion.div
-                     whileHover={{ y: -10 }}
-                     className="bg-[#d90f40] text-white p-7 sm:p-9 lg:py-12 lg:px-9 lg:-translate-y-6 rounded-[2rem] shadow-2xl shadow-[#d90f40]/30 flex flex-col justify-between transition-all relative z-10"
-                  >
-                     <div>
-                        <div className="flex items-center gap-4 mb-5">
-                           <div className="w-12 h-12 rounded-2xl bg-white/20 text-white flex items-center justify-center shrink-0">
-                              <SlidersHorizontal className="w-6 h-6" />
+                  {/* Right Column - 3 Key Strategic Drivers */}
+                  <div className="lg:col-span-7 space-y-6 sm:space-y-8 pl-0 lg:pl-4">
+                     {[
+                        {
+                           num: "01",
+                           title: "Expert Mentorship",
+                           desc: "Individualized attention from PTE certified trainers with a proven track record of helping thousands achieve 79+ in all modules."
+                        },
+                        {
+                           num: "02",
+                           title: "Real AI Scoring Engine",
+                           desc: "Practice on software calibrated to mirror Pearson's exact algorithm for real-time speech and writing feedback."
+                        },
+                        {
+                           num: "03",
+                           title: "Tailored Study Plan",
+                           desc: "Personalized study schedules focusing strictly on your weak areas to maximize score improvement in minimal time."
+                        }
+                     ].map((item, i) => (
+                        <motion.div
+                           key={i}
+                           initial={{ opacity: 0, x: 30 }}
+                           whileInView={{ opacity: 1, x: 0 }}
+                           viewport={{ once: true }}
+                           transition={{ duration: 0.5, delay: i * 0.15 }}
+                           className="flex gap-4 sm:gap-6 p-4 sm:p-5 rounded-2xl hover:bg-[#fce4ec]/40 transition-colors group"
+                        >
+                           <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#d90f40] text-white font-black text-lg sm:text-xl flex items-center justify-center shrink-0 shadow-lg shadow-[#d90f40]/20 group-hover:scale-105 transition-transform">
+                              {item.num}
                            </div>
-                           <h3 className="text-xl font-extrabold text-white">Personalised Learning</h3>
-                        </div>
-                        <p className="text-sm sm:text-base text-white/90 leading-relaxed font-medium">
-                           Tailored study plans designed to target individual strengths, overcome weaknesses, and meet your target score.
-                        </p>
-                     </div>
-                  </motion.div>
-
-                  {/* Card 3: Real-Time Progress Tracking */}
-                  <motion.div
-                     whileHover={{ y: -6 }}
-                     className="bg-white p-7 sm:p-9 rounded-[2rem] shadow-sm border border-gray-100/80 flex flex-col justify-between transition-all"
-                  >
-                     <div>
-                        <div className="flex items-center gap-4 mb-5">
-                           <div className="w-12 h-12 rounded-2xl bg-[#fce4ec] text-[#d90f40] flex items-center justify-center shrink-0">
-                              <TrendingUp className="w-6 h-6" />
+                           <div>
+                              <h3 className="text-lg sm:text-xl font-extrabold text-[#1a1a1a] mb-1.5 sm:mb-2">{item.title}</h3>
+                              <p className="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed">{item.desc}</p>
                            </div>
-                           <h3 className="text-xl font-extrabold text-[#1a1a1a]">Real-Time Progress Tracking</h3>
-                        </div>
-                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-medium">
-                           Monitor your preparation with cutting-edge AI scoring tools for instant, objective performance feedback.
-                        </p>
-                     </div>
-                  </motion.div>
-
-                  {/* Card 4: Proven Score Boosting Strategies */}
-                  <motion.div
-                     whileHover={{ y: -6 }}
-                     className="bg-white p-7 sm:p-9 rounded-[2rem] shadow-sm border border-gray-100/80 flex flex-col justify-between transition-all"
-                  >
-                     <div>
-                        <div className="flex items-center gap-4 mb-5">
-                           <div className="w-12 h-12 rounded-2xl bg-[#fce4ec] text-[#d90f40] flex items-center justify-center shrink-0">
-                              <Zap className="w-6 h-6" />
-                           </div>
-                           <h3 className="text-xl font-extrabold text-[#1a1a1a]">Proven Score Boosting Strategies</h3>
-                        </div>
-                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-medium">
-                           Focused techniques and exclusive template blueprints to significantly improve your PTE section scores.
-                        </p>
-                     </div>
-                  </motion.div>
-
-                  {/* Card 5: Certified PTE Trainers */}
-                  <motion.div
-                     whileHover={{ y: -6 }}
-                     className="bg-white p-7 sm:p-9 rounded-[2rem] shadow-sm border border-gray-100/80 flex flex-col justify-between transition-all"
-                  >
-                     <div>
-                        <div className="flex items-center gap-4 mb-5">
-                           <div className="w-12 h-12 rounded-2xl bg-[#fce4ec] text-[#d90f40] flex items-center justify-center shrink-0">
-                              <GraduationCap className="w-6 h-6" />
-                           </div>
-                           <h3 className="text-xl font-extrabold text-[#1a1a1a]">Certified PTE Trainers</h3>
-                        </div>
-                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-medium">
-                           Learn from industry-certified experts who specialise in Pearson AI scoring algorithms and exam prep.
-                        </p>
-                     </div>
-                  </motion.div>
-
-                  {/* Card 6: Comprehensive Practice Resources */}
-                  <motion.div
-                     whileHover={{ y: -6 }}
-                     className="bg-white p-7 sm:p-9 rounded-[2rem] shadow-sm border border-gray-100/80 flex flex-col justify-between transition-all"
-                  >
-                     <div>
-                        <div className="flex items-center gap-4 mb-5">
-                           <div className="w-12 h-12 rounded-2xl bg-[#fce4ec] text-[#d90f40] flex items-center justify-center shrink-0">
-                              <BookOpenCheck className="w-6 h-6" />
-                           </div>
-                           <h3 className="text-xl font-extrabold text-[#1a1a1a]">Comprehensive Practice Resources</h3>
-                        </div>
-                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-medium">
-                           Access a vast library of real-exam replica practice tests and study materials designed for PTE success.
-                        </p>
-                     </div>
-                  </motion.div>
+                        </motion.div>
+                     ))}
+                  </div>
                </div>
             </div>
-         </section>
+         </motion.section>
 
          {/* PTE Core Test Format Section - Design 1 (Infographic Cards) Style */}
-         <section className="py-20 sm:py-28 bg-[#fce4ec]/70 relative overflow-hidden">
+         <motion.section
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.85, ease: CUBIC_EASE }}
+            className="py-20 sm:py-28 bg-[#fce4ec]/70 relative overflow-hidden"
+         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
                {/* Header Block */}
                <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-24">
-                  {/* <p className="text-xs sm:text-sm font-extrabold uppercase tracking-[0.25em] text-gray-500 mb-2">
-                     INFOGRAPHIC DESIGN
-                  </p>
-                  <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">
-                     PTE CORE EXAM STRUCTURE & MODULES
-                  </p> */}
-
                   {/* Color Dots Indicator */}
                   <div className="flex items-center justify-center gap-1.5 mb-8">
                      <span className="w-3 h-3 rounded-sm bg-[#ff5722]" />
@@ -490,10 +447,16 @@ export function PTEPage() {
                   </motion.div>
                </div>
             </div>
-         </section>
+         </motion.section>
 
          {/* PTE Band Score Chart Section */}
-         <section className="py-20 sm:py-28 bg-gradient-to-b from-white via-slate-50 to-[#fce4ec]/30 relative overflow-hidden">
+         <motion.section
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.85, ease: CUBIC_EASE }}
+            className="py-20 sm:py-28 bg-gradient-to-b from-white via-slate-50 to-[#fce4ec]/30 relative overflow-hidden"
+         >
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
                {/* Header */}
                <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
@@ -579,10 +542,16 @@ export function PTEPage() {
                   </div>
                </div>
             </div>
-         </section>
+         </motion.section>
 
          {/* Eligibility Criteria for PTE Test Section - Staggered Colorful Oval Cards Layout */}
-         <section className="py-16 sm:py-28 bg-[#f8fafc] relative overflow-hidden">
+         <motion.section
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.85, ease: CUBIC_EASE }}
+            className="py-16 sm:py-28 bg-[#f8fafc] relative overflow-hidden"
+         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
                <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0 relative">
 
@@ -679,66 +648,16 @@ export function PTEPage() {
                   </div>
                </div>
             </div>
-         </section>
-
-
-
-         {/* Success Results - The Apex Elite */}
-         {/* <section className="py-32 bg-[#fce4ec]/30">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-               <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-24">
-                  <div className="text-center md:text-left">
-                     <h2 className="text-4xl sm:text-6xl font-black text-[#1a1a1a] mb-6 leading-tight">
-                        The 79+ <span className="text-[#d90f40]">Club.</span>
-                     </h2>
-                     <p className="text-xl text-gray-500 font-medium max-w-xl">
-                        Our results speak louder than words. Join the thousands of
-                        successful candidates who achieved their dreams with us.
-                     </p>
-                  </div>
-                  <Trophy className="w-32 h-32 text-[#d90f40] opacity-20 hidden lg:block" />
-               </div>
-
-               <div className="grid md:grid-cols-3 gap-8">
-                  {[1, 2, 3].map((i) => (
-                     <motion.div
-                        key={i}
-                        whileHover={{ y: -15 }}
-                        className="bg-white p-8 rounded-[3rem] shadow-xl border border-transparent hover:border-[#d90f40]/20 transition-all"
-                     >
-                        <div className="flex items-center gap-4 mb-8">
-                           <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden border-2 border-[#d90f40]">
-                              <img src={`/teachers/${i === 1 ? 'deepika' : i === 2 ? 'shikha' : 'sneha'}.png`} className="w-full h-full object-cover" alt="Student" />
-                           </div>
-                           <div>
-                              <h5 className="text-xl font-black text-black">Candidate Name</h5>
-                              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Achieved in 10 Days</p>
-                           </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4 mb-8">
-                           <div className="p-4 bg-[#fce4ec] rounded-2xl">
-                              <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Overall</p>
-                              <p className="text-3xl font-black text-[#d90f40]">84</p>
-                           </div>
-                           <div className="p-4 bg-gray-50 rounded-2xl">
-                              <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Speaking</p>
-                              <p className="text-3xl font-black text-black">90</p>
-                           </div>
-                        </div>
-
-                        <div className="flex items-center gap-2 text-[#22a45a] font-bold">
-                           <CheckCircle className="w-5 h-5" />
-                           <span>Verified Result</span>
-                        </div>
-                     </motion.div>
-                  ))}
-               </div>
-            </div>
-         </section> */}
+         </motion.section>
 
          {/* Final CTA */}
-         <section className="py-16 px-4 sm:px-6 lg:px-12 bg-white">
+         <motion.section
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.85, ease: CUBIC_EASE }}
+            className="py-16 px-4 sm:px-6 lg:px-12 bg-white"
+         >
             <div className="max-w-7xl mx-auto">
                <div className="bg-[#d90f40] text-white rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-16 text-center relative overflow-hidden">
 
@@ -767,7 +686,7 @@ export function PTEPage() {
                   <div className="absolute bottom-0 left-0 w-96 h-96 bg-black opacity-[0.05] rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
                </div>
             </div>
-         </section>
+         </motion.section>
 
          <ApexEdgeFooter />
       </div>

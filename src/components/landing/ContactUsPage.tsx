@@ -319,6 +319,7 @@ export function ContactUsPage() {
                             required
                           >
                             <option value="" disabled>Select subject</option>
+                            <option value="Phonics">Phonics</option>
                             <option value="IELTS">IELTS</option>
                             <option value="PTE">PTE</option>
                             <option value="CELPIP">CELPIP</option>

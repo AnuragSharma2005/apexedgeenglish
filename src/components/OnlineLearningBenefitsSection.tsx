@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import { motion } from "framer-motion";
 import {
   BadgeCheck,
   CalendarDays,
@@ -34,13 +35,19 @@ export function OnlineLearningBenefitsSection() {
     <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 pb-16 lg:pb-24">
       <div className="rounded-[2.5rem] px-4 py-12 sm:px-6 lg:px-8 xl:px-10 ">
         <div className="w-full">
-          <h2 className="mx-auto max-w-5xl text-center text-3xl sm:text-5xl lg:text-4xl font-extrabold tracking-tight leading-tight text-[oklch(0.16_0.02_250)]">
+          <motion.h2
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="mx-auto max-w-5xl text-center text-3xl sm:text-5xl lg:text-4xl font-extrabold tracking-tight leading-tight text-[oklch(0.16_0.02_250)]"
+          >
             <span>Learn Smarter: Unlock the Benefits of Online</span>
             <span className="block mt-2 text-[#d90f40]">English Learning Classes!</span>
-           
-          </h2>
+          </motion.h2>
 
           <div className="mt-12 lg:mt-14">
+            {/* Desktop Alternating Grid */}
             <div
               className="hidden md:grid w-full items-start"
               style={{ gridTemplateColumns: "repeat(8, minmax(0, 1fr))" }}
@@ -51,22 +58,40 @@ export function OnlineLearningBenefitsSection() {
 
                 return (
                   <div key={item.title} className="contents">
-                    <article
+                    <motion.article
+                      initial={{
+                        opacity: 0,
+                        y: isTop ? -70 : 70,
+                        scale: 0.92,
+                      }}
+                      whileInView={{
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                      }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{
+                        duration: 1.25,
+                        delay: 0.1,
+                        ease: [0.16, 1, 0.3, 1] as const,
+                      }}
                       className="flex flex-col items-center text-center"
                       style={{ gridColumn: `${index + 1} / span 1` }}
                     >
                       <div className="relative h-42 w-full">
-                        <div
-                          className={`absolute left-1/2 -translate-x-1/2 h-20 w-20 lg:h-22 lg:w-22 rounded-full text-white inline-flex items-center justify-center ring-4 ring-white/70 ${
+                        <motion.div
+                          whileHover={{ scale: 1.15, rotate: 6 }}
+                          transition={{ type: "spring" as const, stiffness: 300, damping: 15 }}
+                          className={`absolute left-1/2 -translate-x-1/2 h-20 w-20 lg:h-22 lg:w-22 rounded-full text-white inline-flex items-center justify-center ring-4 ring-white/70 cursor-pointer transition-shadow ${
                             isTop ? "top-0" : "top-22"
                           } ${
                             isTop
-                              ? "bg-[#2f3876] shadow-[0_16px_35px_-24px_rgba(47,56,118,0.95)]"
-                              : "bg-[#a8be72] shadow-[0_16px_35px_-24px_rgba(96,121,51,0.8)]"
+                              ? "bg-[#2f3876] shadow-[0_16px_35px_-24px_rgba(47,56,118,0.95)] hover:shadow-[0_20px_40px_-16px_rgba(47,56,118,0.9)]"
+                              : "bg-[#a8be72] shadow-[0_16px_35px_-24px_rgba(96,121,51,0.8)] hover:shadow-[0_20px_40px_-16px_rgba(96,121,51,0.9)]"
                           }`}
                         >
                           <Icon className="h-9 w-9 lg:h-10 lg:w-10" strokeWidth={1.7} />
-                        </div>
+                        </motion.div>
 
                         {isTop ? (
                           <>
@@ -84,12 +109,13 @@ export function OnlineLearningBenefitsSection() {
                       <p className="mt-3 max-w-[16ch] text-[clamp(0.9rem,0.9vw,1.1rem)] leading-tight font-bold text-[oklch(0.2_0.02_250)]">
                         {item.title}
                       </p>
-                    </article>
+                    </motion.article>
                   </div>
                 );
               })}
             </div>
 
+            {/* Mobile Layout */}
             <div className="md:hidden grid grid-cols-2 gap-x-3 px-1">
               <div className="space-y-10">
                 {leftColumn.map((item, index) => {
@@ -97,7 +123,14 @@ export function OnlineLearningBenefitsSection() {
                   const isLast = index === leftColumn.length - 1;
 
                   return (
-                    <article key={item.title} className="flex flex-col items-center text-center">
+                    <motion.article
+                      key={item.title}
+                      initial={{ opacity: 0, y: -40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
+                      className="flex flex-col items-center text-center"
+                    >
                       <div className="h-18 w-18 rounded-full bg-[#2f3876] text-white inline-flex items-center justify-center shadow-[0_16px_34px_-24px_rgba(47,56,118,0.85)]">
                         <Icon className="h-8 w-8" strokeWidth={1.8} />
                       </div>
@@ -112,7 +145,7 @@ export function OnlineLearningBenefitsSection() {
                       <p className="mt-3 text-[0.96rem] leading-tight font-extrabold uppercase tracking-tight text-[oklch(0.18_0.02_250)]">
                         {item.title}
                       </p>
-                    </article>
+                    </motion.article>
                   );
                 })}
               </div>
@@ -123,7 +156,14 @@ export function OnlineLearningBenefitsSection() {
                   const isLast = index === rightColumn.length - 1;
 
                   return (
-                    <article key={item.title} className="flex flex-col items-center text-center">
+                    <motion.article
+                      key={item.title}
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
+                      className="flex flex-col items-center text-center"
+                    >
                       <div className="h-18 w-18 rounded-full bg-[#a8be72] text-white inline-flex items-center justify-center shadow-[0_16px_34px_-24px_rgba(96,121,51,0.8)]">
                         <Icon className="h-8 w-8" strokeWidth={1.8} />
                       </div>
@@ -138,7 +178,7 @@ export function OnlineLearningBenefitsSection() {
                       <p className="mt-3 text-[0.96rem] leading-tight font-extrabold uppercase tracking-tight text-[oklch(0.18_0.02_250)]">
                         {item.title}
                       </p>
-                    </article>
+                    </motion.article>
                   );
                 })}
               </div>
@@ -149,3 +189,4 @@ export function OnlineLearningBenefitsSection() {
     </section>
   );
 }
+
