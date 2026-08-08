@@ -7,6 +7,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
+  const [isMobileCoursesOpen, setIsMobileCoursesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -43,6 +44,7 @@ export function Navbar() {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      setIsMobileCoursesOpen(false);
     }
     return () => {
       document.body.style.overflow = "";
@@ -140,7 +142,6 @@ export function Navbar() {
                   </div>
                 )}
               </div>
-              {/* <Link to="/" className="hover:text-[#d90f40] transition">Results</Link> */}
               <Link to="/about" className="hover:text-[#d90f40] transition">About Us</Link>
               <Link to="/contact-us" className="hover:text-[#d90f40] transition">Contact Us</Link>
             </nav>
@@ -160,7 +161,7 @@ export function Navbar() {
               type="button"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open menu"
-              className="inline-flex sm:hidden h-11 w-11 items-center justify-center rounded-lg bg-[#d90f40] text-white shadow-[0_10px_20px_-16px_rgba(217,15,64,0.9)]"
+              className="inline-flex lg:hidden h-11 w-11 items-center justify-center rounded-lg bg-[#d90f40] text-white shadow-[0_10px_20px_-16px_rgba(217,15,64,0.9)] cursor-pointer"
             >
               <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
                 <path d="M4 7h16" />
@@ -173,7 +174,7 @@ export function Navbar() {
       </header>
 
       <div
-        className={`fixed inset-0 z-[60] sm:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-[100] lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
         aria-hidden={!isMobileMenuOpen}
       >
@@ -198,13 +199,13 @@ export function Navbar() {
               type="button"
               aria-label="Close menu"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-black text-white text-xs"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-black text-white text-xs cursor-pointer"
             >
               ✕
             </button>
           </div>
 
-          <button onClick={() => { setIsMobileMenuOpen(false); navigate({ to: "/enroll" }); }} className="mt-6 w-full rounded-xl bg-[#d90f40] py-3.5 text-white text-lg font-semibold">
+          <button onClick={() => { setIsMobileMenuOpen(false); navigate({ to: "/enroll" }); }} className="mt-6 w-full rounded-xl bg-[#d90f40] py-3.5 text-white text-lg font-semibold cursor-pointer">
             Book a Free Session
           </button>
 
@@ -218,19 +219,20 @@ export function Navbar() {
             </Link>
             <div>
               <button
-                onClick={() => setIsCoursesDropdownOpen(!isCoursesDropdownOpen)}
-                className="w-full text-left flex items-center gap-3 hover:text-[#d90f40] transition"
+                type="button"
+                onClick={() => setIsMobileCoursesOpen(prev => !prev)}
+                className="w-full text-left flex items-center gap-3 hover:text-[#d90f40] transition cursor-pointer"
               >
                 <svg className="w-5 h-5 text-[#d90f40]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="8" r="4" />
                   <path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6" />
                 </svg>
                 <span>Online Courses</span>
-                <svg className={`w-5 h-5 ml-auto transition-transform ${isCoursesDropdownOpen ? "rotate-180" : ""}`} viewBox="0 0 16 16" fill="currentColor">
+                <svg className={`w-5 h-5 ml-auto transition-transform ${isMobileCoursesOpen ? "rotate-180" : ""}`} viewBox="0 0 16 16" fill="currentColor">
                   <path d="M3.2 5.5L8 10.3l4.8-4.8H3.2z" />
                 </svg>
               </button>
-              {isCoursesDropdownOpen && (
+              {isMobileCoursesOpen && (
                 <div className="mt-4 bg-[#f5e8ec] rounded-2xl p-4 space-y-3">
                   <Link to="/phonics" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition">
                     <div className="w-10 h-10 bg-[#698c73] rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
@@ -271,12 +273,6 @@ export function Navbar() {
                 </div>
               )}
             </div>
-            {/* <Link to="/" onClick={(e) => { setIsMobileMenuOpen(false); handleHomeClick(e); }} className="flex items-center gap-3">
-              <svg className="w-5 h-5 text-[#d90f40]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
-              </svg>
-              <span>Results</span>
-            </Link> */}
             <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3">
               <svg className="w-5 h-5 text-[#d90f40]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
