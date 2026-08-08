@@ -252,7 +252,7 @@ export function PTEPage() {
                   <div className="lg:col-span-5 relative">
                      <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border-4 border-[#fce4ec]">
                         <img
-                           src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075581/pte_dnhlne.jpg"
+                           src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786168093/GettyImages-1093523312_JzCKYEV_gc3eky.webp"
                            alt="PTE Academic Student Strategy session"
                            className="w-full h-[320px] sm:h-[400px] lg:h-[480px] object-cover object-center"
                         />

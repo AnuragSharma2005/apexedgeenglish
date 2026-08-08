@@ -318,7 +318,7 @@ export function SpokenEnglishPage() {
 
                 {/* Student Cutout */}
                 <img
-                  src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075601/hero_center_hrycjw.jpg"
+                  src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786167275/portrait-young-woman-student-with-notebooks-earphones-her-neck-posing-college_1258-217619_wsddjf.avif"
                   onError={(e) => {
                     (e.target as HTMLElement).setAttribute("src", "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075581/spoken_ecrras.jpg");
                   }}

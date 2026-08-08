@@ -364,7 +364,7 @@ export function BusinessCommPage() {
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="relative">
               <div className="absolute -top-10 -left-10 w-full h-full border-4 border-[#d90f40] rounded-[4rem]" />
-              <img src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075604/ielts_h5hgdy.jpg" className="relative z-10 rounded-[4rem] grayscale shadow-2xl" alt="Results" />
+              <img src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786168557/images_zzcrgt.jpg" className="relative z-10 rounded-[4rem] grayscale shadow-2xl" alt="Results" />
             </div>
             <div>
               <h2 className="text-5xl font-black text-[#1a1a1a] mb-12 leading-[0.9]">THE <span className="text-[#d90f40]">IMPACT.</span></h2>

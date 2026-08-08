@@ -156,9 +156,9 @@ export function ContactUsPage() {
 
                   <div className="relative w-[260px] h-[260px] sm:w-[420px] sm:h-[420px] rounded-full overflow-hidden border-[10px] border-white shadow-2xl bg-white z-10 transform -rotate-3 hover:rotate-0 transition-all duration-700">
                     <img
-                      src={studentGirl}
+                      src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786169200/72d05a40a6b8402c3c26bd9a53bb4f36_t4mjot.jpg"
                       alt="Expert Guidance"
-                      className="w-full h-full object-cover scale-110 object-top"
+                      className="w-full h-full object-cover scale-110 "
                     />
                   </div>
 
@@ -232,7 +232,7 @@ export function ContactUsPage() {
             <div className="relative mx-auto max-w-262.5">
               <div className="absolute -left-8 top-1/2 z-20 hidden h-108 w-80 -translate-y-1/2 overflow-hidden rounded-sm bg-[#f1284b] shadow-[0_26px_42px_-24px_rgba(0,0,0,0.58)] lg:block">
                 <img
-                  src={studentGirl}
+                  src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786169496/4305d05a291c79a9ef27ca65429308b7-removebg-preview_h8yxtj.png"
                   alt="Apex Edge contact"
                   className="h-full w-full object-cover object-top"
                 />

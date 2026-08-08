@@ -160,7 +160,7 @@ function Index() {
                 <div className="absolute w-70 h-70 sm:w-90 sm:h-90 lg:w-126 lg:h-126 rounded-full bg-(--brand-orange) top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
                 {/* Girl */}
                 <img
-                  src={studentGirl}
+                  src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786166156/student-girl_m82dye.png"
                   alt="Smiling student holding a notebook and a lightbulb wand"
                   width={896}
                   height={1024}
@@ -231,7 +231,7 @@ function Index() {
 
               <div className="relative h-56 sm:h-72 lg:h-80 hidden sm:block">
                 <img
-                  src={studentGirl}
+                  src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786167734/fd392281a8bbf8446ee909c9e32b9758-removebg-preview_vzyv10.png"
                   alt="Smiling student for consultation promo"
                   width={896}
                   height={1024}
@@ -255,11 +255,11 @@ function Index() {
               <div className="relative h-112 sm:h-136 lg:h-160">
                 <div className="absolute left-[2%] sm:left-[4%] top-0 h-[67%] w-[56%] rounded-t-[7rem] rounded-b-[5.5rem] border-[3px] border-[#2d7f72] bg-[#ebf5f3] overflow-hidden shadow-[0_18px_60px_-35px_rgba(7,57,42,0.45)]">
                   <img
-                    src={studentGirl}
+                    src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786166666/student_capsule_bottom_u16dnv.png"
                     alt="Student portrait in top capsule"
                     width={896}
                     height={1024}
-                    className="absolute -bottom-7 left-1/2 -translate-x-1/2 w-[88%] h-auto object-contain"
+                    className="absolute -bottom-7 left-1/2 -translate-x-1/2 w-[80%] h-auto object-contain"
                   />
                 </div>
 
@@ -275,7 +275,7 @@ function Index() {
                     </svg>
                   </div>
                   <img
-                    src={studentGirl}
+                    src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786166934/boy_k0vcqh.png"
                     alt="Student portrait in bottom capsule"
                     width={896}
                     height={1024}
