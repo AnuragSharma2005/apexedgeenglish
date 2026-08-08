@@ -290,7 +290,7 @@ export function PhonicsPage() {
   const transparentBaby = useTransparentImage("https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075607/phonics_baby_gbbkdn.jpg");
   const transparentCaregiver = useTransparentImage("https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075578/phonics_caregiver_zqif5u.jpg");
 
-  // Interactive Soundboard State
+  // Interactive Soundboard State & Audio Engine
   const [selectedSound, setSelectedSound] = useState<string>("sh");
   const soundboardData = [
     { sound: "a", word: "Apple", description: "Short vowel sound. Open mouth wide like taking a bite!", color: "bg-[#e6b85c]/35", symbol: "🍎" },
@@ -303,16 +303,200 @@ export function PhonicsPage() {
 
   const activeSoundDetail = soundboardData.find(item => item.sound === selectedSound) || soundboardData[2];
 
+  useEffect(() => {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.getVoices();
+      const onVoicesChanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+      window.speechSynthesis.onvoiceschanged = onVoicesChanged;
+      return () => {
+        if ("speechSynthesis" in window) {
+          window.speechSynthesis.onvoiceschanged = null;
+        }
+      };
+    }
+  }, []);
+
+  const getFemaleVoice = (): SpeechSynthesisVoice | null => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    if (!voices.length) return null;
+
+    const preferredFemaleNames = [
+      "Google US English",
+      "Microsoft Jenny Online (Natural) - English (United States)",
+      "Microsoft Aria Online (Natural) - English (United States)",
+      "Microsoft Zira - English (United States)",
+      "Samantha",
+      "Victoria",
+      "Karen",
+      "Moira",
+      "Fiona"
+    ];
+
+    for (const name of preferredFemaleNames) {
+      const match = voices.find(v => v.name.includes(name) || v.name === name);
+      if (match) return match;
+    }
+
+    const femaleEnVoice = voices.find(
+      v => v.lang.startsWith("en") && (
+        v.name.toLowerCase().includes("female") ||
+        v.name.toLowerCase().includes("google") ||
+        v.name.toLowerCase().includes("zira") ||
+        v.name.toLowerCase().includes("samantha")
+      )
+    );
+
+    if (femaleEnVoice) return femaleEnVoice;
+
+    return voices.find(v => v.lang.startsWith("en")) || voices[0] || null;
+  };
+
+  const playPhonicsSound = (sound: string, word?: string) => {
+    if (typeof window === "undefined") return;
+
+    // 1. Play chime effect with Web Audio API
+    try {
+      const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.2);
+    } catch (e) {
+      // Ignore audio context errors
+    }
+
+    // 2. Play clear SpeechSynthesis female voice
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+
+      const soundPrompts: Record<string, string> = {
+        a: "a, as in Apple",
+        ch: "ch, as in Chair",
+        sh: "sh, as in Ship",
+        th: "th, as in Thumb",
+        ee: "ee, as in Bee",
+        oo: "oo, as in Book",
+        C: "C",
+        B: "B",
+        F: "F",
+        A: "A",
+        T: "T",
+        G: "G",
+        N: "N",
+        CAT: "Cat! Great job!",
+        BAG: "Bag! Well done!",
+        FAN: "Fan! Fantastic!"
+      };
+
+      const phrase = soundPrompts[sound] || (word ? `${sound}, as in ${word}` : sound);
+      const utterance = new SpeechSynthesisUtterance(phrase);
+      
+      const femaleVoice = getFemaleVoice();
+      if (femaleVoice) {
+        utterance.voice = femaleVoice;
+      }
+
+      utterance.rate = 0.80; // Clear, natural, expressive speed
+      utterance.pitch = 0.88; // Lower pitch for a warm, clear female voice
+      utterance.lang = "en-US";
+
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  // Comprehensive 3-Letter Phonics Word Dictionary
+  const VALID_PHONICS_WORDS: Record<string, { title: string; emoji: string; desc: string; category: string }> = {
+    CAT: { title: "CAT", emoji: "🐱", desc: "C - A - T blends together to make CAT! A friendly pet.", category: "Animals" },
+    BAT: { title: "BAT", emoji: "🦇", desc: "B - A - T blends together to make BAT! A nocturnal flying mammal.", category: "Animals" },
+    RAT: { title: "RAT", emoji: "🐀", desc: "R - A - T blends together to make RAT! A small quick creature.", category: "Animals" },
+    HAT: { title: "HAT", emoji: "🧢", desc: "H - A - T blends together to make HAT! Wear it on your head.", category: "Clothing" },
+    MAT: { title: "MAT", emoji: "🧹", desc: "M - A - T blends together to make MAT! Sit down comfortably.", category: "Items" },
+    PAT: { title: "PAT", emoji: "🖐️", desc: "P - A - T blends together to make PAT! A gentle pat on the back.", category: "Actions" },
+    BAG: { title: "BAG", emoji: "🎒", desc: "B - A - G blends together to make BAG! Pack your school bag.", category: "Items" },
+    TAG: { title: "TAG", emoji: "🏷️", desc: "T - A - G blends together to make TAG! A label attached to items.", category: "Items" },
+    CAN: { title: "CAN", emoji: "🥫", desc: "C - A - N blends together to make CAN! A tin container for drinks.", category: "Items" },
+    FAN: { title: "FAN", emoji: "💨", desc: "F - A - N blends together to make FAN! Feel the cool breeze.", category: "Items" },
+    MAN: { title: "MAN", emoji: "👨", desc: "M - A - N blends together to make MAN! An adult person.", category: "People" },
+    VAN: { title: "VAN", emoji: "🚐", desc: "V - A - N blends together to make VAN! Drive in a spacious van.", category: "Vehicles" },
+    MAP: { title: "MAP", emoji: "🗺️", desc: "M - A - P blends together to make MAP! Find treasure on the map.", category: "Items" },
+    CAP: { title: "CAP", emoji: "🧢", desc: "C - A - P blends together to make CAP! Wear a cool sun cap.", category: "Clothing" },
+    TAP: { title: "TAP", emoji: "🚰", desc: "T - A - P blends together to make TAP! Fresh water from the tap.", category: "Items" },
+    BED: { title: "BED", emoji: "🛏️", desc: "B - E - D blends together to make BED! Sleep comfortably.", category: "Items" },
+    RED: { title: "RED", emoji: "🔴", desc: "R - E - D blends together to make RED! The bright color of apples.", category: "Colors" },
+    PET: { title: "PET", emoji: "🐶", desc: "P - E - T blends together to make PET! A loving animal companion.", category: "Animals" },
+    NET: { title: "NET", emoji: "🕸️", desc: "N - E - T blends together to make NET! Used to catch sports balls.", category: "Items" },
+    WET: { title: "WET", emoji: "🌧️", desc: "W - E - T blends together to make WET! Raindrops on leaves.", category: "Nature" },
+    PEN: { title: "PEN", emoji: "🖊️", desc: "P - E - N blends together to make PEN! Write stories with ink.", category: "Items" },
+    TEN: { title: "TEN", emoji: "🔟", desc: "T - E - N blends together to make TEN! Count 1 to 10.", category: "Numbers" },
+    HEN: { title: "HEN", emoji: "🐔", desc: "H - E - N blends together to make HEN! A mother chicken.", category: "Animals" },
+    PIG: { title: "PIG", emoji: "🐷", desc: "P - I - G blends together to make PIG! Oink oink! A cute farm animal.", category: "Animals" },
+    BIG: { title: "BIG", emoji: "🐘", desc: "B - I - G blends together to make BIG! Huge like a giant elephant.", category: "Descriptors" },
+    DIG: { title: "DIG", emoji: "⛏️", desc: "D - I - G blends together to make DIG! Dig in the soil.", category: "Actions" },
+    PIN: { title: "PIN", emoji: "📌", desc: "P - I - N blends together to make PIN! Hold papers together.", category: "Items" },
+    WIN: { title: "WIN", emoji: "🏆", desc: "W - I - N blends together to make WIN! Win first prize in a game!", category: "Actions" },
+    SIT: { title: "SIT", emoji: "🪑", desc: "S - I - T blends together to make SIT! Rest on a cozy chair.", category: "Actions" },
+    KIT: { title: "KIT", emoji: "🧰", desc: "K - I - T blends together to make KIT! A box of useful tools.", category: "Items" },
+    DOG: { title: "DOG", emoji: "🐶", desc: "D - O - G blends together to make DOG! Woof woof! A loyal puppy.", category: "Animals" },
+    LOG: { title: "LOG", emoji: "🪵", desc: "L - O - G blends together to make LOG! Wood from a tree trunk.", category: "Nature" },
+    FOX: { title: "FOX", emoji: "🦊", desc: "F - O - X blends together to make FOX! A clever wild red fox.", category: "Animals" },
+    BOX: { title: "BOX", emoji: "📦", desc: "B - O - X blends together to make BOX! A gift package box.", category: "Items" },
+    HOT: { title: "HOT", emoji: "🔥", desc: "H - O - T blends together to make HOT! Warm sunshine.", category: "Nature" },
+    POT: { title: "POT", emoji: "🪴", desc: "P - O - T blends together to make POT! A plant pot or cooking pot.", category: "Items" },
+    SUN: { title: "SUN", emoji: "☀️", desc: "S - U - N blends together to make SUN! Bright daylight in the sky.", category: "Nature" },
+    RUN: { title: "RUN", emoji: "🏃", desc: "R - U - N blends together to make RUN! Moving fast on feet.", category: "Actions" },
+    FUN: { title: "FUN", emoji: "🎉", desc: "F - U - N blends together to make FUN! Playful joy and laughter.", category: "Actions" },
+    CUP: { title: "CUP", emoji: "☕", desc: "C - U - P blends together to make CUP! Drink warm milk or tea.", category: "Items" },
+    BUS: { title: "BUS", emoji: "🚌", desc: "B - U - S blends together to make BUS! Ride the yellow school bus.", category: "Vehicles" },
+    BUG: { title: "BUG", emoji: "🐞", desc: "B - U - G blends together to make BUG! A little crawling ladybug.", category: "Animals" },
+    HUG: { title: "HUG", emoji: "🤗", desc: "H - U - G blends together to make HUG! A warm friendly hug.", category: "Actions" },
+    MUG: { title: "MUG", emoji: "🥛", desc: "M - U - G blends together to make MUG! A big cocoa mug.", category: "Items" },
+  };
+
   // Interactive Word Builder State
   const [activeSlots, setActiveSlots] = useState<(string | null)[]>([null, null, null]);
+  const [discoveredWords, setDiscoveredWords] = useState<string[]>(["CAT", "DOG", "SUN", "BAG"]);
+
   const handleLetterClick = (letter: string) => {
     const emptyIndex = activeSlots.indexOf(null);
     if (emptyIndex !== -1) {
       const newSlots = [...activeSlots];
       newSlots[emptyIndex] = letter;
       setActiveSlots(newSlots);
+
+      // Check if word complete
+      if (newSlots.every(slot => slot !== null)) {
+        const formedWord = newSlots.join("");
+        const matched = VALID_PHONICS_WORDS[formedWord];
+        if (matched) {
+          if (!discoveredWords.includes(formedWord)) {
+            setDiscoveredWords(prev => [...prev, formedWord]);
+          }
+          playPhonicsSound(formedWord, matched.desc);
+        } else {
+          playPhonicsSound(formedWord);
+        }
+      } else {
+        playPhonicsSound(letter);
+      }
     }
   };
+
+  const handleClearSlot = (index: number) => {
+    const newSlots = [...activeSlots];
+    newSlots[index] = null;
+    setActiveSlots(newSlots);
+  };
+
   const handleResetSlots = () => {
     setActiveSlots([null, null, null]);
   };
@@ -695,7 +879,10 @@ export function PhonicsPage() {
                     return (
                       <motion.button
                         key={item.sound}
-                        onClick={() => setSelectedSound(item.sound)}
+                        onClick={() => {
+                          setSelectedSound(item.sound);
+                          playPhonicsSound(item.sound, item.word);
+                        }}
                         whileHover={{ scale: 1.07, y: -3 }}
                         whileTap={{ scale: 0.93 }}
                         initial={{ opacity: 0, y: 20 }}
@@ -748,9 +935,19 @@ export function PhonicsPage() {
 
                 {/* Detail text */}
                 <div className="text-left flex-grow">
-                  <span className="inline-block bg-[#95b09d]/30 text-[#2e3d33] px-2.5 py-0.5 rounded-full text-xs font-bold mb-1.5 uppercase font-Phonics">
-                    Vocalization Guide
-                  </span>
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="inline-block bg-[#95b09d]/30 text-[#2e3d33] px-2.5 py-0.5 rounded-full text-xs font-bold uppercase font-Phonics">
+                      Vocalization Guide
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => playPhonicsSound(activeSoundDetail.sound, activeSoundDetail.word)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#363B37] text-white text-xs font-semibold hover:bg-[#222523] transition cursor-pointer shadow-sm"
+                    >
+                      <Volume2 className="w-3.5 h-3.5" />
+                      Listen Sound
+                    </button>
+                  </div>
                   <h4 className="text-lg font-bold text-[#363B37] flex items-center gap-1.5 font-Phonics">
                     "{activeSoundDetail.sound}" as in <span className="underline decoration-[#eba37a] decoration-2">{activeSoundDetail.word}</span>
                   </h4>
@@ -765,20 +962,28 @@ export function PhonicsPage() {
             {/* Column 2: 3-Letter Word Builder */}
             <AnimatedCard direction="right" className="lg:col-span-6 bg-white border-[2.5px] border-[#363B37] rounded-[2rem] p-6 sm:p-8 shadow-[6px_6px_0px_#363B37] flex flex-col justify-between min-h-[480px]">
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#363B37] flex items-center gap-2 mb-2 font-Phonics">
-                  <Sparkles className="w-6 h-6 text-[#e6b85c]" />
-                  3-Letter Word Builder
-                </h3>
-                <p className="text-sm text-[#555E58] mb-6">
-                  Click the letter tiles to fill the three slots and build simple phonics words.
+                <div className="flex items-center justify-between gap-3 mb-2 flex-wrap">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#363B37] flex items-center gap-2 font-Phonics">
+                    <Sparkles className="w-6 h-6 text-[#e6b85c]" />
+                    3-Letter Word Builder
+                  </h3>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e6b85c]/25 border border-[#e6b85c] text-[#363B37] text-xs font-bold font-Phonics">
+                    <span>🏆</span>
+                    <span>{discoveredWords.length} Discovered</span>
+                  </div>
+                </div>
+                <p className="text-sm text-[#555E58] mb-5">
+                  Click letter tiles to build words. Click filled slots to remove letters.
                 </p>
 
                 {/* Active Slots */}
-                <div className="flex gap-4 justify-center mb-6">
+                <div className="flex gap-3 sm:gap-4 justify-center mb-5">
                   {activeSlots.map((letter, idx) => (
                     <div
                       key={idx}
-                      className="w-16 h-20 sm:w-20 sm:h-24 bg-[#FAF8F3] border-[2.5px] border-[#363B37] rounded-2xl flex items-center justify-center text-3xl sm:text-4xl font-bold text-[#363B37] shadow-[3px_3px_0px_#363B37] relative overflow-hidden"
+                      onClick={() => handleClearSlot(idx)}
+                      title={letter ? "Click to clear this letter" : "Empty slot"}
+                      className={`w-16 h-20 sm:w-20 sm:h-24 bg-[#FAF8F3] border-[2.5px] border-[#363B37] rounded-2xl flex items-center justify-center text-3xl sm:text-4xl font-bold text-[#363B37] shadow-[3px_3px_0px_#363B37] relative overflow-hidden transition-transform ${letter ? "cursor-pointer hover:scale-105" : ""}`}
                     >
                       {letter ? (
                         <motion.span
@@ -795,101 +1000,128 @@ export function PhonicsPage() {
                   ))}
                 </div>
 
-                {/* Letter Tiles */}
-                <div className="flex flex-wrap gap-2.5 sm:gap-3 justify-center max-w-md mx-auto mb-6">
-                  {["C", "B", "F", "A", "T", "G", "N"].map((letter) => {
-                    const isUsed = activeSlots.includes(letter);
-                    const isFull = activeSlots.every(slot => slot !== null);
-                    return (
-                      <button
-                        key={letter}
-                        onClick={() => handleLetterClick(letter)}
-                        disabled={isUsed || isFull}
-                        className={`w-12 h-14 sm:w-14 sm:h-16 rounded-xl border-2 border-[#363B37] text-xl sm:text-2xl font-bold flex items-center justify-center shadow-[2px_2px_0px_#363B37] transition-all cursor-pointer ${isUsed
-                          ? "bg-[#363B37]/5 text-[#363B37]/20 border-dashed cursor-not-allowed shadow-none"
-                          : isFull
-                            ? "bg-[#FAF8F3]/50 text-[#363B37]/40 border-dashed cursor-not-allowed shadow-none"
-                            : "bg-white hover:-translate-y-0.5 active:translate-y-0 text-[#363B37] hover:bg-[#FAF8F3]"
-                          }`}
-                      >
-                        {letter}
-                      </button>
-                    );
-                  })}
+                {/* Letter Palette */}
+                <div className="space-y-2 mb-6">
+                  {/* Vowels Row */}
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    <span className="w-full text-xs font-bold uppercase tracking-wider text-[#eba37a] text-center mb-0.5">Vowels</span>
+                    {["A", "E", "I", "O", "U"].map((letter) => {
+                      const isFull = activeSlots.every(slot => slot !== null);
+                      return (
+                        <button
+                          key={letter}
+                          onClick={() => handleLetterClick(letter)}
+                          disabled={isFull}
+                          className={`w-10 h-12 sm:w-12 sm:h-14 rounded-xl border-2 border-[#363B37] text-lg sm:text-xl font-bold flex items-center justify-center shadow-[2px_2px_0px_#363B37] transition-all cursor-pointer bg-[#e6b85c]/30 hover:bg-[#e6b85c]/60 text-[#363B37] ${isFull ? "opacity-50 cursor-not-allowed shadow-none" : "hover:-translate-y-0.5"}`}
+                        >
+                          {letter}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Consonants Row */}
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-center max-w-lg mx-auto pt-1">
+                    <span className="w-full text-xs font-bold uppercase tracking-wider text-[#95b09d] text-center mb-0.5">Consonants</span>
+                    {["B", "C", "D", "F", "G", "H", "K", "L", "M", "N", "P", "R", "S", "T", "V", "W", "X"].map((letter) => {
+                      const isFull = activeSlots.every(slot => slot !== null);
+                      return (
+                        <button
+                          key={letter}
+                          onClick={() => handleLetterClick(letter)}
+                          disabled={isFull}
+                          className={`w-9 h-11 sm:w-11 sm:h-13 rounded-xl border-2 border-[#363B37] text-base sm:text-lg font-bold flex items-center justify-center shadow-[2px_2px_0px_#363B37] transition-all cursor-pointer bg-white hover:bg-[#FAF8F3] text-[#363B37] ${isFull ? "opacity-50 cursor-not-allowed shadow-none" : "hover:-translate-y-0.5"}`}
+                        >
+                          {letter}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
 
               {/* Dynamic Game Outcome Box */}
               <div>
                 {activeSlots.some(slot => slot === null) ? (
-                  <div className="bg-[#FAF8F3] border-[2px] border-dashed border-[#363B37]/40 rounded-2xl p-5 text-center min-h-[110px] flex items-center justify-center">
+                  <div className="bg-[#FAF8F3] border-[2px] border-dashed border-[#363B37]/40 rounded-2xl p-4 text-center min-h-[100px] flex items-center justify-center">
                     <p className="text-sm text-[#555E58] italic font-normal">
-                      Click letters above to fill slots. Try building <strong className="text-[#eba37a]">CAT</strong>, <strong className="text-[#e6b85c]">BAG</strong>, or <strong className="text-[#95b09d]">FAN</strong>!
+                      Click letters above to fill 3 slots! Combine consonants with a vowel like <strong className="text-[#eba37a]">CAT</strong>, <strong className="text-[#e6b85c]">DOG</strong>, <strong className="text-[#95b09d]">SUN</strong>, or <strong className="text-[#2c5aa0]">BED</strong>.
                     </p>
                   </div>
                 ) : (() => {
                   const word = activeSlots.join("");
-                  let matches = true;
-                  let wordContent = {
-                    title: "🐱 CAT!",
-                    colorClass: "bg-[#e6b85c]/25 border-[#e6b85c] text-[#363B37]",
-                    desc: "C - A - T blends together to make CAT! Meow! Excellent reading!"
-                  };
+                  const matched = VALID_PHONICS_WORDS[word];
 
-                  if (word === "CAT") {
-                    wordContent = {
-                      title: "🐱 CAT!",
-                      colorClass: "bg-[#e6b85c]/25 border-[#e6b85c] text-[#363B37]",
-                      desc: "C - A - T blends together to make CAT! Meow! Excellent reading!"
-                    };
-                  } else if (word === "BAG") {
-                    wordContent = {
-                      title: "🎒 BAG!",
-                      colorClass: "bg-[#eba37a]/25 border-[#eba37a] text-[#363B37]",
-                      desc: "B - A - G blends together to make BAG! Grab your school bag!"
-                    };
-                  } else if (word === "FAN") {
-                    wordContent = {
-                      title: "💨 FAN!",
-                      colorClass: "bg-[#95b09d]/25 border-[#95b09d] text-[#363B37]",
-                      desc: "F - A - N blends together to make FAN! Ah, feel the cool breeze!"
-                    };
-                  } else {
-                    matches = false;
-                    wordContent = {
-                      title: "🤔 TRY AGAIN",
-                      colorClass: "bg-red-50 border-red-300 text-red-800",
-                      desc: `"${word}" is a fun try, but it's not one of our target words. Can you build CAT, BAG, or FAN?`
-                    };
+                  if (matched) {
+                    return (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="border-2 border-[#363B37] bg-[#e6b85c]/25 rounded-2xl p-5 text-left min-h-[100px] flex flex-col justify-center relative shadow-sm"
+                      >
+                        <div className="absolute top-3 right-3 flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => playPhonicsSound(word, matched.desc)}
+                            className="p-1.5 rounded-lg bg-[#363B37] text-white hover:bg-[#222523] transition cursor-pointer"
+                            title="Replay Audio"
+                          >
+                            <Volume2 className="w-4 h-4" />
+                          </button>
+                          <Sparkles className="w-5 h-5 animate-pulse text-[#eba37a]" />
+                        </div>
+                        <h4 className="text-lg font-bold flex items-center gap-2 uppercase font-Phonics text-[#363B37]">
+                          <span>{matched.emoji}</span>
+                          <span>{matched.title}!</span>
+                        </h4>
+                        <p className="text-sm mt-1 leading-relaxed font-normal text-[#363B37]">
+                          {matched.desc}
+                        </p>
+                      </motion.div>
+                    );
                   }
 
                   return (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      className={`border-2 rounded-2xl p-5 text-left min-h-[110px] flex flex-col justify-center relative ${wordContent.colorClass}`}
+                      className="border-2 border-red-300 bg-red-50 rounded-2xl p-5 text-left min-h-[100px] flex flex-col justify-center relative"
                     >
-                      {matches && (
-                        <div className="absolute top-3 right-3 flex gap-1 pointer-events-none">
-                          <Sparkles className="w-5 h-5 animate-pulse text-[#eba37a]" />
-                        </div>
-                      )}
-                      <h4 className="text-lg font-bold flex items-center gap-1.5 uppercase font-Phonics">
-                        {wordContent.title}
+                      <h4 className="text-lg font-bold flex items-center gap-1.5 uppercase font-Phonics text-red-800">
+                        🤔 TRY ANOTHER WORD!
                       </h4>
-                      <p className="text-sm mt-1 leading-relaxed font-normal">
-                        {wordContent.desc}
+                      <p className="text-sm mt-1 leading-relaxed font-normal text-red-700">
+                        "{word}" is a fun combination! Try pairing vowels (A, E, I, O, U) with consonants to discover valid words like <strong>CAT</strong>, <strong>RED</strong>, <strong>PIG</strong>, <strong>DOG</strong>, or <strong>SUN</strong>!
                       </p>
                     </motion.div>
                   );
                 })()}
 
-                {/* Reset button inside outcomes */}
-                <div className="flex justify-end mt-4">
+                {/* Reset & Discovered Collection Bar */}
+                <div className="flex items-center justify-between gap-3 mt-4 flex-wrap">
+                  <div className="flex items-center gap-1.5 flex-wrap max-w-sm">
+                    <span className="text-xs font-bold text-[#555E58]">My Words:</span>
+                    {discoveredWords.slice(-5).map(w => (
+                      <button
+                        key={w}
+                        type="button"
+                        onClick={() => {
+                          const letters = w.split("");
+                          setActiveSlots(letters);
+                          const m = VALID_PHONICS_WORDS[w];
+                          if (m) playPhonicsSound(w, m.desc);
+                        }}
+                        className="px-2.5 py-0.5 rounded-lg bg-[#FAF8F3] border border-[#363B37] text-xs font-bold text-[#363B37] hover:bg-[#363B37] hover:text-white transition cursor-pointer"
+                      >
+                        {VALID_PHONICS_WORDS[w]?.emoji} {w}
+                      </button>
+                    ))}
+                  </div>
+
                   <button
                     onClick={handleResetSlots}
                     disabled={activeSlots.every(slot => slot === null)}
-                    className={`px-6 py-2 rounded-full font-bold text-xs sm:text-sm border-2 border-[#363B37] cursor-pointer shadow-[2px_2px_0px_#363B37] active:translate-y-0.5 active:shadow-none transition-all ${activeSlots.every(slot => slot === null)
+                    className={`px-5 py-2 rounded-full font-bold text-xs border-2 border-[#363B37] cursor-pointer shadow-[2px_2px_0px_#363B37] active:translate-y-0.5 active:shadow-none transition-all ${activeSlots.every(slot => slot === null)
                       ? "bg-gray-100 text-gray-400 border-gray-300 shadow-none cursor-not-allowed"
                       : "bg-white hover:bg-[#FAF8F3] text-[#363B37]"
                       }`}
