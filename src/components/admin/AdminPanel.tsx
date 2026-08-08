@@ -124,7 +124,7 @@ export function AdminPanel() {
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
                   className="w-full h-14 bg-gray-50 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-[#d90f40] pl-12 outline-none transition-all font-medium"
-                  placeholder="admin@apexedge.com"
+                  placeholder="Email"
                   required
                 />
               </div>

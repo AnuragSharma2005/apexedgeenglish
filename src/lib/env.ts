@@ -24,7 +24,7 @@ export const ENV = {
     "918360079077",
   ADMIN_EMAIL:
     (import.meta.env.VITE_ADMIN_EMAIL as string) ||
-    "admin@apexedge.com",
+    "apexedgeenglish@gmail.com",
   ADMIN_PASSWORD:
     (import.meta.env.VITE_ADMIN_PASSWORD as string) ||
     "apexedge@123",
