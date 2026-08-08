@@ -1,4 +1,4 @@
-import { useState, useEffect, type MouseEvent } from "react";
+import { useState, useEffect, useRef, type MouseEvent } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import logo from "@/assets/logo.png";
 import { ENV } from "@/lib/env";
@@ -7,6 +7,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const handleHomeClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -19,6 +20,16 @@ export function Navbar() {
       window.location.reload();
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: globalThis.MouseEvent | TouchEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsCoursesDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 28);
@@ -84,13 +95,15 @@ export function Navbar() {
             <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-base xl:text-lg font-semibold text-[oklch(0.2_0.02_250)]">
               <Link to="/" onClick={handleHomeClick} className="hover:text-[#d90f40] transition">Home</Link>
               <div
+                ref={dropdownRef}
                 className="relative group"
+                onMouseEnter={() => setIsCoursesDropdownOpen(true)}
                 onMouseLeave={() => setIsCoursesDropdownOpen(false)}
               >
                 <button
-                  onClick={() => setIsCoursesDropdownOpen(!isCoursesDropdownOpen)}
-                  onMouseEnter={() => setIsCoursesDropdownOpen(true)}
-                  className="hover:text-[#d90f40] transition inline-flex items-center gap-2 py-2"
+                  type="button"
+                  onClick={() => setIsCoursesDropdownOpen((prev) => !prev)}
+                  className="hover:text-[#d90f40] transition inline-flex items-center gap-2 py-2 cursor-pointer"
                 >
                   Online Courses
                   <svg className={`w-4 h-4 transition-transform ${isCoursesDropdownOpen ? "rotate-180" : ""}`} viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -98,33 +111,32 @@ export function Navbar() {
                   </svg>
                 </button>
                 {isCoursesDropdownOpen && (
-                  <div
-                    className="absolute top-full left-0 mt-1 w-72 bg-[#f5e8ec] rounded-2xl shadow-xl border border-[#e5d5e0] p-4 z-50 space-y-2"
-                    onMouseEnter={() => setIsCoursesDropdownOpen(true)}
-                  >
-                    {[
-                      { to: "/phonics", label: "Phonics", color: "#698c73", short: "PHN" },
-                      { to: "/ielts", label: "IELTS", color: "#d72646", short: "IELTS" },
-                      { to: "/pte", label: "PTE", color: "#2c5aa0", short: "PTE" },
-                      { to: "/celpip", label: "CELPIP", color: "#f59e0b", short: "CELPIP" },
-                      { to: "/business-communications", label: "Business Communications", color: "#10b981", short: "BUS." },
-                      { to: "/spoken-english", label: "Spoken English", color: "#f59e0b", short: "SE" },
-                    ].map((item) => (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                        onClick={() => setIsCoursesDropdownOpen(false)}
-                        className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-white transition cursor-pointer group/item"
-                      >
-                        <div
-                          className="w-11 h-11 rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0 transition-transform group-hover/item:scale-110"
-                          style={{ backgroundColor: item.color }}
+                  <div className="absolute top-full left-0 pt-2 w-72 z-50">
+                    <div className="bg-[#f5e8ec] rounded-2xl shadow-xl border border-[#e5d5e0] p-4 space-y-2">
+                      {[
+                        { to: "/phonics", label: "Phonics", color: "#698c73", short: "PHN" },
+                        { to: "/ielts", label: "IELTS", color: "#d72646", short: "IELTS" },
+                        { to: "/pte", label: "PTE", color: "#2c5aa0", short: "PTE" },
+                        { to: "/celpip", label: "CELPIP", color: "#f59e0b", short: "CELPIP" },
+                        { to: "/business-communications", label: "Business Communications", color: "#10b981", short: "BUS." },
+                        { to: "/spoken-english", label: "Spoken English", color: "#f59e0b", short: "SE" },
+                      ].map((item) => (
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          onClick={() => setIsCoursesDropdownOpen(false)}
+                          className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-white transition cursor-pointer group/item"
                         >
-                          {item.short}
-                        </div>
-                        <span className="text-base font-semibold text-[#333]">{item.label}</span>
-                      </Link>
-                    ))}
+                          <div
+                            className="w-11 h-11 rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0 transition-transform group-hover/item:scale-110"
+                            style={{ backgroundColor: item.color }}
+                          >
+                            {item.short}
+                          </div>
+                          <span className="text-base font-semibold text-[#333]">{item.label}</span>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
