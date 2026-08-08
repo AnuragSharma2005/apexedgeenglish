@@ -12,19 +12,19 @@ const pteHighlights = [
       id: "01",
       title: "AI Scoring Mastery",
       desc: "Get trained by experts who understand the Pearson AI algorithm. We teach you exactly how to score high in oral fluency and pronunciation.",
-      image: "/students/pte.png"
+      image: "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075581/pte_dnhlne.jpg"
    },
    {
       id: "02",
       title: "Real-Exam Software",
       desc: "Practice on a platform that mirrors the actual PTE Academic interface. No surprises on the test day—just pure performance.",
-      image: "/students/celpip.png"
+      image: "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075583/celpip_srdty8.jpg"
    },
    {
       id: "03",
       title: "Instant AI Feedback",
       desc: "Receive immediate scores and AI-driven analytics on your speaking and writing attempts to identify areas of improvement.",
-      image: "/students/group.png"
+      image: "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075590/group_dw4fxd.jpg"
    },
    {
       id: "04",
@@ -146,7 +146,7 @@ export function PTEPage() {
                      {/* Main Image Card */}
                      <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.25)] border-4 sm:border-6 border-white">
                         <img
-                           src="/images/pte-hero-girl.png"
+                           src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786076243/pte-hero-girl_ire4r4.jpg"
                            alt="PTE Academic Student at Apex Edge English"
                            className="w-full h-[320px] sm:h-[450px] lg:h-[550px] object-cover object-top"
                         />
@@ -252,7 +252,7 @@ export function PTEPage() {
                   <div className="lg:col-span-5 relative">
                      <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border-4 border-[#fce4ec]">
                         <img
-                           src="/students/pte.png"
+                           src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075581/pte_dnhlne.jpg"
                            alt="PTE Academic Student Strategy session"
                            className="w-full h-[320px] sm:h-[400px] lg:h-[480px] object-cover object-center"
                         />

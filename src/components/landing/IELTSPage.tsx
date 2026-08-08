@@ -8,8 +8,8 @@ import { ApexEdgeFooter } from "../ApexEdgeFooter";
 import studentPrep from "@/assets/student-girl.png"; // Placeholder for the hero, or I can use the absolute path if I want but let's use the workspace assets if available or just the path for now.
 const CUBIC_EASE = [0.16, 1, 0.3, 1] as const;
 
-const heroStudent = "/students/ielts.png";
-const groupStudent = "/students/group.png";
+const heroStudent = "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075604/ielts_h5hgdy.jpg";
+const groupStudent = "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075590/group_dw4fxd.jpg";
 
 const modules = [
   {
@@ -436,7 +436,7 @@ export function IELTSPage() {
                     <div className="absolute inset-0 border-2 border-white/20 rounded-[4rem] rotate-12 scale-95 translate-y-4" />
                     <div className="w-full h-full rounded-[4.5rem] overflow-hidden border-8 border-white shadow-2xl bg-white transform -rotate-3 hover:rotate-0 transition-all duration-700 ease-out">
                       <img
-                        src="/students/group.png"
+                        src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075590/group_dw4fxd.jpg"
                         alt="Student"
                         className="w-full h-full object-cover scale-110 object-center"
                       />

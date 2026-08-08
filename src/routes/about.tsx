@@ -117,7 +117,7 @@ function AboutPage() {
               >
                 <div className="relative rounded-[3rem] overflow-hidden shadow-2xl">
                   <img
-                    src="/images/mission.png"
+                    src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786076249/mission_jsanwq.jpg"
                     alt="Mission and Vision"
                     className="w-full h-[600px] object-cover hover:scale-110 transition-transform duration-1000"
                   />

@@ -103,7 +103,7 @@ export function BusinessCommPage() {
 
                   {/* Business Woman Student Image */}
                   <img
-                    src="/students/business_woman.png"
+                    src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075582/business_woman_pfvrjg.jpg"
                     alt="Business Woman Communication"
                     className="relative z-20 w-full h-full object-cover object-center scale-105"
                   />
@@ -119,7 +119,7 @@ export function BusinessCommPage() {
                 {/* 2. Top Right Dark Navy Chat Preview Popup Card */}
                 <div className="absolute top-[8%] right-[0%] sm:right-[4%] bg-[#0f172a] text-white p-2.5 px-3.5 sm:p-3 sm:px-4 rounded-2xl shadow-2xl border border-slate-700/70 z-30 flex items-center gap-3 max-w-[190px] sm:max-w-[220px]">
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-amber-400 overflow-hidden shrink-0">
-                    <img src="/students/celpip_boy.png" alt="Avatar" className="w-full h-full object-cover" />
+                    <img src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075584/celpip_boy_zljcmw.jpg" alt="Avatar" className="w-full h-full object-cover" />
                   </div>
                   <div className="space-y-1 flex-1">
                     <div className="w-20 sm:w-24 h-2 bg-white/40 rounded-full" />
@@ -144,7 +144,7 @@ export function BusinessCommPage() {
 
                 {/* 5. Bottom Center Avatar Circle Badge */}
                 <div className="absolute bottom-[2%] left-[48%] -translate-x-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-white shadow-xl overflow-hidden z-30 bg-white">
-                  <img src="/students/spoken.png" alt="Client Avatar" className="w-full h-full object-cover" />
+                  <img src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075581/spoken_ecrras.jpg" alt="Client Avatar" className="w-full h-full object-cover" />
                 </div>
 
                 {/* 6. Bottom-Left Cyan Video Camera Circle Badge */}
@@ -240,7 +240,7 @@ export function BusinessCommPage() {
                 </Link>
               </div>
               <div className="w-full md:w-1/2 h-[200px] sm:h-full rounded-2xl sm:rounded-[2rem] overflow-hidden">
-                <img src="/students/celpip.png" className="w-full h-full object-cover" alt="Digital" />
+                <img src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075583/celpip_srdty8.jpg" className="w-full h-full object-cover" alt="Digital" />
               </div>
             </motion.div>
           </div>
@@ -364,7 +364,7 @@ export function BusinessCommPage() {
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="relative">
               <div className="absolute -top-10 -left-10 w-full h-full border-4 border-[#d90f40] rounded-[4rem]" />
-              <img src="/students/ielts.png" className="relative z-10 rounded-[4rem] grayscale shadow-2xl" alt="Results" />
+              <img src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075604/ielts_h5hgdy.jpg" className="relative z-10 rounded-[4rem] grayscale shadow-2xl" alt="Results" />
             </div>
             <div>
               <h2 className="text-5xl font-black text-[#1a1a1a] mb-12 leading-[0.9]">THE <span className="text-[#d90f40]">IMPACT.</span></h2>

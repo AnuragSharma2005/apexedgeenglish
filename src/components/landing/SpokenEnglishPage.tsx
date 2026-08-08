@@ -12,13 +12,13 @@ const highlightsData = [
     id: "01",
     title: "Individualised Teaching",
     desc: "We provide our candidates with completely 1:1 individualised coaching facilities. Hence, you can learn at your own pace without any pressure.",
-    image: "/students/spoken.png"
+    image: "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075581/spoken_ecrras.jpg"
   },
   {
     id: "02",
     title: "Practice-Based Learning",
     desc: "Enrolling with Apex Edge will help you experience 100% practice-based learning. Therefore, you can master the nuances of the language effectively.",
-    image: "/students/ielts.png"
+    image: "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075604/ielts_h5hgdy.jpg"
   },
   {
     id: "03",
@@ -30,13 +30,13 @@ const highlightsData = [
     id: "04",
     title: "Flexible Learning",
     desc: "Schedule your classes according to your convenience. We offer early morning to late night slots to fit your busy lifestyle.",
-    image: "/students/group.png"
+    image: "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075590/group_dw4fxd.jpg"
   },
   {
     id: "05",
     title: "Real-Time Practice",
     desc: "Engage in live conversations and real-world simulations to build instantaneous confidence and fluency.",
-    image: "/students/celpip.png"
+    image: "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075583/celpip_srdty8.jpg"
   }
 ];
 
@@ -234,9 +234,9 @@ export function SpokenEnglishPage() {
             <div className="relative group">
               <div className="rounded-t-[45px] xs:rounded-t-[70px] sm:rounded-t-[140px] rounded-b-[18px] sm:rounded-b-[40px] bg-[#FCE7F3] border-2 sm:border-4 border-white shadow-md sm:shadow-xl overflow-hidden transition-transform duration-300 group-hover:-translate-y-2">
                 <img
-                  src="/students/hero_left.png"
+                  src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075602/hero_left_bpsrkk.jpg"
                   onError={(e) => {
-                    (e.target as HTMLElement).setAttribute("src", "/students/spoken.png");
+                    (e.target as HTMLElement).setAttribute("src", "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075581/spoken_ecrras.jpg");
                   }}
                   alt="Student Pink"
                   className="w-full h-[170px] xs:h-[220px] sm:h-[360px] md:h-[420px] object-cover object-top"
@@ -251,9 +251,9 @@ export function SpokenEnglishPage() {
 
               <div className="rounded-t-[45px] xs:rounded-t-[70px] sm:rounded-t-[140px] rounded-b-[18px] sm:rounded-b-[40px] bg-[#E9D5FF] border-2 sm:border-4 border-white shadow-lg sm:shadow-2xl overflow-hidden transition-transform duration-300 group-hover:-translate-y-2 relative z-10">
                 <img
-                  src="/students/hero_center.png"
+                  src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075601/hero_center_hrycjw.jpg"
                   onError={(e) => {
-                    (e.target as HTMLElement).setAttribute("src", "/students/pte.png");
+                    (e.target as HTMLElement).setAttribute("src", "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075581/pte_dnhlne.jpg");
                   }}
                   alt="Student Purple"
                   className="w-full h-[190px] xs:h-[245px] sm:h-[390px] md:h-[450px] object-cover object-top"
@@ -265,9 +265,9 @@ export function SpokenEnglishPage() {
             <div className="relative group">
               <div className="rounded-t-[45px] xs:rounded-t-[70px] sm:rounded-t-[140px] rounded-b-[18px] sm:rounded-b-[40px] bg-[#FEF08A] border-2 sm:border-4 border-white shadow-md sm:shadow-xl overflow-hidden transition-transform duration-300 group-hover:-translate-y-2">
                 <img
-                  src="/students/hero_right.png"
+                  src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075602/hero_right_jvkhj3.jpg"
                   onError={(e) => {
-                    (e.target as HTMLElement).setAttribute("src", "/students/celpip_boy.png");
+                    (e.target as HTMLElement).setAttribute("src", "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075584/celpip_boy_zljcmw.jpg");
                   }}
                   alt="Student Green"
                   className="w-full h-[170px] xs:h-[220px] sm:h-[360px] md:h-[420px] object-cover object-top"
@@ -318,9 +318,9 @@ export function SpokenEnglishPage() {
 
                 {/* Student Cutout */}
                 <img
-                  src="/students/hero_center.png"
+                  src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075601/hero_center_hrycjw.jpg"
                   onError={(e) => {
-                    (e.target as HTMLElement).setAttribute("src", "/students/spoken.png");
+                    (e.target as HTMLElement).setAttribute("src", "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075581/spoken_ecrras.jpg");
                   }}
                   alt="Student Spoken English Batch"
                   className="relative z-10 w-[88%] h-[88%] object-cover object-top rounded-full border-4 border-white shadow-xl"

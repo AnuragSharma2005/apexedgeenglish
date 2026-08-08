@@ -286,9 +286,9 @@ export function PhonicsPage() {
   const [activeFaqTab, setActiveFaqTab] = useState<string>("General");
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
-  const transparentGirl = useTransparentImage("/students/phonics_girl.png");
-  const transparentBaby = useTransparentImage("/students/phonics_baby.png");
-  const transparentCaregiver = useTransparentImage("/students/phonics_caregiver.png");
+  const transparentGirl = useTransparentImage("https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075578/phonics_girl_pqzigc.jpg");
+  const transparentBaby = useTransparentImage("https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075607/phonics_baby_gbbkdn.jpg");
+  const transparentCaregiver = useTransparentImage("https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075578/phonics_caregiver_zqif5u.jpg");
 
   // Interactive Soundboard State
   const [selectedSound, setSelectedSound] = useState<string>("sh");
@@ -558,22 +558,22 @@ export function PhonicsPage() {
               {
                 title: "Storytelling & Songs",
                 desc: "Activity-based approach combining stories and picture recognition to make learning enjoyable.",
-                img: "/students/phonics_card_in_home.png"
+                img: "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075577/phonics_card_in_home_f9lzql.jpg"
               },
               {
                 title: "Letter Sounds",
                 desc: "Children learn the relationship between letters and sounds to read words confidently.",
-                img: "/students/phonics_card_sleep.png"
+                img: "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075578/phonics_card_sleep_s3guw3.jpg"
               },
               {
                 title: "Independent Blending",
                 desc: "Blend sounds to read new words independently rather than memorising them.",
-                img: "/students/phonics_card_babysitting.png"
+                img: "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075577/phonics_card_babysitting_ruz4cz.jpg"
               },
               {
                 title: "Fluent Reading",
                 desc: "Gain reading confidence and spelling enhancement from an early age.",
-                img: "/students/phonics_card_nanny.png"
+                img: "https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075578/phonics_card_nanny_wpsbbf.jpg"
               }
             ].map((card, idx) => (
               <AnimatedCard
@@ -1394,7 +1394,7 @@ export function PhonicsPage() {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
                 <img
-                  src="/students/phonics_safety_play.png"
+                  src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075580/phonics_safety_play_dyucfw.jpg"
                   alt="Children playing safely outdoor"
                   className="w-full h-full object-cover select-none pointer-events-none"
                 />
@@ -1471,7 +1471,7 @@ export function PhonicsPage() {
               {/* Right Column: Smiling Mother & Baby Image */}
               <div className="relative w-full md:w-[45%] min-h-[300px] md:min-h-full overflow-hidden border-t-[2.5px] md:border-t-0 md:border-l-[2.5px] border-[#363B37] flex items-stretch rounded-t-[2rem] md:rounded-t-none md:rounded-l-full z-10 bg-[#eef1ed]">
                 <img
-                  src="/students/phonics_cta_mother_baby.png"
+                  src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075578/phonics_cta_mother_baby_afbtfn.jpg"
                   alt="Mother holding baby"
                   className="w-full h-full object-cover select-none pointer-events-none"
                 />

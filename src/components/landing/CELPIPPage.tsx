@@ -138,7 +138,7 @@ export function CELPIPPage() {
                 {/* Boy Laptop Image Container */}
                 <div className="absolute inset-x-8 top-12 bottom-16 rounded-t-full overflow-hidden z-20 shadow-2xl border-4 border-white">
                   <img
-                    src="/students/celpip_boy.png"
+                    src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075584/celpip_boy_zljcmw.jpg"
                     alt="CELPIP Boy Student"
                     className="w-full h-full object-cover object-top scale-105"
                   />
@@ -692,12 +692,12 @@ export function CELPIPPage() {
                     <h4 className="font-bold text-lg sm:text-xl text-slate-900">Computer <br /> Familiarity</h4>
                   </div>
                   <div className="h-72 bg-slate-900 rounded-[2rem] overflow-hidden shadow-lg">
-                    <img src="/students/celpip.png" className="w-full h-full object-cover" alt="CELPIP" />
+                    <img src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075583/celpip_srdty8.jpg" className="w-full h-full object-cover" alt="CELPIP" />
                   </div>
                 </div>
                 <div className="space-y-4 pt-10">
                   <div className="h-72 bg-[#9f3e58] rounded-[2rem] overflow-hidden shadow-lg">
-                    <img src="/students/spoken.png" className="w-full h-full object-cover" alt="CELPIP" />
+                    <img src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786075581/spoken_ecrras.jpg" className="w-full h-full object-cover" alt="CELPIP" />
                   </div>
                   <div className="h-60 bg-amber-300 rounded-[2rem] p-6 sm:p-8 flex flex-col justify-end text-slate-950">
                     <Globe className="w-8 h-8 sm:w-10 sm:h-10 text-slate-950 mb-3" />
