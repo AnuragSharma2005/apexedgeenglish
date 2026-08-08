@@ -9,7 +9,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import image from "@/assets/image.png";
+
 import { ENV } from "@/lib/env";
 
 const exploreLinks = [
@@ -48,7 +48,7 @@ export function ApexEdgeFooter() {
         </div>
 
         <img
-          src={image}
+          src="https://res.cloudinary.com/dkmr8o9p9/image/upload/v1786170028/image_ekovov.png"
           alt=""
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-12"

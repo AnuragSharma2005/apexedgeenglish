@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import studentGirl from "@/assets/student-girl.png";
 import { ApexEdgeFooter } from "../ApexEdgeFooter";
 import { Navbar } from "../Navbar";
 import { Mail, Phone, MessageCircle, MapPin, Clock, CheckCircle2, Sparkles } from "lucide-react";
