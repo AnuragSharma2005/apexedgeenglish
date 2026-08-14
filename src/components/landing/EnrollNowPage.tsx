@@ -342,7 +342,7 @@ export function EnrollNowPage() {
                             name="Phone no"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
-                            placeholder="+91 98765 43210"
+                            placeholder="+91 98765 4XXXX"
                             required
                             className="w-full h-12 px-5 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:border-[#d90f40]/30 focus:bg-white text-sm text-[#1a1a1a] font-bold transition-all placeholder-gray-500"
                           />

@@ -54,32 +54,32 @@ export function StudentSuccessVideosSection() {
       </div>
     </article>
   );
+// Video part 
+  // return (
+  //   <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 pb-16 lg:pb-24 font-serif">
+  //     <div className="mx-auto max-w-384">
+  //       <h2 className="text-center text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-[oklch(0.16_0.02_250)]">
+  //         Join <span className="text-[#d90f40]">5K Students</span> who Turned Dreams into Achievements!
+  //       </h2>
 
-  return (
-    <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 pb-16 lg:pb-24 font-serif">
-      <div className="mx-auto max-w-384">
-        <h2 className="text-center text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-[oklch(0.16_0.02_250)]">
-          Join <span className="text-[#d90f40]">5K Students</span> who Turned Dreams into Achievements!
-        </h2>
+  //       <p className="mt-4 text-center text-sm sm:text-base lg:text-lg leading-relaxed text-[oklch(0.26_0.02_250)] max-w-5xl mx-auto font-medium">
+  //         Join the ranks of over 5,000 satisfied students who have transformed their lives and achieved their English language goals with Apex Edge.
+  //       </p>
 
-        <p className="mt-4 text-center text-sm sm:text-base lg:text-lg leading-relaxed text-[oklch(0.26_0.02_250)] max-w-5xl mx-auto font-medium">
-          Join the ranks of over 5,000 satisfied students who have transformed their lives and achieved their English language goals with Apex Edge.
-        </p>
+  //       <div className="mt-12 sm:hidden">
+  //         <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+  //           {videos.map((video) => (
+  //             <div key={video.title} className="w-[78vw] max-w-[18rem] shrink-0 snap-center">
+  //               {renderVideoCard(video)}
+  //             </div>
+  //           ))}
+  //         </div>
+  //       </div>
 
-        <div className="mt-12 sm:hidden">
-          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {videos.map((video) => (
-              <div key={video.title} className="w-[78vw] max-w-[18rem] shrink-0 snap-center">
-                {renderVideoCard(video)}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-14 hidden sm:grid sm:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-7 items-stretch">
-          {videos.map((video) => renderVideoCard(video))}
-        </div>
-      </div>
-    </section>
-  );
+  //       <div className="mt-14 hidden sm:grid sm:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-7 items-stretch">
+  //         {videos.map((video) => renderVideoCard(video))}
+  //       </div>
+  //     </div>
+  //   </section>
+  // );
 }
